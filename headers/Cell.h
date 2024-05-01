@@ -9,7 +9,6 @@ class Cell{
         sf::RenderWindow* window;
         sf::RectangleShape shape;
         bool is_alive;
-        Cell* neighbours;
 
     private:
         int generate_number(int max, int min);

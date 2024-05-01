@@ -4,11 +4,16 @@ namespace GK{
 
     namespace CELL{
         
-        constexpr int WIDTH = 10; 
-        constexpr int HEIGHT = 10; 
+        constexpr float WIDTH = 10.f; 
+        constexpr float HEIGHT = 10.f; 
 
-        constexpr int ORIGIN_X = WIDTH / 2;
+        constexpr float ORIGIN_X = WIDTH / 2;
         constexpr int ORIGIN_Y = HEIGHT / 2;
+
+        constexpr float START_POSITION_X = 50.f; 
+        constexpr float START_POSITION_Y = 95.f; 
+
+        constexpr float BORDER_THICKNESS = 0.5f; 
 
         enum CellState{
             ALIVE = 1,
