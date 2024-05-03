@@ -9,21 +9,12 @@
 #include <cstdlib>
 #include <ctime>
 
-bool is_pause_pressed(sf::RenderWindow &window, sf::Sprite &pause_button){
-    sf::Vector2f mouse;
-    sf::FloatRect bounds;
-    if(sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-        mouse = window.mapPixelToCoords(sf::Mouse::getPosition(window));
-        bounds = pause_button.getGlobalBounds();
-    }
-    return bounds.contains(mouse);
-}
-
 int main() {
 
     srand(time(nullptr));
     
     sf::RenderWindow window(sf::VideoMode(1240, 720), "", sf::Style::Default);
+    window.setPosition(sf::Vector2i(100, 100));
     window.setFramerateLimit(60);
 
     sf::Sprite backgorund;
@@ -77,10 +68,16 @@ int main() {
     refresh_button.setScale(1.25f, 1.25f);
     refresh_button_texture.setSmooth(true);
 
+
+    sf::RectangleShape button_menu(sf::Vector2f(200.f, 600.f));
+    button_menu.setOrigin(50.f, 25.f);
+    button_menu.setFillColor(sf::Color(250, 191, 106, 15));
+    button_menu.setPosition(1240 - 160.f, 115);
+    button_menu.setOutlineColor(sf::Color::Black);
+    button_menu.setOutlineThickness(0.6f);
+
     Map map(&window);
     sf::Clock clock;
-
-    bool is_pause = false;
 
     while (window.isOpen()) {
         sf::Event event;
@@ -94,9 +91,9 @@ int main() {
         window.draw(pause_button);
         window.draw(play_button);
         window.draw(refresh_button);
+        window.draw(button_menu);
         map.draw();
-        is_pause  = is_pause_pressed(window, pause_button);
-        if(clock.getElapsedTime().asSeconds() > 0.5f ){
+        if(clock.getElapsedTime().asSeconds() > 2.f){
             map.update();
             clock.restart();
         }

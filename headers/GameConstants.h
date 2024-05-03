@@ -1,6 +1,6 @@
 #pragma once
 
-namespace GK{
+namespace gc{
 
     namespace CELL{
         
@@ -15,7 +15,9 @@ namespace GK{
 
         constexpr float BORDER_THICKNESS = 0.5f; 
 
-        enum CellState{
+        constexpr int NUMBER_OF_NEIGHBOURS = 8;
+
+        enum CELL_STATE{
             ALIVE = 1,
             DEAD = 0,
         };
