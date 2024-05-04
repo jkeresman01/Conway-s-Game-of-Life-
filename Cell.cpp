@@ -22,7 +22,7 @@ void Cell::set_position(float x, float y){
     this->shape.setPosition(x, y);
 }
 
-void Cell::set_state(gc::CELL::CELL_STATE cell_state){
+void Cell::set_state(gc::CELL::STATE cell_state){
     this->cell_state = cell_state;
     this->cell_state ? this->shape.setFillColor(sf::Color(250, 191, 106, 180))
                      : this->shape.setFillColor(sf::Color(250, 191, 106, 10));

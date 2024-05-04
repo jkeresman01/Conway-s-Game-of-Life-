@@ -17,21 +17,37 @@ namespace gc{
 
         constexpr int NUMBER_OF_NEIGHBOURS = 8;
 
-        enum CELL_STATE{
+        enum STATE{
             ALIVE = 1,
             DEAD = 0,
         };
     }
 
+    namespace SUN{
+        constexpr int OFFSET_Y = 6;
+        constexpr int OFFSET_X = 6;
+
+        constexpr int DEAD_SPACE = 2;
+        constexpr int QUADRANT_WIDTH = 4;
+
+    }
+
     namespace MAP{
         constexpr int ROWS = 60; 
-        constexpr int COLUMNS = 95; 
+        constexpr int COLUMNS = 115; 
     }
 
     namespace SCREEN{
         constexpr int WIDTH = 1280; 
         constexpr int COLUMNS = 720; 
+    }
 
+    namespace GAME{
+        enum STATE{
+            PAUSED = 0,
+            RUNNING = 1,
+            RESTARTED = 2,
+        };
     }
 
 }

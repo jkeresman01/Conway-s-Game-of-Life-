@@ -8,13 +8,13 @@ class Cell{
     private:
         sf::RenderWindow* window;
         sf::RectangleShape shape;
-        gc::CELL::CELL_STATE cell_state;
+        gc::CELL::STATE cell_state;
 
     public:
         Cell();
         Cell(sf::RenderWindow *window);
         void draw();
         void set_position(float x, float y);
-        void set_state(gc::CELL::CELL_STATE cell_state);
+        void set_state(gc::CELL::STATE cell_state);
         bool is_alive();
 };

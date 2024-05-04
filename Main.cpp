@@ -4,6 +4,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include <SFML/System/Sleep.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window/WindowStyle.hpp>
 #include <cstdlib>
@@ -13,7 +14,7 @@ int main() {
 
     srand(time(nullptr));
     
-    sf::RenderWindow window(sf::VideoMode(1240, 720), "", sf::Style::Default);
+    sf::RenderWindow window(sf::VideoMode(1240, 720), "", sf::Style::None);
     window.setPosition(sf::Vector2i(100, 100));
     window.setFramerateLimit(60);
 
@@ -69,13 +70,6 @@ int main() {
     refresh_button_texture.setSmooth(true);
 
 
-    sf::RectangleShape button_menu(sf::Vector2f(200.f, 600.f));
-    button_menu.setOrigin(50.f, 25.f);
-    button_menu.setFillColor(sf::Color(250, 191, 106, 15));
-    button_menu.setPosition(1240 - 160.f, 115);
-    button_menu.setOutlineColor(sf::Color::Black);
-    button_menu.setOutlineThickness(0.6f);
-
     Map map(&window);
     sf::Clock clock;
 
@@ -91,9 +85,8 @@ int main() {
         window.draw(pause_button);
         window.draw(play_button);
         window.draw(refresh_button);
-        window.draw(button_menu);
         map.draw();
-        if(clock.getElapsedTime().asSeconds() > 2.f){
+        if(clock.getElapsedTime().asSeconds() > 0.5f){
             map.update();
             clock.restart();
         }
