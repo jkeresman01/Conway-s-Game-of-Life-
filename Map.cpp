@@ -8,6 +8,7 @@ Map::Map(sf::RenderWindow* window){
     this->window = window; 
     lets_call_this_thing_sun();
     lets_throw_some_stars_arround();
+    lets_call_this_spaceship();
 }
 
 void Map::draw(){
@@ -118,7 +119,8 @@ void Map::draw_fourth_quadrant(){
                         .set_state(gc::CELL::STATE::ALIVE);
                 }
             }else{
-                next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] [gc::SUN::OFFSET_Y + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + j]
+                next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] 
+                    [gc::SUN::OFFSET_Y + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + j]
                     .set_state(gc::CELL::STATE::DEAD);
             }
             current_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] [gc::SUN::OFFSET_Y + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + j] =
