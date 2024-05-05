@@ -26,7 +26,9 @@ class Map{
         void draw_something_like_a_star(int offset_x, int offset_y);
 
     public:
+        Map();
         Map(sf::RenderWindow* window);
+        void create(sf::RenderWindow* _window);
         void initilize_cells(int criteria_for_alive);
         void draw();
         void update();

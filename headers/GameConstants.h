@@ -50,4 +50,15 @@ namespace gc{
         };
     }
 
+    namespace BACKGROUND{
+        constexpr float SCALE_X = 0.3f;
+        constexpr float SCALE_Y = 0.3f;
+
+    };
+
+    namespace TITLE{
+        constexpr int POSITION_X = 50;
+        constexpr int POSITION_Y = 0;
+    }
+
 }

@@ -3,20 +3,9 @@
 #include "headers/GameConstants.h"
 #include <algorithm>
 
-
 Map::Map(sf::RenderWindow* window){
-    this->window = window; 
-    lets_call_this_thing_sun();
-    lets_throw_some_stars_arround();
-    lets_call_this_spaceship();
-}
-
-void Map::draw(){
-   for(int i = 0; i < gc::MAP::ROWS; ++i){
-       for(int j = 0; j < gc::MAP::COLUMNS; ++j){
-           next_generation[i][j].draw();
-      }
-   }
+    this->window = window;
+    initilize_cells(0);
 }
 
 void Map::update(){
@@ -38,8 +27,17 @@ void Map::update(){
 
 }
 
+void Map::draw(){
+     for(int i = 0; i < gc::MAP::ROWS; ++i){
+        for(int j = 0; j < gc::MAP::COLUMNS; ++j){
+            if(!is_border(i, j)){
+                next_generation[i][j].draw();
+            }
+        }
+    }
+}
+
 void Map::lets_call_this_thing_sun(){
-    initilize_cells(0);
     draw_first_quadrant();
     draw_second_quadrant();
     draw_third_quadrant();
@@ -49,19 +47,24 @@ void Map::lets_call_this_thing_sun(){
 void Map::draw_first_quadrant(){
     for(int i = 0; i < gc::SUN::QUADRANT_WIDTH; i++){
         for(int j = 0; j < gc::SUN::QUADRANT_WIDTH; j++){
-            if((i == gc::SUN::QUADRANT_WIDTH - 1 || j == gc::SUN::QUADRANT_WIDTH - 1) || (i == gc::SUN::QUADRANT_WIDTH - 2 && j == gc::SUN::QUADRANT_WIDTH - 2)){
+            if((i == gc::SUN::QUADRANT_WIDTH - 1 || j == gc::SUN::QUADRANT_WIDTH - 1) 
+                || (i == gc::SUN::QUADRANT_WIDTH - 2 && j == gc::SUN::QUADRANT_WIDTH - 2)){
                 if(i == gc::SUN::QUADRANT_WIDTH - 1 && j == gc::SUN::QUADRANT_WIDTH - 1){
-                    next_generation[gc::SUN::OFFSET_X + i] [gc::SUN::OFFSET_Y + j]
-                        .set_state(gc::CELL::STATE::DEAD);
+                    next_generation[gc::SUN::OFFSET_X + i] 
+                                   [gc::SUN::OFFSET_Y + j]
+                                   .set_state(gc::CELL::STATE::DEAD);
                 }else {
-                    next_generation[gc::SUN::OFFSET_X + i] [gc::SUN::OFFSET_Y + j]
-                        .set_state(gc::CELL::STATE::ALIVE);
+                    next_generation[gc::SUN::OFFSET_X + i] 
+                                   [gc::SUN::OFFSET_Y + j]
+                                   .set_state(gc::CELL::STATE::ALIVE);
                 }
             }else{
-                next_generation[gc::SUN::OFFSET_X + i] [gc::SUN::OFFSET_Y + j]
-                    .set_state(gc::CELL::STATE::DEAD);
+                next_generation[gc::SUN::OFFSET_X + i] 
+                               [gc::SUN::OFFSET_Y + j]
+                               .set_state(gc::CELL::STATE::DEAD);
             }
-            current_generation[gc::SUN::OFFSET_X + i] [gc::SUN::OFFSET_Y + j] = next_generation[gc::SUN::OFFSET_X + i] [gc::SUN::OFFSET_Y + j];
+            current_generation[gc::SUN::OFFSET_X + i] [gc::SUN::OFFSET_Y + j]
+            = next_generation[gc::SUN::OFFSET_X + i] [gc::SUN::OFFSET_Y + j];
         }
     }
 }
@@ -71,15 +74,18 @@ void Map::draw_second_quadrant(){
         for(int j = 0; j < gc::SUN::QUADRANT_WIDTH; j++){
             if((j == 0 || i == gc::SUN::QUADRANT_WIDTH - 1) || (j == 1 && i == gc::SUN::QUADRANT_WIDTH - 2)){
                 if(i == gc::SUN::QUADRANT_WIDTH - 1 && j == 0){
-                  next_generation[gc::SUN::OFFSET_X + i] [gc::SUN::OFFSET_Y + gc::SUN::QUADRANT_WIDTH  + gc::SUN::DEAD_SPACE + j]
-                      .set_state(gc::CELL::STATE::DEAD);
+                  next_generation[gc::SUN::OFFSET_X + i] 
+                                 [gc::SUN::OFFSET_Y + gc::SUN::QUADRANT_WIDTH  + gc::SUN::DEAD_SPACE + j]
+                                 .set_state(gc::CELL::STATE::DEAD);
                 }else {
-                  next_generation[gc::SUN::OFFSET_X + i] [gc::SUN::OFFSET_Y + gc::SUN::QUADRANT_WIDTH  + gc::SUN::DEAD_SPACE + j]
-                      .set_state(gc::CELL::STATE::ALIVE);
+                  next_generation[gc::SUN::OFFSET_X + i] 
+                                 [gc::SUN::OFFSET_Y + gc::SUN::QUADRANT_WIDTH  + gc::SUN::DEAD_SPACE + j]
+                                 .set_state(gc::CELL::STATE::ALIVE);
                 }
             }else{
-                  next_generation[gc::SUN::OFFSET_X + i] [gc::SUN::OFFSET_Y + gc::SUN::QUADRANT_WIDTH  + gc::SUN::DEAD_SPACE + j]
-                      .set_state(gc::CELL::STATE::DEAD);
+                  next_generation[gc::SUN::OFFSET_X + i] 
+                                 [gc::SUN::OFFSET_Y + gc::SUN::QUADRANT_WIDTH  + gc::SUN::DEAD_SPACE + j]
+                                 .set_state(gc::CELL::STATE::DEAD);
             }
             current_generation[gc::SUN::OFFSET_X + i] [gc::SUN::OFFSET_Y + gc::SUN::QUADRANT_WIDTH  + gc::SUN::DEAD_SPACE + j]
                 = next_generation[gc::SUN::OFFSET_X + i] [gc::SUN::OFFSET_Y + gc::SUN::QUADRANT_WIDTH  + gc::SUN::DEAD_SPACE + j];
@@ -91,15 +97,18 @@ void Map::draw_third_quadrant(){
         for(int j = 0; j < gc::SUN::QUADRANT_WIDTH; j++){
             if((i == 0 || j == gc::SUN::QUADRANT_WIDTH - 1) || (i == 1 && j == gc::SUN::QUADRANT_WIDTH - 2)){
                 if(i == 0 && j == gc::SUN::QUADRANT_WIDTH - 1){
-                    next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] [gc::SUN::OFFSET_Y + j]
-                        .set_state(gc::CELL::STATE::DEAD);
+                    next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] 
+                                   [gc::SUN::OFFSET_Y + j]
+                                   .set_state(gc::CELL::STATE::DEAD);
                 }else {
-                    next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] [gc::SUN::OFFSET_Y + j]
-                        .set_state(gc::CELL::STATE::ALIVE);
+                    next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] 
+                                   [gc::SUN::OFFSET_Y + j]
+                                   .set_state(gc::CELL::STATE::ALIVE);
                 }
             }else{
-                next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] [gc::SUN::OFFSET_Y + j]
-                    .set_state(gc::CELL::STATE::DEAD);
+                next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i]
+                               [gc::SUN::OFFSET_Y + j]
+                               .set_state(gc::CELL::STATE::DEAD);
             }
             current_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] [gc::SUN::OFFSET_Y + j] =
                 next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] [gc::SUN::OFFSET_Y + j];
@@ -112,19 +121,23 @@ void Map::draw_fourth_quadrant(){
         for(int j = 0; j < gc::SUN::QUADRANT_WIDTH; j++){
             if((i == 0 || j == 0) || (i == 1 && j == 1)){
                 if(i == 0 && j == 0){
-                    next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] [gc::SUN::OFFSET_Y + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + j]
-                        .set_state(gc::CELL::STATE::DEAD);
+                    next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] 
+                                   [gc::SUN::OFFSET_Y + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + j]
+                                   .set_state(gc::CELL::STATE::DEAD);
                 }else {
-                    next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] [gc::SUN::OFFSET_Y + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + j]
-                        .set_state(gc::CELL::STATE::ALIVE);
+                    next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] 
+                                   [gc::SUN::OFFSET_Y + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + j]
+                                   .set_state(gc::CELL::STATE::ALIVE);
                 }
             }else{
                 next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] 
-                    [gc::SUN::OFFSET_Y + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + j]
-                    .set_state(gc::CELL::STATE::DEAD);
+                               [gc::SUN::OFFSET_Y + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + j]
+                               .set_state(gc::CELL::STATE::DEAD);
             }
-            current_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] [gc::SUN::OFFSET_Y + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + j] =
-                next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] [gc::SUN::OFFSET_Y + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + j];
+            current_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] 
+                              [gc::SUN::OFFSET_Y + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + j] =
+            next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] 
+                           [gc::SUN::OFFSET_Y + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + j];
         }
     }
 }
@@ -141,7 +154,7 @@ void Map::draw_something_like_a_star(int offset_x, int offset_y){
             if(!(i == 1 && j == 1)){
                 next_generation[offset_x + i] [offset_y + j].set_state(gc::CELL::STATE::ALIVE);
             }
-        current_generation[offset_x + i] [offset_y + j] = next_generation[offset_x + i] [offset_y + j];
+            current_generation[offset_x + i] [offset_y + j] = next_generation[offset_x + i] [offset_y + j];
         }
     }
 }
