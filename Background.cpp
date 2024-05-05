@@ -11,8 +11,12 @@ Background::Background(sf::RenderWindow* window, std::string path){
     this->backgound.setScale(gc::BACKGROUND::SCALE_X, gc::BACKGROUND::SCALE_Y);
 }
 
-void create(sf::RenderWindow* window, std::string path){
-    Background(window, path);
+void Background::create(sf::RenderWindow* window, std::string path){
+    this->window = window;
+    this->path = path;
+    this->image.loadFromFile(path);
+    this->backgound.setTexture(image);
+    this->backgound.setScale(gc::BACKGROUND::SCALE_X, gc::BACKGROUND::SCALE_Y);
 }
 
 void Background::draw(){

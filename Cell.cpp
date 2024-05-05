@@ -10,12 +10,16 @@ Cell::Cell(){
     set_state(gc::CELL::DEAD);
 }
 
-Cell::Cell(sf::RenderWindow *window) : Cell(){
-    this->window = window;
-}
-
 void Cell::draw(){
     this->window->draw(shape);
+}
+
+bool Cell::is_alive(){
+    return this->cell_state;
+}
+
+void Cell::set_window(sf::RenderWindow *window){
+    this->window = window;
 }
 
 void Cell::set_position(float x, float y){
@@ -26,8 +30,4 @@ void Cell::set_state(gc::CELL::STATE cell_state){
     this->cell_state = cell_state;
     this->cell_state ? this->shape.setFillColor(sf::Color(250, 191, 106, 180))
                      : this->shape.setFillColor(sf::Color(250, 191, 106, 10));
-}
-
-bool Cell::is_alive(){
-    return this->cell_state;
 }

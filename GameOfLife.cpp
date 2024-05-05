@@ -7,29 +7,31 @@
 GameOfLife::GameOfLife(sf::RenderWindow* window){
     this->window = window;
     this->state = gc::GAME::STATE::PAUSED;
+    this->background.create(window, "./resources/images/nasa-2.jpg");
+    this->map.create(window);
+    this->title.create(window, "Conway's Game of Life", "./resources/fonts/FloppyDisk.ttf");
+    this->close_button.create(window, "./resources/icons/close.png");
+    this->restart_button.create(window,  "./resources/icons/restart.png");
+    this->restart_button.move(-50, 0);
+    this->pause_button.create(window, "./resources/icons/pause.png");
+    this->pause_button.move(-100, 0);
+    this->play_button.create(window, "./resources/icons/play.png");
+    this->play_button.move(-150, 0);
 }
 
 void GameOfLife::start(){
-
-    Background background(window, "./resources/images/nasa-2.jpg");
-    Map map(window);
-    Title title(window, "Conway's Game of Life", "./resources/fonts/FloppyDisk.ttf");
-    Button restart_button(window, "./resources/icons/restart.png");
-    Button close_button(window, "./resources/icons/close.png");
-    restart_button.move(-65, 0);
-
     this->state = gc::GAME::STATE::RUNNING;
 
     while (window->isOpen()) {
         sf::Event event;
 
         while (window->pollEvent(event)) {
-            if (event.type == sf::Event::Closed || close_button.is_clicked())
+            if (event.type == sf::Event::Closed || close_button.is_pressed())
                 window->close();
         }
 
         if(state == gc::GAME::RESTARTED){
-            map.initilize_cells(25);
+            map.display_loading_screen();
             state = gc::GAME::STATE::RUNNING;
         }
 
@@ -38,19 +40,27 @@ void GameOfLife::start(){
         title.draw();
         restart_button.draw();
         close_button.draw();
+        pause_button.draw();
+        play_button.draw();
         map.draw();
 
-        if(timer.getElapsedTime().asSeconds() > 2.0f){
+        if(timer.getElapsedTime().asSeconds() > gc::GAME::REFRESH_TIME && state != gc::GAME::PAUSED){
             map.update();
             timer.restart();
         }
 
-        if(restart_button.is_clicked()){
+        if(restart_button.is_pressed()){
             this->state = gc::GAME::RESTARTED;
+        }
+
+        if(pause_button.is_pressed()){
+            this->state = gc::GAME::PAUSED;
+        }
+
+        if(play_button.is_pressed()){
+            this->state = gc::GAME::RUNNING;
         }
 
         window->display();
     }
-
-
 }

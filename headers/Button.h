@@ -19,5 +19,5 @@ class Button{
         void move(float position_x, float position_y);
         void create(sf::RenderWindow* window, std::string path);
         void draw();
-        bool is_clicked();
+        bool is_pressed();
 };

@@ -11,6 +11,13 @@ class GameOfLife{
         sf::RenderWindow* window;
         gc::GAME::STATE state;
         sf::Clock timer;
+        Button restart_button;
+        Button close_button;
+        Button pause_button;
+        Button play_button;
+        Background background;
+        Title title;
+        Map map;
 
     public:
         GameOfLife(sf::RenderWindow* window);

@@ -29,6 +29,7 @@ class Map{
         Map();
         Map(sf::RenderWindow* window);
         void create(sf::RenderWindow* _window);
+        void display_loading_screen();
         void initilize_cells(int criteria_for_alive);
         void draw();
         void update();

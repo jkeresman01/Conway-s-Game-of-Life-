@@ -12,7 +12,7 @@ class Cell{
 
     public:
         Cell();
-        Cell(sf::RenderWindow *window);
+        void set_window(sf::RenderWindow* window);
         void draw();
         void set_position(float x, float y);
         void set_state(gc::CELL::STATE cell_state);

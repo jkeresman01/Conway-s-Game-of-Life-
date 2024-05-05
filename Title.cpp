@@ -13,7 +13,13 @@ Title::Title(sf::RenderWindow* window, std::string text, std::string path){
 }
 
 void Title::create(sf::RenderWindow* window, std::string text, std::string path){
-    Title(window, text, path);
+    this->window = window;
+    this->font.loadFromFile(path);
+    this->text.setString(text);
+    this->text.setFont(font);
+    this->text.setFillColor(sf::Color(250, 191, 106));
+    this->text.setPosition(50, 0);
+    this->text.setCharacterSize(66);
 }
 
 void Title::draw(){
