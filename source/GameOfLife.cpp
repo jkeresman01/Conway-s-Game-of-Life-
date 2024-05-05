@@ -6,7 +6,6 @@
 
 GameOfLife::GameOfLife(sf::RenderWindow* window){
     this->window = window;
-    this->state = gc::GAME::STATE::PAUSED;
     this->background.create(window, "./resources/images/nasa-2.jpg");
     this->map.create(window);
     this->title.create(window, "Conway's Game of Life", "./resources/fonts/FloppyDisk.ttf");
@@ -19,11 +18,10 @@ GameOfLife::GameOfLife(sf::RenderWindow* window){
     this->pause_button.move(-100, gc::TITLE::POSITION_Y);
     this->play_button.create(window, "./resources/icons/play.png");
     this->play_button.move(-150, gc::TITLE::POSITION_Y);
+    this->state = gc::GAME::STATE::RUNNING;
 }
 
 void GameOfLife::start(){
-    this->state = gc::GAME::STATE::RUNNING;
-
     while (window->isOpen()) {
         sf::Event event;
 
@@ -46,10 +44,9 @@ void GameOfLife::start(){
         play_button.draw();
         map.draw();
 
-        if(timer.getElapsedTime().asSeconds() > gc::GAME::REFRESH_TIME_SECONDS and state != gc::GAME::PAUSED){
+        if(clock.getElapsedTime().asSeconds() > gc::GAME::REFRESH_TIME_SECONDS and state != gc::GAME::PAUSED){
             map.update();
-            generation_change_counter++;
-            timer.restart();
+            clock.restart();
         }
 
         if(restart_button.is_pressed()){

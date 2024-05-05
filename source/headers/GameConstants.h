@@ -47,7 +47,7 @@ namespace gc{
     }
 
     namespace GAME{
-        constexpr float REFRESH_TIME_SECONDS = 2.0f;
+        constexpr float REFRESH_TIME_SECONDS = 0.4f;
         constexpr int FRAMES_PER_SECOND = 60;
 
         enum STATE{
@@ -65,6 +65,8 @@ namespace gc{
     namespace TITLE{
         constexpr int POSITION_X = 50;
         constexpr int POSITION_Y = 10;
+
+        constexpr int FONT_SIZE = 66;
     }
 
     namespace BUTTON{

@@ -10,7 +10,7 @@ Title::Title(sf::RenderWindow* window, std::string text, std::string path){
     this->text.setFont(font);
     this->text.setFillColor(sf::Color(250, 191, 106));
     this->text.setPosition(gc::TITLE::POSITION_X, gc::TITLE::POSITION_Y);
-    this->text.setCharacterSize(66);
+    this->text.setCharacterSize(gc::TITLE::FONT_SIZE);
 }
 
 void Title::create(sf::RenderWindow* window, std::string text, std::string path){
@@ -20,7 +20,7 @@ void Title::create(sf::RenderWindow* window, std::string text, std::string path)
     this->text.setFont(font);
     this->text.setFillColor(sf::Color(250, 191, 106));
     this->text.setPosition(gc::TITLE::POSITION_X, gc::TITLE::POSITION_Y);
-    this->text.setCharacterSize(66);
+    this->text.setCharacterSize(gc::TITLE::FONT_SIZE);
 }
 
 void Title::draw(){

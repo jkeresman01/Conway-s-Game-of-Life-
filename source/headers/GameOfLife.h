@@ -9,7 +9,7 @@
 class GameOfLife{
     private:
         sf::RenderWindow* window;
-        sf::Clock timer;
+        sf::Clock clock;
         gc::GAME::STATE state;
         Background background;
         Button restart_button;
@@ -18,7 +18,6 @@ class GameOfLife{
         Button play_button;
         Title title;
         Map map;
-        int generation_change_counter;
 
     public:
         GameOfLife(sf::RenderWindow* window);
