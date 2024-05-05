@@ -48,6 +48,7 @@ void GameOfLife::start(){
 
         if(timer.getElapsedTime().asSeconds() > gc::GAME::REFRESH_TIME and state != gc::GAME::PAUSED){
             map.update();
+            generation_change_counter++;
             timer.restart();
         }
 

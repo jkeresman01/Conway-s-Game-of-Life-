@@ -43,7 +43,7 @@ void Map::draw(){
     for(int i = 0; i < gc::MAP::ROWS; ++i){
         for(int j = 0; j < gc::MAP::COLUMNS; ++j){
             if(!is_border(i, j)){
-                next_generation[i][j].draw();
+                current_generation[i][j].draw();
             }
         }
     }

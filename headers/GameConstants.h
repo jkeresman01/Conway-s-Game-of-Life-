@@ -68,7 +68,7 @@ namespace gc{
     }
 
     namespace BUTTON{
-        constexpr int POSITION_X = SCREEN::POSITION_X - 20;
+        constexpr int POSITION_X = SCREEN::WIDTH - 20;
         constexpr int POSITION_Y = 40;
 
         constexpr float SCALE_X = 1.2f;
