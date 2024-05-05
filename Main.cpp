@@ -1,5 +1,6 @@
 #include "headers/GameOfLife.h"
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <ctime>
 
 int main(){
     srand(time(nullptr));
