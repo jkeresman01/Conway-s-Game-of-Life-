@@ -1,4 +1,5 @@
 #include "headers/Button.h"
+#include "headers/GameConstants.h"
 
 Button::Button(){}
 
@@ -8,9 +9,9 @@ Button::Button(sf::RenderWindow* window, std::string path){
     this->texture.loadFromFile(path);
     this->texture.setSmooth(true);
     this->button.setTexture(texture);
-    this->button.setOrigin(this->button.getGlobalBounds().width/ 2, this->button.getGlobalBounds().height / 2);
-    this->button.setPosition(1240 - 40, 40);
-    this->button.setScale(0.8f, 0.8f);
+    this->button.setOrigin(this->button.getGlobalBounds().width / 2, this->button.getGlobalBounds().height / 2);
+    this->button.setPosition(gc::BUTTON::POSITION_X, gc::BUTTON::POSITION_Y);
+    set_scale(gc::BUTTON::SCALE_X, gc::BUTTON::SCALE_Y);
 }
 
 void Button::create(sf::RenderWindow* window, std::string path){
@@ -20,12 +21,17 @@ void Button::create(sf::RenderWindow* window, std::string path){
     this->texture.setSmooth(true);
     this->button.setTexture(texture);
     this->button.setOrigin(this->button.getGlobalBounds().width/ 2, this->button.getGlobalBounds().height / 2);
-    this->button.setPosition(1240 - 80, 40);
-    this->button.setScale(1.2f, 1.2f);
+    this->button.setPosition(gc::BUTTON::POSITION_X, gc::BUTTON::POSITION_Y);
+    set_scale(gc::BUTTON::SCALE_X, gc::BUTTON::SCALE_Y);
 }
 
 void Button::move(float position_x, float position_y){
     this->button.move(position_x, position_y);
+}
+
+void Button::set_scale(float scale_x, float scale_y){
+    this->scale_factor = scale_x;
+    this->button.setScale(scale_x, scale_y);
 }
 
 void Button::draw(){
@@ -39,7 +45,9 @@ bool Button::is_pressed(){
     bool mouse_is_on_button = button.getGlobalBounds().contains(translated_position); 
     bool mouse_is_pressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 
-    mouse_is_on_button ? button.setScale(1.1f, 1.1f) : button.setScale(1.0f, 1.0f);
+    mouse_is_on_button
+                ? button.setScale(scale_factor * 1.1f, scale_factor * 1.1f)
+                : button.setScale(scale_factor, scale_factor);
 
     return mouse_is_on_button && mouse_is_pressed;
 }

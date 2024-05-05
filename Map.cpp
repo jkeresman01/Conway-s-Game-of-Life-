@@ -7,7 +7,7 @@ Map::Map(){}
 
 Map::Map(sf::RenderWindow* window){
     this->window = window;
-    initilize_cells(0);
+    display_loading_screen();
 }
 
 void Map::create(sf::RenderWindow* window){
@@ -16,9 +16,9 @@ void Map::create(sf::RenderWindow* window){
 }
 
 void Map::display_loading_screen(){
-    initilize_cells(0);
-    lets_throw_some_stars_arround();
+    initilize_cells(gc::MAP::CRITERIA_ALL_DEAD_CELLS);
     lets_call_this_thing_sun();
+    lets_throw_some_stars_arround();
 }
 
 void Map::update(){
@@ -48,6 +48,7 @@ void Map::draw(){
         }
     }
 }
+
 void Map::initilize_cells(int criteria_for_alive){
     for(int i = 0; i < gc::MAP::ROWS; ++i){
         for(int j = 0; j < gc::MAP::COLUMNS; ++j){
@@ -64,7 +65,7 @@ void Map::initilize_cells(int criteria_for_alive){
 }
 
 bool Map::is_border(int i, int j){
-    return i == 0 || i == gc::MAP::ROWS - 1 || j == 0 || j == gc::MAP::COLUMNS -1;
+    return i == 0 or i == gc::MAP::ROWS - 1 or j == 0 or j == gc::MAP::COLUMNS -1;
 }
 
 int Map::generate_number(int max, int min){
@@ -93,11 +94,11 @@ void Map::change_for_next_generation(Cell &cell, int postition_x, int position_y
     int alive_nieghbours = std::count_if(neighbours, neighbours + gc::CELL::NUMBER_OF_NEIGHBOURS,
                             [](Cell &cell){ return cell.is_alive();});
 
-    if(cell.is_alive() && alive_nieghbours > 3 || alive_nieghbours < 2){
+    if(cell.is_alive() and alive_nieghbours > 3 or alive_nieghbours < 2){
         next_generation[postition_x][position_y].set_state(gc::CELL::DEAD);
     }
 
-    if(!cell.is_alive() && alive_nieghbours == 3){
+    if(!cell.is_alive() and alive_nieghbours == 3){
         next_generation[postition_x][position_y].set_state(gc::CELL::ALIVE);
     }
 }
@@ -109,9 +110,9 @@ void Map::lets_throw_some_stars_arround(){
 }
 
 void Map::draw_something_like_a_star(int offset_x, int offset_y){
-    for(int i = 0; i < 3; ++i){
-        for(int j = 0; j < 3; ++j){
-            if(!(i == 1 && j == 1)){
+    for(int i = 0; i < gc::STAR::WIDTH; ++i){
+        for(int j = 0; j < gc::STAR::HEIGHT; ++j){
+            if(!(i == 1 and j == 1)){
                 next_generation[offset_x + i] [offset_y + j].set_state(gc::CELL::STATE::ALIVE);
             }
             current_generation[offset_x + i] [offset_y + j] = next_generation[offset_x + i] [offset_y + j];
@@ -133,9 +134,9 @@ void Map::lets_call_this_thing_sun(){
 void Map::draw_first_quadrant(){
     for(int i = 0; i < gc::SUN::QUADRANT_WIDTH; i++){
         for(int j = 0; j < gc::SUN::QUADRANT_WIDTH; j++){
-            if((i == gc::SUN::QUADRANT_WIDTH - 1 || j == gc::SUN::QUADRANT_WIDTH - 1) 
-                || (i == gc::SUN::QUADRANT_WIDTH - 2 && j == gc::SUN::QUADRANT_WIDTH - 2)){
-                if(i == gc::SUN::QUADRANT_WIDTH - 1 && j == gc::SUN::QUADRANT_WIDTH - 1){
+            if((i == gc::SUN::QUADRANT_WIDTH - 1 or j == gc::SUN::QUADRANT_WIDTH - 1) 
+                or (i == gc::SUN::QUADRANT_WIDTH - 2 and j == gc::SUN::QUADRANT_WIDTH - 2)){
+                if(i == gc::SUN::QUADRANT_WIDTH - 1 and j == gc::SUN::QUADRANT_WIDTH - 1){
                     next_generation[gc::SUN::OFFSET_X + i] 
                                    [gc::SUN::OFFSET_Y + j]
                                    .set_state(gc::CELL::STATE::DEAD);
@@ -158,8 +159,8 @@ void Map::draw_first_quadrant(){
 void Map::draw_second_quadrant(){
     for(int i = 0; i < gc::SUN::QUADRANT_WIDTH; i++){
         for(int j = 0; j < gc::SUN::QUADRANT_WIDTH; j++){
-            if((j == 0 || i == gc::SUN::QUADRANT_WIDTH - 1) || (j == 1 && i == gc::SUN::QUADRANT_WIDTH - 2)){
-                if(i == gc::SUN::QUADRANT_WIDTH - 1 && j == 0){
+            if((j == 0 or i == gc::SUN::QUADRANT_WIDTH - 1) or (j == 1 and i == gc::SUN::QUADRANT_WIDTH - 2)){
+                if(i == gc::SUN::QUADRANT_WIDTH - 1 and j == 0){
                   next_generation[gc::SUN::OFFSET_X + i] 
                                  [gc::SUN::OFFSET_Y + gc::SUN::QUADRANT_WIDTH  + gc::SUN::DEAD_SPACE + j]
                                  .set_state(gc::CELL::STATE::DEAD);
@@ -181,8 +182,8 @@ void Map::draw_second_quadrant(){
 void Map::draw_third_quadrant(){
     for(int i = 0; i < gc::SUN::QUADRANT_WIDTH; i++){
         for(int j = 0; j < gc::SUN::QUADRANT_WIDTH; j++){
-            if((i == 0 || j == gc::SUN::QUADRANT_WIDTH - 1) || (i == 1 && j == gc::SUN::QUADRANT_WIDTH - 2)){
-                if(i == 0 && j == gc::SUN::QUADRANT_WIDTH - 1){
+            if((i == 0 or j == gc::SUN::QUADRANT_WIDTH - 1) or (i == 1 and j == gc::SUN::QUADRANT_WIDTH - 2)){
+                if(i == 0 and j == gc::SUN::QUADRANT_WIDTH - 1){
                     next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] 
                                    [gc::SUN::OFFSET_Y + j]
                                    .set_state(gc::CELL::STATE::DEAD);
@@ -205,8 +206,8 @@ void Map::draw_third_quadrant(){
 void Map::draw_fourth_quadrant(){
     for(int i = 0; i < gc::SUN::QUADRANT_WIDTH; i++){
         for(int j = 0; j < gc::SUN::QUADRANT_WIDTH; j++){
-            if((i == 0 || j == 0) || (i == 1 && j == 1)){
-                if(i == 0 && j == 0){
+            if((i == 0 or j == 0) or (i == 1 and j == 1)){
+                if(i == 0 and j == 0){
                     next_generation[gc::SUN::OFFSET_X + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + i] 
                                    [gc::SUN::OFFSET_Y + gc::SUN::DEAD_SPACE + gc::SUN::QUADRANT_WIDTH + j]
                                    .set_state(gc::CELL::STATE::DEAD);

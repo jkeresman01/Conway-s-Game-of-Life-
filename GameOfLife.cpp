@@ -11,12 +11,14 @@ GameOfLife::GameOfLife(sf::RenderWindow* window){
     this->map.create(window);
     this->title.create(window, "Conway's Game of Life", "./resources/fonts/FloppyDisk.ttf");
     this->close_button.create(window, "./resources/icons/close.png");
+    this->close_button.set_scale(0.5f, 0.5f);
+    this->close_button.move(0, -20);
     this->restart_button.create(window,  "./resources/icons/restart.png");
-    this->restart_button.move(-50, 0);
+    this->restart_button.move(-50, gc::TITLE::POSITION_Y);
     this->pause_button.create(window, "./resources/icons/pause.png");
-    this->pause_button.move(-100, 0);
+    this->pause_button.move(-100, gc::TITLE::POSITION_Y);
     this->play_button.create(window, "./resources/icons/play.png");
-    this->play_button.move(-150, 0);
+    this->play_button.move(-150, gc::TITLE::POSITION_Y);
 }
 
 void GameOfLife::start(){
@@ -26,7 +28,7 @@ void GameOfLife::start(){
         sf::Event event;
 
         while (window->pollEvent(event)) {
-            if (event.type == sf::Event::Closed || close_button.is_pressed())
+            if (event.type == sf::Event::Closed or close_button.is_pressed())
                 window->close();
         }
 
@@ -44,7 +46,7 @@ void GameOfLife::start(){
         play_button.draw();
         map.draw();
 
-        if(timer.getElapsedTime().asSeconds() > gc::GAME::REFRESH_TIME && state != gc::GAME::PAUSED){
+        if(timer.getElapsedTime().asSeconds() > gc::GAME::REFRESH_TIME and state != gc::GAME::PAUSED){
             map.update();
             timer.restart();
         }
