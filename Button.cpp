@@ -20,7 +20,7 @@ void Button::create(sf::RenderWindow* window, std::string path){
     this->texture.loadFromFile(path);
     this->texture.setSmooth(true);
     this->button.setTexture(texture);
-    this->button.setOrigin(this->button.getGlobalBounds().width/ 2, this->button.getGlobalBounds().height / 2);
+    this->button.setOrigin(this->button.getGlobalBounds().width / 2, this->button.getGlobalBounds().height / 2);
     this->button.setPosition(gc::BUTTON::POSITION_X, gc::BUTTON::POSITION_Y);
     set_scale(gc::BUTTON::SCALE_X, gc::BUTTON::SCALE_Y);
 }
