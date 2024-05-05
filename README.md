@@ -11,6 +11,3 @@ At each step in time (in this case evey 2s), the following transitions occur:
 * Any live cell with two or three live neighbors lives on to the next generation.
 * Any live cell with more than three live neighbors dies, as if by overpopulation.
 * Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
-
-
-![GameOfLifeGif](https://github.com/jkeresman01/Conway-s-Game-of-Life-/assets/165517653/6ab16a29-c10b-4fda-b4f6-364558d7ada6)
