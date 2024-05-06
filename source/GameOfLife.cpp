@@ -30,8 +30,8 @@ void GameOfLife::start(){
                 window->close();
         }
 
-        if(state == gc::GAME::RESTARTED){
-            map.display_loading_screen();
+        if(state == gc::GAME::RESHUFFLED){
+            map.initilize_cells(gc::MAP::CRITERIA_20_PERCENT_ALIVE_CELLS);
             state = gc::GAME::STATE::RUNNING;
         }
 
@@ -50,7 +50,7 @@ void GameOfLife::start(){
         }
 
         if(restart_button.is_pressed()){
-            this->state = gc::GAME::RESTARTED;
+            this->state = gc::GAME::RESHUFFLED;
         }
 
         if(pause_button.is_pressed()){

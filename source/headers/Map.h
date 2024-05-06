@@ -22,7 +22,6 @@ class Map{
         void draw_fourth_quadrant();
         void lets_call_this_thing_sun();
         void lets_throw_some_stars_arround();
-        void lets_call_this_spaceship();
         void draw_something_like_a_star(int offset_x, int offset_y);
 
     public:

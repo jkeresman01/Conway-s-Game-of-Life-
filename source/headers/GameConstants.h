@@ -47,13 +47,13 @@ namespace gc{
     }
 
     namespace GAME{
-        constexpr float REFRESH_TIME_SECONDS = 0.4f;
+        constexpr float REFRESH_TIME_SECONDS = 2.0f;
         constexpr int FRAMES_PER_SECOND = 60;
 
         enum STATE{
             PAUSED = 0,
             RUNNING = 1,
-            RESTARTED = 2,
+            RESHUFFLED = 2,
         };
     }
 

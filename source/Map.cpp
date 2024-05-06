@@ -120,10 +120,6 @@ void Map::draw_something_like_a_star(int offset_x, int offset_y){
     }
 }
 
-void Map::lets_call_this_spaceship(){
-    
-}
-
 void Map::lets_call_this_thing_sun(){
     draw_first_quadrant();
     draw_second_quadrant();
