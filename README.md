@@ -1,6 +1,6 @@
 # Conway's game of Life! #
 
-The Game of Life, also known simply as Life, is a cellular automation devised by the British mathematician John Horton Conway in 1970.
+The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.
 It is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input.
 In this particular instance initial configuration is generated randomly, each cell has a 20% chance to be alive and 80% chance to be dead.
 
@@ -11,11 +11,11 @@ At each step in time (in this case evey 2s), the following transitions occur:
 * Any live cell with more than three live neighbors dies, as if by overpopulation.
 * Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
 
-# Game preview #
+## Game preview ##
 
 ![GameOfLife01](https://github.com/jkeresman01/Conway-s-Game-of-Life-/assets/165517653/fc63a34f-84cb-4192-9f39-85bbfe52da50)
 
-# Running the game #
+## Running the game ##
 
 If the version of SFML that you want to install is available in the official repository, then install it using your package manager.
 
@@ -42,3 +42,8 @@ You can now execute the compiled program:
 ```
 ./game-of-life
 ```
+## Usefull resources ##
+
+* https://en.wikipedia.org/wiki/Conway's_Game_of_Life
+* https://www.youtube.com/watch?v=CgOcEZinQ2I
+* https://www.sfml-dev.org/tutorials/2.6/start-linux.php
