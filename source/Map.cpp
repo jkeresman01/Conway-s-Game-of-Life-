@@ -80,7 +80,7 @@ gc::CELL::STATE Map::get_random_cell_state(int criteria_for_alive){
 
 void Map::change_for_next_generation(Cell &cell, int postition_x, int position_y){
 
-    Cell Neighbours[gc::CELL::NUMBER_OF_NEIGHBOURS]{
+    Cell neighbours[gc::CELL::NUMBER_OF_NEIGHBOURS]{
         current_generation[postition_x - 1][position_y],
         current_generation[postition_x + 1][position_y],
         current_generation[postition_x][position_y - 1],
@@ -91,7 +91,7 @@ void Map::change_for_next_generation(Cell &cell, int postition_x, int position_y
         current_generation[postition_x - 1][position_y + 1],
     };
 
-    int alive_nieghbours = std::count_if(Neighbours, Neighbours + gc::CELL::NUMBER_OF_NEIGHBOURS,
+    int alive_nieghbours = std::count_if(neighbours, neighbours + gc::CELL::NUMBER_OF_NEIGHBOURS,
                             [](Cell &cell){ return cell.is_alive();});
 
     if(cell.is_alive() and alive_nieghbours > 3 or alive_nieghbours < 2){
