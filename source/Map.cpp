@@ -1,6 +1,7 @@
 #include "headers/Map.h"
 #include "headers/Cell.h"
 #include "headers/GameConstants.h"
+
 #include <algorithm>
 
 Map::Map(){}

@@ -4,6 +4,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window/Mouse.hpp>
+
 #include <string>
 
 class Button{
@@ -18,8 +19,8 @@ class Button{
         Button();
         Button(sf::RenderWindow* window, std::string path);
         void move(float position_x, float position_y);
-        void set_scale(float scale_x, float scale_y);
+        void set_scale(float scale);
         void create(sf::RenderWindow* window, std::string path);
-        void draw();
         bool is_pressed();
+        void draw();
 };

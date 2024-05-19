@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Cell.h"
 #include "GameConstants.h"
 
@@ -20,6 +21,7 @@ class Map{
         void draw_second_quadrant();
         void draw_third_quadrant();
         void draw_fourth_quadrant();
+        void display_loading_screen();
         void lets_call_this_thing_sun();
         void lets_throw_some_stars_arround();
         void draw_something_like_a_star(int offset_x, int offset_y);
@@ -28,7 +30,6 @@ class Map{
         Map();
         Map(sf::RenderWindow* window);
         void create(sf::RenderWindow* _window);
-        void display_loading_screen();
         void initilize_cells(int criteria_for_alive);
         void draw();
         void update();

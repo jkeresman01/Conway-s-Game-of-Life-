@@ -3,22 +3,22 @@
 namespace gc{
 
     namespace CELL{
-        constexpr float WIDTH = 10.f; 
-        constexpr float HEIGHT = 10.f; 
+        constexpr float WIDTH = 10.0f; 
+        constexpr float HEIGHT = 10.0f; 
 
         constexpr float ORIGIN_X = WIDTH / 2;
-        constexpr int ORIGIN_Y = HEIGHT / 2;
+        constexpr float  ORIGIN_Y = HEIGHT / 2;
 
-        constexpr float START_POSITION_X = 45.f; 
-        constexpr float START_POSITION_Y = 100.f; 
+        constexpr float START_POSITION_X = 45.0f; 
+        constexpr float START_POSITION_Y = 100.0f; 
 
         constexpr float BORDER_THICKNESS = 0.5f; 
 
         constexpr int NUMBER_OF_NEIGHBOURS = 8;
 
         enum STATE{
-            ALIVE = 1,
             DEAD = 0,
+            ALIVE = 1,
         };
     }
 
@@ -73,8 +73,7 @@ namespace gc{
         constexpr int POSITION_X = SCREEN::WIDTH - 20;
         constexpr int POSITION_Y = 40;
 
-        constexpr float SCALE_X = 1.2f;
-        constexpr float SCALE_Y = 1.2f;
+        constexpr float SCALE = 1.2f;
     }
 
     namespace STAR{
