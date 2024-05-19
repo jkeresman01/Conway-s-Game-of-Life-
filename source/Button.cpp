@@ -48,5 +48,5 @@ bool Button::is_pressed(){
     is_mouse_on_button ? button.setScale(scale_factor * 1.1f, scale_factor * 1.1f)
                        : button.setScale(scale_factor, scale_factor);
 
-    return is_mouse_on_button  and is_mouse_pressed ;
+    return is_mouse_on_button and is_mouse_pressed;
 }
