@@ -5,61 +5,72 @@
 
 #include <SFML/Window/Event.hpp>
 
-GameOfLife::GameOfLife(sf::RenderWindow* window){
-    this->window = window;
-    this->background.create(window, "./resources/images/nasa-2.jpg");
-    this->map.create(window);
-    this->title.create(window, "Conway's Game of Life", "./resources/fonts/FloppyDisk.ttf");
-    this->close_button.create(window, "./resources/icons/close.png");
-    this->close_button.set_scale(0.5f);
-    this->close_button.move(0, -20);
-    this->reshuffle_button.create(window,  "./resources/icons/restart.png");
-    this->reshuffle_button.move(-50, gc::TITLE::POSITION_Y);
-    this->pause_button.create(window, "./resources/icons/pause.png");
-    this->pause_button.move(-100, gc::TITLE::POSITION_Y);
-    this->play_button.create(window, "./resources/icons/play.png");
-    this->play_button.move(-150, gc::TITLE::POSITION_Y);
-    this->state = gc::GAME::STATE::RUNNING;
+GameOfLife::GameOfLife(sf::RenderWindow* t_window)
+{
+    m_window = t_window;
+    m_background.create(t_window, "./resources/images/background.jpg");
+    m_map.create(t_window);
+    m_title.create(t_window, "Conway's Game of Life", "./resources/fonts/FloppyDisk.ttf");
+    m_closeButton.create(t_window, "./resources/icons/close.png");
+    m_closeButton.setScale(0.5f);
+    m_closeButton.move(0, -20);
+    m_reshuffleButton.create(t_window,  "./resources/icons/restart.png");
+    m_reshuffleButton.move(-50, gc::title::POSITION_Y);
+    m_pauseButton.create(t_window, "./resources/icons/pause.png");
+    m_pauseButton.move(-100, gc::title::POSITION_Y);
+    m_playButton.create(t_window, "./resources/icons/play.png");
+    m_playButton.move(-150, gc::title::POSITION_Y);
+    m_state = gc::game::State::RUNNING;
 }
 
-void GameOfLife::start(){
-    while (window->isOpen()) {
+void GameOfLife::run()
+{
+    while (m_window->isOpen()) 
+    {
         sf::Event event;
-        while (window->pollEvent(event)) {
-            if (event.type == sf::Event::Closed or close_button.is_pressed())
-                window->close();
+        while (m_window->pollEvent(event)) 
+        {
+            if (event.type == sf::Event::Closed or m_closeButton.isPressed())
+            {
+                m_window->close();
+            }
         }
 
-        if(state == gc::GAME::RESHUFFLED){
-            map.initilize_cells(gc::MAP::CRITERIA_20_PERCENT_ALIVE_CELLS);
-            state = gc::GAME::STATE::RUNNING;
+        if(m_state == gc::game::RESHUFFLED)
+        {
+            m_map.initializeCells(gc::map::CRITERIA_20_PERCENT_ALIVE_CELLS);
+            m_state = gc::game::RUNNING;
         }
 
-        if(clock.getElapsedTime().asSeconds() > gc::GAME::REFRESH_TIME_SECONDS and state != gc::GAME::PAUSED){
-            map.update();
-            clock.restart();
+        if(m_clock.getElapsedTime().asSeconds() > gc::game::REFRESH_TIME_SECONDS and m_state != gc::game::PAUSED)
+        {
+            m_map.update();
+            m_clock.restart();
         }
 
-        if(reshuffle_button.is_pressed()){
-            this->state = gc::GAME::RESHUFFLED;
+        if(m_reshuffleButton.isPressed())
+        {
+            m_state = gc::game::RESHUFFLED;
         }
 
-        if(pause_button.is_pressed()){
-            this->state = gc::GAME::PAUSED;
+        if(m_pauseButton.isPressed())
+        {
+            m_state = gc::game::PAUSED;
         }
 
-        if(play_button.is_pressed()){
-            this->state = gc::GAME::RUNNING;
+        if(m_playButton.isPressed())
+        {
+            m_state = gc::game::RUNNING;
         }
 
-        window->clear();
-        background.draw();
-        reshuffle_button.draw();
-        close_button.draw();
-        pause_button.draw();
-        play_button.draw();
-        title.draw();
-        map.draw();
-        window->display();
+        m_window->clear();
+        m_background.draw();
+        m_reshuffleButton.draw();
+        m_closeButton.draw();
+        m_pauseButton.draw();
+        m_playButton.draw();
+        m_title.draw();
+        m_map.draw();
+        m_window->display();
     }
 }

@@ -1,8 +1,10 @@
 #pragma once
 
-namespace gc{
+namespace gc
+{
 
-    namespace CELL{
+    namespace cell
+    {
         constexpr float WIDTH = 10.0f; 
         constexpr float HEIGHT = 10.0f; 
 
@@ -16,13 +18,15 @@ namespace gc{
 
         constexpr int NUMBER_OF_NEIGHBOURS = 8;
 
-        enum STATE{
+        enum State
+        {
             DEAD = 0,
             ALIVE = 1,
         };
     }
 
-    namespace SUN{
+    namespace sun
+    {
         constexpr int OFFSET_Y = 4;
         constexpr int OFFSET_X = 4;
 
@@ -30,7 +34,8 @@ namespace gc{
         constexpr int QUADRANT_WIDTH = 4;
     }
 
-    namespace MAP{
+    namespace map
+    {
         constexpr int ROWS = 60; 
         constexpr int COLUMNS = 120; 
 
@@ -38,7 +43,8 @@ namespace gc{
         constexpr int CRITERIA_20_PERCENT_ALIVE_CELLS = 20;
     }
 
-    namespace SCREEN{
+    namespace screen
+    {
         constexpr int WIDTH = 1280; 
         constexpr int HEIGHT = 720; 
 
@@ -46,37 +52,48 @@ namespace gc{
         constexpr int POSITION_Y  = 200; 
     }
 
-    namespace GAME{
+    namespace game
+    {
         constexpr float REFRESH_TIME_SECONDS = 2.0f;
         constexpr int FRAMES_PER_SECOND = 60;
 
-        enum STATE{
+        constexpr int UNDERPOPULATION_CRITERIA = 2;
+        constexpr int OVERPOPULATION_CRITERIA = 3;
+
+        constexpr int BORN_CRITERIA = 3;
+
+        enum State
+        {
             PAUSED = 0,
             RUNNING = 1,
             RESHUFFLED = 2,
         };
     }
 
-    namespace BACKGROUND{
+    namespace background
+    {
         constexpr float SCALE_X = 0.3f;
         constexpr float SCALE_Y = 0.3f;
     }
 
-    namespace TITLE{
+    namespace title
+    {
         constexpr int POSITION_X = 50;
         constexpr int POSITION_Y = 10;
 
         constexpr int FONT_SIZE = 66;
     }
 
-    namespace BUTTON{
-        constexpr int POSITION_X = SCREEN::WIDTH - 20;
+    namespace button
+    {
+        constexpr int POSITION_X = screen::WIDTH - 20;
         constexpr int POSITION_Y = 40;
 
         constexpr float SCALE = 1.2f;
     }
 
-    namespace STAR{
+    namespace star
+    {
         constexpr int WIDTH = 3;
         constexpr int HEIGHT = 3;
     }

@@ -3,24 +3,18 @@
 
 Background::Background(){}
 
-Background::Background(sf::RenderWindow* window, std::string path){
-    this->window = window;
-    this->path = path;
-    this->image.loadFromFile(path);
-    this->backgound.setTexture(image);
-    this->backgound.setScale(gc::BACKGROUND::SCALE_X, gc::BACKGROUND::SCALE_Y);
+void Background::create(sf::RenderWindow* t_window, const std::string t_path)
+{
+    m_window = t_window;
+    m_path = t_path;
+    m_image.loadFromFile(m_path);
+    m_backgound.setTexture(m_image);
+    m_backgound.setScale(gc::background::SCALE_X, gc::background::SCALE_Y);
 }
 
-void Background::create(sf::RenderWindow* window, std::string path){
-    this->window = window;
-    this->path = path;
-    this->image.loadFromFile(path);
-    this->backgound.setTexture(image);
-    this->backgound.setScale(gc::BACKGROUND::SCALE_X, gc::BACKGROUND::SCALE_Y);
-}
-
-void Background::draw(){
-    this->window->draw(this->backgound);
+void Background::draw()
+{
+    m_window->draw(m_backgound);
 }
 
 

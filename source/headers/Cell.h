@@ -1,20 +1,22 @@
 #pragma once
+
 #include "GameConstants.h"
 
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
-class Cell{
-    private:
-        sf::RenderWindow* window;
-        sf::RectangleShape cell;
-        gc::CELL::STATE state;
-
+class Cell
+{
     public:
         Cell();
         void draw();
-        void set_window(sf::RenderWindow* window);
-        void set_position(float position_x, float position_y);
-        void set_state(gc::CELL::STATE state);
-        bool is_alive();
+        bool isAlive() const;
+        void setPosition(const float t_position_x, const float t_position_y);
+        void setState(const gc::cell::State t_state);
+        void setWindow(sf::RenderWindow* t_window);
+
+    private:
+        sf::RenderWindow* m_window;
+        sf::RectangleShape m_cell;
+        gc::cell::State m_state;
 };

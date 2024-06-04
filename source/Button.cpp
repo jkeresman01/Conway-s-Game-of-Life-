@@ -3,50 +3,44 @@
 
 Button::Button(){}
 
-Button::Button(sf::RenderWindow* window, std::string path){
-    this->window = window;
-    this->path = path;
-    this->texture.loadFromFile(path);
-    this->texture.setSmooth(true);
-    this->button.setTexture(texture);
-    this->button.setOrigin(this->button.getGlobalBounds().width / 2, this->button.getGlobalBounds().height / 2);
-    this->button.setPosition(gc::BUTTON::POSITION_X, gc::BUTTON::POSITION_Y);
-    set_scale(gc::BUTTON::SCALE);
+void Button::create(sf::RenderWindow* t_window, const std::string t_path)
+{
+    m_window = t_window;
+    m_path = t_path;
+    m_texture.loadFromFile(m_path);
+    m_texture.setSmooth(true);
+    m_button.setTexture(m_texture);
+    m_button.setOrigin(m_button.getGlobalBounds().width / 2, m_button.getGlobalBounds().height / 2);
+    m_button.setPosition(gc::button::POSITION_X, gc::button::POSITION_Y);
+    setScale(gc::button::SCALE);
 }
 
-void Button::create(sf::RenderWindow* window, std::string path){
-    this->window = window;
-    this->path = path;
-    this->texture.loadFromFile(path);
-    this->texture.setSmooth(true);
-    this->button.setTexture(texture);
-    this->button.setOrigin(this->button.getGlobalBounds().width / 2, this->button.getGlobalBounds().height / 2);
-    this->button.setPosition(gc::BUTTON::POSITION_X, gc::BUTTON::POSITION_Y);
-    set_scale(gc::BUTTON::SCALE);
+void Button::move(const float t_positionX, const float t_positionY)
+{
+    m_button.move(t_positionX, t_positionY);
 }
 
-void Button::move(float position_x, float position_y){
-    this->button.move(position_x, position_y);
+void Button::setScale(const float t_scaleFactor)
+{
+    m_scaleFactor = t_scaleFactor;
+    m_button.setScale(m_scaleFactor, m_scaleFactor);
 }
 
-void Button::set_scale(float scale){
-    this->scale_factor = scale;
-    this->button.setScale(scale, scale);
+void Button::draw()
+{
+    m_window->draw(m_button);
 }
 
-void Button::draw(){
-    window->draw(button);
-}
+bool Button::isPressed()
+{
+    auto mousePosition = sf::Mouse::getPosition(*m_window); 
+    auto translated_position = m_window->mapPixelToCoords(mousePosition);
 
-bool Button::is_pressed(){
-    auto mouse_position = sf::Mouse::getPosition(*window); 
-    auto translated_position = window->mapPixelToCoords(mouse_position);
+    bool isMouseOnButton = m_button.getGlobalBounds().contains(translated_position); 
+    bool isMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 
-    bool is_mouse_on_button = button.getGlobalBounds().contains(translated_position); 
-    bool is_mouse_pressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+    isMouseOnButton ? m_button.setScale(m_scaleFactor * 1.1f, m_scaleFactor * 1.1f)
+                    : m_button.setScale(m_scaleFactor, m_scaleFactor);
 
-    is_mouse_on_button ? button.setScale(scale_factor * 1.1f, scale_factor * 1.1f)
-                       : button.setScale(scale_factor, scale_factor);
-
-    return is_mouse_on_button and is_mouse_pressed;
+    return isMousePressed and isMouseOnButton;
 }

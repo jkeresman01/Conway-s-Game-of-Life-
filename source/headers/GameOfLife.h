@@ -7,20 +7,21 @@
 
 #include <SFML/System/Clock.hpp>
 
-class GameOfLife{
-    private:
-        sf::RenderWindow* window;
-        sf::Clock clock;
-        gc::GAME::STATE state;
-        Background background;
-        Button reshuffle_button;
-        Button close_button;
-        Button pause_button;
-        Button play_button;
-        Title title;
-        Map map;
-
+class GameOfLife
+{
     public:
-        GameOfLife(sf::RenderWindow* window);
-        void start();
+        GameOfLife(sf::RenderWindow* t_window);
+        void run();
+
+    private:
+        sf::RenderWindow* m_window;
+        sf::Clock m_clock;
+        gc::game::State m_state;
+        Background m_background;
+        Button m_reshuffleButton;
+        Button m_closeButton;
+        Button m_pauseButton;
+        Button m_playButton;
+        Title m_title;
+        Map m_map;
 };

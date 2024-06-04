@@ -4,16 +4,16 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
 
-class Background{
-    private:
-        sf::RenderWindow* window;
-        sf::Sprite backgound;
-        sf::Texture image;
-        std::string path;
-
+class Background
+{
     public:
         Background();
-        Background(sf::RenderWindow* window, std::string path);
-        void create(sf::RenderWindow* window, std::string path);
+        void create(sf::RenderWindow* t_window, const std::string t_path);
         void draw();
+
+    private:
+        sf::RenderWindow* m_window;
+        sf::Sprite m_backgound;
+        sf::Texture m_image;
+        std::string m_path;
 };

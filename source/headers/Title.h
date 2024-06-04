@@ -1,20 +1,22 @@
 #pragma once
 
+#include <string>
+
 #include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Text.hpp>
 
-#include <string>
 
-class Title{
-    private:
-        sf::RenderWindow* window;
-        sf::Font font;
-        sf::Text text;
-
+class Title
+{
     public:
         Title();
-        Title(sf::RenderWindow* window, std::string text, std::string path);
-        void create(sf::RenderWindow* window, std::string text, std::string path);
+        void create(sf::RenderWindow* t_window, const std::string t_text, const std::string t_path);
         void draw();
+
+    private:
+        sf::RenderWindow* m_window;
+        sf::Font m_font;
+        sf::Text m_text;
+
 };
