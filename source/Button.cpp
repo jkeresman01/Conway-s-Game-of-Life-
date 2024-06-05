@@ -34,9 +34,9 @@ void Button::draw()
 bool Button::isPressed()
 {
     auto mousePosition = sf::Mouse::getPosition(*m_window); 
-    auto translated_position = m_window->mapPixelToCoords(mousePosition);
+    auto translatedPosition = m_window->mapPixelToCoords(mousePosition);
 
-    bool isMouseOnButton = m_button.getGlobalBounds().contains(translated_position); 
+    bool isMouseOnButton = m_button.getGlobalBounds().contains(translatedPosition); 
     bool isMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 
     isMouseOnButton ? m_button.setScale(m_scaleFactor * 1.1f, m_scaleFactor * 1.1f)
