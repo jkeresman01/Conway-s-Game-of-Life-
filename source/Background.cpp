@@ -3,17 +3,11 @@
 
 #include <iostream>
 
-Background::Background()
+void Background::create(sf::RenderWindow* t_window, const std::string &t_path)
 {
-}
-
-void Background::create(sf::RenderWindow* t_window, const std::string t_path)
-{
-    m_path = t_path;
-
-    if(m_image.loadFromFile(m_path))
+    if(m_image.loadFromFile(t_path))
     {
-        std::cerr << "Can't load image from " << m_path << "\n";
+        std::cerr << "Can't load image from " << t_path << "\n";
     }
 
     m_window = t_window;

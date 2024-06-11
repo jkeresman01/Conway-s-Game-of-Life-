@@ -14,6 +14,4 @@ int main()
 
     GameOfLife gameOfLife(&window);
     gameOfLife.run();
-
-    return 0;
 }

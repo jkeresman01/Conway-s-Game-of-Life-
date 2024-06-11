@@ -10,8 +10,8 @@
 class Title
 {
     public:
-        Title();
-        void create(sf::RenderWindow* t_window, const std::string t_text, const std::string t_path);
+        Title() = default;
+        void create(sf::RenderWindow* t_window, const std::string &t_text, const std::string &t_path);
         void draw();
 
     private:

@@ -9,7 +9,7 @@
 class Map
 {
     public:
-        Map();
+        Map() = default;
         void create(sf::RenderWindow *t_window);
         void initializeCells(const int t_criteriaForAlive);
         void draw();
@@ -20,7 +20,7 @@ class Map
         gc::cell::State getRandomCellState(int t_criteriaForAlive);
         int countAliveNeighboursAtPosition(int t_positionX, int t_positonY);
         void changeForNextGeneration(Cell &t_cell, int t_positionX, int t_positonY);
-        bool isBorder(int i, int j);
+        bool isBorder(int t_i, int t_j);
 
     private:
         sf::RenderWindow *m_window;

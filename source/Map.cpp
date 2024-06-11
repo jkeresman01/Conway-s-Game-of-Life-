@@ -4,10 +4,6 @@
 
 #include <algorithm>
 
-Map::Map()
-{
-}
-
 void Map::create(sf::RenderWindow* t_window)
 {
     m_window = t_window;
@@ -76,9 +72,9 @@ void Map::initializeCells(int t_criteriaForAlive)
    }
 }
 
-bool Map::isBorder(int i, int j)
+bool Map::isBorder(int t_i, int t_j)
 {
-    return i == 0 or i == gc::map::ROWS - 1 or j == 0 or j == gc::map::COLUMNS - 1;
+    return t_i == 0 or t_i == gc::map::ROWS - 1 or t_j == 0 or t_j == gc::map::COLUMNS - 1;
 }
 
 int Map::generateNumber(int t_max, int t_min)

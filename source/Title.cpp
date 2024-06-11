@@ -1,11 +1,7 @@
 #include "headers/Title.h"
 #include "headers/GameConstants.h"
 
-Title::Title()
-{
-}
-
-void Title::create(sf::RenderWindow* t_window, const std::string t_text, const std::string t_path)
+void Title::create(sf::RenderWindow* t_window, const std::string &t_text, const std::string &t_path)
 {
     m_window = t_window;
     m_font.loadFromFile(t_path);
