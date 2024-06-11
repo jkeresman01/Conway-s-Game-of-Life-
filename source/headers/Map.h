@@ -18,12 +18,12 @@ class Map
     private:
         int generateNumber(int t_max, int t_min);
         gc::cell::State getRandomCellState(int t_criteriaForAlive);
-        int calculateAliveNeighboursAtPosition(int t_positionX, int t_positonY);
+        int countAliveNeighboursAtPosition(int t_positionX, int t_positonY);
         void changeForNextGeneration(Cell &t_cell, int t_positionX, int t_positonY);
         bool isBorder(int i, int j);
 
     private:
-        sf::RenderWindow* m_window;
+        sf::RenderWindow *m_window;
         Cell m_currentGeneration[gc::map::ROWS][gc::map::COLUMNS];
         Cell m_nextGeneration[gc::map::ROWS][gc::map::COLUMNS];
 };

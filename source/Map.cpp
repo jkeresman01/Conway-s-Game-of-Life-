@@ -4,7 +4,9 @@
 
 #include <algorithm>
 
-Map::Map(){}
+Map::Map()
+{
+}
 
 void Map::create(sf::RenderWindow* t_window)
 {
@@ -15,9 +17,9 @@ void Map::create(sf::RenderWindow* t_window)
 
 void Map::update()
 {
-    for(int i = 0; i < gc::map::ROWS; ++i)
+    for(size_t i = 0; i < gc::map::ROWS; ++i)
     {
-        for(int j = 0; j < gc::map::COLUMNS; ++j)
+        for(size_t j = 0; j < gc::map::COLUMNS; ++j)
         {
             if(!isBorder(i, j))
             {
@@ -26,9 +28,9 @@ void Map::update()
         }
     }
 
-    for(int i = 0; i < gc::map::ROWS; ++i)
+    for(size_t i = 0; i < gc::map::ROWS; ++i)
     {
-        for(int j = 0; j < gc::map::COLUMNS; ++j)
+        for(size_t j = 0; j < gc::map::COLUMNS; ++j)
         {
             if(!isBorder(i, j))
             {
@@ -40,9 +42,9 @@ void Map::update()
 
 void Map::draw()
 {
-    for(int i = 0; i < gc::map::ROWS; ++i)
+    for(size_t i = 0; i < gc::map::ROWS; ++i)
     {
-        for(int j = 0; j < gc::map::COLUMNS; ++j)
+        for(size_t j = 0; j < gc::map::COLUMNS; ++j)
         {
             if(!isBorder(i, j))
             {
@@ -54,9 +56,9 @@ void Map::draw()
 
 void Map::initializeCells(int t_criteriaForAlive)
 {
-    for(int i = 0; i < gc::map::ROWS; ++i)
+    for(size_t i = 0; i < gc::map::ROWS; ++i)
     {
-        for(int j = 0; j < gc::map::COLUMNS; ++j)
+        for(size_t j = 0; j < gc::map::COLUMNS; ++j)
         {
             m_currentGeneration[i][j].setWindow(m_window);
             m_currentGeneration[i][j].setPosition(
@@ -92,7 +94,7 @@ gc::cell::State Map::getRandomCellState(int t_criteriaForAlive){
 
 void Map::changeForNextGeneration(Cell &t_cell, int t_positionX, int t_positionY)
 {
-    int aliveNeighbours = calculateAliveNeighboursAtPosition(t_positionX, t_positionY);
+    int aliveNeighbours = countAliveNeighboursAtPosition(t_positionX, t_positionY);
 
     if(t_cell.isAlive() and aliveNeighbours > gc::game::OVERPOPULATION_CRITERIA or aliveNeighbours < gc::game::UNDERPOPULATION_CRITERIA)
     {
@@ -105,7 +107,7 @@ void Map::changeForNextGeneration(Cell &t_cell, int t_positionX, int t_positionY
     }
 }
 
-int Map::calculateAliveNeighboursAtPosition(int t_positionX, int t_positionY)
+int Map::countAliveNeighboursAtPosition(int t_positionX, int t_positionY)
 {
     Cell neighbours[gc::cell::NUMBER_OF_NEIGHBOURS]
     {
