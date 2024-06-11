@@ -5,9 +5,9 @@
 
 void Background::create(sf::RenderWindow* t_window, const std::string &t_path)
 {
-    if(m_image.loadFromFile(t_path))
+    if(!m_image.loadFromFile(t_path))
     {
-        std::cerr << "ERROR: Can't load image from " << t_path << "\n";
+        std::cerr << "ERROR: Image can't be loaded from " << t_path << "\n";
     }
 
     m_window = t_window;

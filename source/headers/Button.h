@@ -10,18 +10,17 @@
 class Button
 {
     public:
-        Button();
+        Button() = default;
         void draw();
         bool isPressed();
         void move(const float t_positionX, const float t_positionY);
         void setScale(const float scale);
-        void create(sf::RenderWindow* t_window, const std::string t_path);
+        void create(sf::RenderWindow* t_window, const std::string &t_path);
 
     private:
         sf::RenderWindow* m_window;
         sf::Texture m_texture;
         sf::Sprite m_button;
-        std::string m_path;
         float m_scaleFactor;
 
 };

@@ -1,15 +1,16 @@
 #include "headers/Button.h"
 #include "headers/GameConstants.h"
 
-Button::Button()
-{
-}
+#include <iostream>
 
-void Button::create(sf::RenderWindow* t_window, const std::string t_path)
+void Button::create(sf::RenderWindow* t_window, const std::string &t_path)
 {
+    if(!m_texture.loadFromFile(t_path))
+    {
+        std::cerr << "ERROR: Texture can't be loaded from " << t_path << "\n";
+    }
+
     m_window = t_window;
-    m_path = t_path;
-    m_texture.loadFromFile(m_path);
     m_texture.setSmooth(true);
     m_button.setTexture(m_texture);
     m_button.setOrigin(m_button.getGlobalBounds().width / 2, m_button.getGlobalBounds().height / 2);
