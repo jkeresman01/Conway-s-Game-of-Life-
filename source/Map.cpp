@@ -10,7 +10,6 @@ void Map::create(sf::RenderWindow* t_window)
     initializeCells(gc::map::CRITERIA_20_PERCENT_ALIVE_CELLS);
 }
 
-
 void Map::update()
 {
     for(size_t i = 0; i < gc::map::ROWS; ++i)
@@ -85,7 +84,6 @@ int Map::generateNumber(int t_max, int t_min)
 gc::cell::State Map::getRandomCellState(int t_criteriaForAlive){
     int possiblityForAlive = generateNumber(100, 1);
     return possiblityForAlive <= t_criteriaForAlive ? gc::cell::State::ALIVE : gc::cell::State::DEAD;
-    
 }
 
 void Map::changeForNextGeneration(Cell &t_cell, int t_positionX, int t_positionY)

@@ -5,9 +5,8 @@
 
 #include <SFML/Window/Event.hpp>
 
-GameOfLife::GameOfLife(sf::RenderWindow* t_window)
+GameOfLife::GameOfLife(sf::RenderWindow* t_window) : m_window(t_window), m_state(gc::game::RUNNING)
 {
-    m_window = t_window;
     m_background.create(t_window, "./resources/images/background.jpg");
     m_map.create(t_window);
     m_title.create(t_window, "Conway's Game of Life", "./resources/fonts/FloppyDisk.ttf");
@@ -20,7 +19,6 @@ GameOfLife::GameOfLife(sf::RenderWindow* t_window)
     m_pauseButton.move(-100, gc::title::POSITION_Y);
     m_playButton.create(t_window, "./resources/icons/play.png");
     m_playButton.move(-150, gc::title::POSITION_Y);
-    m_state = gc::game::State::RUNNING;
 }
 
 void GameOfLife::run()
