@@ -1,13 +1,12 @@
 #include "headers/Background.h"
 #include "headers/GameConstants.h"
-
-#include <iostream>
+#include "headers/Logger.h"
 
 void Background::create(sf::RenderWindow* t_window, const std::string &t_path)
 {
     if(!m_image.loadFromFile(t_path))
     {
-        std::cerr << "ERROR: Image can't be loaded from " << t_path << "\n";
+        LOG_ERROR("ERROR: Image can't be loaded from " << t_path << "!");
     }
 
     m_window = t_window;

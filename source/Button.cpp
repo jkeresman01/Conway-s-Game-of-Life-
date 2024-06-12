@@ -29,7 +29,7 @@ void Button::setTexture(const std::string &t_path)
 {
     if(!m_texture.loadFromFile(t_path))
     {
-        LOG_ERROR("ERROR: Texture can't be loaded from " << t_path << "!")
+        LOG_ERROR("Texture can't be loaded from " << t_path << "!")
     }
     m_texture.setSmooth(true);
     m_button.setTexture(m_texture);

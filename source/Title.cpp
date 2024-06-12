@@ -1,13 +1,12 @@
 #include "headers/Title.h"
+#include "headers/Logger.h"
 #include "headers/GameConstants.h"
-
-#include <iostream>
 
 void Title::create(sf::RenderWindow* t_window, const std::string &t_text, const std::string &t_path)
 {
     if(!m_font.loadFromFile(t_path))
     {
-        std::cerr << "ERROR: Font can't be loaded from " << t_path << "\n";
+        LOG_ERROR("ERROR: Font can't be loaded from " << t_path << "!");
     }
 
     m_window = t_window;
