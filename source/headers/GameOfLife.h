@@ -10,11 +10,11 @@
 class GameOfLife
 {
     public:
-        GameOfLife(sf::RenderWindow* t_window);
+        GameOfLife();
         void run();
 
     private:
-        sf::RenderWindow* m_window;
+        sf::RenderWindow m_window;
         sf::Clock m_clock;
         gc::game::State m_state;
         Background m_background;
