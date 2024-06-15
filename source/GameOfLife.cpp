@@ -3,6 +3,7 @@
 #include "headers/Button.h"
 #include "headers/Title.h"
 
+#include <SFML/System/Vector2.hpp>
 #include <ctime>
 
 #include <SFML/Window/Event.hpp>
@@ -10,6 +11,7 @@
 GameOfLife::GameOfLife()
     : m_window(sf::VideoMode(gc::screen::WIDTH, gc::screen::HEIGHT), "", sf::Style::None), m_state(gc::game::RUNNING)
 {
+    m_window.setPosition(sf::Vector2i(gc::screen::POSITION_X, gc::screen::POSITION_Y));
     m_background.create(&m_window, "./resources/images/background.jpg");
     m_map.create(&m_window);
     m_title.create(&m_window, "Conway's Game of Life", "./resources/fonts/FloppyDisk.ttf");
