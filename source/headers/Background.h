@@ -8,11 +8,11 @@ class Background
 {
     public:
         Background() = default;
-        void create(sf::RenderWindow* t_window, const std::string &t_path);
+        void create(sf::RenderWindow *t_window, const std::string &t_path);
         void draw();
 
     private:
-        sf::RenderWindow* m_window;
+        sf::RenderWindow *m_window;
         sf::Sprite m_backgound;
         sf::Texture m_image;
 };

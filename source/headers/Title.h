@@ -11,7 +11,7 @@ class Title
 {
     public:
         Title() = default;
-        void create(sf::RenderWindow* t_window, const std::string &t_text, const std::string &t_path);
+        void create(sf::RenderWindow *t_window, const std::string &t_text, const std::string &t_path);
         void draw();
 
     private:
