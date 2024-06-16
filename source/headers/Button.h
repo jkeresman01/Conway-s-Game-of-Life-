@@ -23,5 +23,4 @@ class Button
         sf::Texture m_texture;
         sf::Sprite m_button;
         float m_scaleFactor;
-
 };
