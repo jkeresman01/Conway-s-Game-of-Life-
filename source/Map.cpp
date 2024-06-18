@@ -55,16 +55,16 @@ void Map::initializeCells(int t_criteriaForAlive)
     {
         for(size_t j = 0; j < gc::map::COLUMNS; ++j)
         {
-            m_currentGeneration[i][j].setWindow(m_window);
-            m_currentGeneration[i][j].setPosition(
-                    gc::cell::START_POSITION_X + (j * gc::cell::WIDTH), 
-                    gc::cell::START_POSITION_Y + (i * gc::cell::HEIGHT));
-
             if(!isBorder(i, j))
             {
                 gc::cell::State randomCellState = getRandomCellState(t_criteriaForAlive);
                 m_currentGeneration[i][j].setState(randomCellState);
             }
+
+            m_currentGeneration[i][j].setWindow(m_window);
+            m_currentGeneration[i][j].setPosition(
+                    gc::cell::START_POSITION_X + (j * gc::cell::WIDTH), 
+                    gc::cell::START_POSITION_Y + (i * gc::cell::HEIGHT));
 
             m_nextGeneration[i][j] = m_currentGeneration[i][j];
        }
@@ -88,14 +88,14 @@ gc::cell::State Map::getRandomCellState(int t_criteriaForAlive){
 
 void Map::changeForNextGeneration(Cell &t_cell, int t_positionX, int t_positionY)
 {
-    int aliveNeighbours = countAliveNeighboursAtPosition(t_positionX, t_positionY);
+    int numberOfAliveNeighbours = countAliveNeighboursAtPosition(t_positionX, t_positionY);
 
-    if(t_cell.isAlive() and aliveNeighbours > gc::game::OVERPOPULATION_CRITERIA or aliveNeighbours < gc::game::UNDERPOPULATION_CRITERIA)
+    if(t_cell.isAlive() and numberOfAliveNeighbours > gc::game::OVERPOPULATION_CRITERIA or numberOfAliveNeighbours < gc::game::UNDERPOPULATION_CRITERIA)
     {
         m_nextGeneration[t_positionX][t_positionY].setState(gc::cell::DEAD);
     }
 
-    if(!t_cell.isAlive() and aliveNeighbours == gc::game::BORN_CRITERIA)
+    if(!t_cell.isAlive() and numberOfAliveNeighbours == gc::game::BORN_CRITERIA)
     {
         m_nextGeneration[t_positionX][t_positionY].setState(gc::cell::ALIVE);
     }

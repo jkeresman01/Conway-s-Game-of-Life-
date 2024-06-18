@@ -2,7 +2,6 @@
 
 namespace gc
 {
-
     namespace cell
     {
         constexpr float WIDTH = 10.0f; 
@@ -23,15 +22,6 @@ namespace gc
             DEAD = 0,
             ALIVE = 1,
         };
-    }
-
-    namespace sun
-    {
-        constexpr int OFFSET_Y = 4;
-        constexpr int OFFSET_X = 4;
-
-        constexpr int DEAD_SPACE = 2;
-        constexpr int QUADRANT_WIDTH = 4;
     }
 
     namespace map
@@ -91,11 +81,4 @@ namespace gc
 
         constexpr float SCALE = 1.2f;
     }
-
-    namespace star
-    {
-        constexpr int WIDTH = 3;
-        constexpr int HEIGHT = 3;
-    }
-
 }
