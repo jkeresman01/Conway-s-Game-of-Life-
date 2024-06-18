@@ -3,9 +3,9 @@
 #include "headers/Button.h"
 #include "headers/Title.h"
 
-#include <SFML/System/Vector2.hpp>
 #include <ctime>
 
+#include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
 
 GameOfLife::GameOfLife()
