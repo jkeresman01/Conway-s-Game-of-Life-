@@ -7,7 +7,37 @@
 void Map::create(sf::RenderWindow* t_window)
 {
     m_window = t_window;
-    initializeCells(gc::map::CRITERIA_20_PERCENT_ALIVE_CELLS);
+    initializeCells();
+}
+
+void Map::initializeCells()
+{
+    for(size_t i = 0; i < gc::map::ROWS; ++i)
+    {
+        for(size_t j = 0; j < gc::map::COLUMNS; ++j)
+        {
+            m_currentGeneration[i][j].setWindow(m_window);
+            m_currentGeneration[i][j].setPosition(
+                    gc::cell::START_POSITION_X + (j * gc::cell::WIDTH), 
+                    gc::cell::START_POSITION_Y + (i * gc::cell::HEIGHT));
+
+            m_nextGeneration[i][j] = m_currentGeneration[i][j];
+       }
+   }
+}
+
+void Map::draw()
+{
+    for(size_t i = 0; i < gc::map::ROWS; ++i)
+    {
+        for(size_t j = 0; j < gc::map::COLUMNS; ++j)
+        {
+            if(!isBorder(i, j))
+            {
+                m_currentGeneration[i][j].draw();
+            }
+        }
+    }
 }
 
 void Map::update()
@@ -33,9 +63,10 @@ void Map::update()
             }
         }
     }
+
 }
 
-void Map::draw()
+void Map::reshuffle()
 {
     for(size_t i = 0; i < gc::map::ROWS; ++i)
     {
@@ -43,32 +74,11 @@ void Map::draw()
         {
             if(!isBorder(i, j))
             {
-                m_currentGeneration[i][j].draw();
+                gc::cell::State randomCellState = getRandomCellState(gc::map::CRITERIA_20_PERCENT_ALIVE_CELLS);
+                m_currentGeneration[i][j].setState(randomCellState);
             }
         }
     }
-}
-
-void Map::initializeCells(int t_criteriaForAlive)
-{
-    for(size_t i = 0; i < gc::map::ROWS; ++i)
-    {
-        for(size_t j = 0; j < gc::map::COLUMNS; ++j)
-        {
-            if(!isBorder(i, j))
-            {
-                gc::cell::State randomCellState = getRandomCellState(t_criteriaForAlive);
-                m_currentGeneration[i][j].setState(randomCellState);
-            }
-
-            m_currentGeneration[i][j].setWindow(m_window);
-            m_currentGeneration[i][j].setPosition(
-                    gc::cell::START_POSITION_X + (j * gc::cell::WIDTH), 
-                    gc::cell::START_POSITION_Y + (i * gc::cell::HEIGHT));
-
-            m_nextGeneration[i][j] = m_currentGeneration[i][j];
-       }
-   }
 }
 
 bool Map::isBorder(int t_i, int t_j)

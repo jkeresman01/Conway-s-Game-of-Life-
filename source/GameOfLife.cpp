@@ -14,6 +14,7 @@ GameOfLife::GameOfLife()
     m_window.setPosition(sf::Vector2i(gc::screen::POSITION_X, gc::screen::POSITION_Y));
     m_background.create(&m_window, "./resources/images/background.jpg");
     m_map.create(&m_window);
+    m_map.reshuffle();
     m_title.create(&m_window, "Conway's Game of Life", "./resources/fonts/FloppyDisk.ttf");
     m_closeButton.create(&m_window, "./resources/icons/close.png");
     m_closeButton.setScale(0.5f);
@@ -32,17 +33,34 @@ void GameOfLife::run()
     while (m_window.isOpen()) 
     {
         sf::Event event;
+
         while (m_window.pollEvent(event)) 
         {
             if (event.type == sf::Event::Closed or m_closeButton.isPressed())
             {
                 m_window.close();
             }
+
+            if(m_reshuffleButton.isPressed())
+            {
+                m_state = gc::game::RESHUFFLED;
+            }
+
+            if(m_pauseButton.isPressed())
+            {
+                m_state = gc::game::PAUSED;
+            }
+
+            if(m_playButton.isPressed())
+            {
+                m_state = gc::game::RUNNING;
+            }
+
         }
 
         if(m_state == gc::game::RESHUFFLED)
         {
-            m_map.initializeCells(gc::map::CRITERIA_20_PERCENT_ALIVE_CELLS);
+            m_map.reshuffle();
             m_state = gc::game::RUNNING;
         }
 
@@ -50,21 +68,6 @@ void GameOfLife::run()
         {
             m_map.update();
             m_clock.restart();
-        }
-
-        if(m_reshuffleButton.isPressed())
-        {
-            m_state = gc::game::RESHUFFLED;
-        }
-
-        if(m_pauseButton.isPressed())
-        {
-            m_state = gc::game::PAUSED;
-        }
-
-        if(m_playButton.isPressed())
-        {
-            m_state = gc::game::RUNNING;
         }
 
         m_window.clear();

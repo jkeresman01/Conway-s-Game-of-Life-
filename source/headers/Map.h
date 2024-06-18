@@ -11,14 +11,15 @@ class Map
     public:
         Map() = default;
         void create(sf::RenderWindow *t_window);
-        void initializeCells(const int t_criteriaForAlive);
         void draw();
+        void reshuffle();
         void update();
 
     private:
         int generateNumber(int t_max, int t_min);
         gc::cell::State getRandomCellState(int t_criteriaForAlive);
         int countAliveNeighboursAtPosition(int t_positionX, int t_positonY);
+        void initializeCells();
         void changeForNextGeneration(Cell &t_cell, int t_positionX, int t_positonY);
         bool isBorder(int t_i, int t_j);
 
