@@ -9,7 +9,8 @@
 #include <SFML/Window/Event.hpp>
 
 GameOfLife::GameOfLife()
-    : m_window(sf::VideoMode(gc::screen::WIDTH, gc::screen::HEIGHT), "", sf::Style::None), m_state(gc::game::RUNNING)
+    : m_window(sf::VideoMode(gc::screen::WIDTH, gc::screen::HEIGHT), "", sf::Style::None),
+    m_state(gc::game::RUNNING)
 {
     m_window.setPosition(sf::Vector2i(gc::screen::POSITION_X, gc::screen::POSITION_Y));
     m_background.create(&m_window, "./resources/images/background.jpg");

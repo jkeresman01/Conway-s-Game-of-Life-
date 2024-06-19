@@ -7,10 +7,10 @@
 void Map::create(sf::RenderWindow* t_window)
 {
     m_window = t_window;
-    initializeCells();
+    initCells();
 }
 
-void Map::initializeCells()
+void Map::initCells()
 {
     for(size_t i = 0; i < gc::map::ROWS; ++i)
     {
@@ -100,7 +100,8 @@ void Map::changeForNextGeneration(Cell &t_cell, int t_positionX, int t_positionY
 {
     int numberOfAliveNeighbours = countAliveNeighboursAtPosition(t_positionX, t_positionY);
 
-    if(t_cell.isAlive() and numberOfAliveNeighbours > gc::game::OVERPOPULATION_CRITERIA or numberOfAliveNeighbours < gc::game::UNDERPOPULATION_CRITERIA)
+    if(t_cell.isAlive() and numberOfAliveNeighbours > gc::game::OVERPOPULATION_CRITERIA or 
+       numberOfAliveNeighbours < gc::game::UNDERPOPULATION_CRITERIA)
     {
         m_nextGeneration[t_positionX][t_positionY].setState(gc::cell::DEAD);
     }
@@ -125,5 +126,6 @@ int Map::countAliveNeighboursAtPosition(int t_positionX, int t_positionY)
         m_currentGeneration[t_positionX - 1][t_positionY + 1],
     };
 
-    return std::count_if(neighbours, neighbours + gc::cell::NUMBER_OF_NEIGHBOURS, [](Cell &cell){ return cell.isAlive();});
+    return std::count_if(neighbours, neighbours + gc::cell::NUMBER_OF_NEIGHBOURS, 
+            [](Cell &cell){ return cell.isAlive(); });
 }
