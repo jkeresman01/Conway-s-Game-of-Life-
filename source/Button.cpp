@@ -2,7 +2,7 @@
 #include "headers/Logger.h"
 #include "headers/GameConstants.h"
 
-void Button::create(sf::RenderWindow* t_window, const std::string &t_path) 
+void Button::create(sf::RenderWindow *t_window, const std::string &t_path) 
 {
     m_window = t_window;
     setTexture(t_path);
@@ -29,7 +29,7 @@ void Button::setTexture(const std::string &t_path)
 {
     if(!m_texture.loadFromFile(t_path))
     {
-        LOG_ERROR("Texture can't be loaded from " << t_path << "!")
+        LOG_ERROR("Failed to load texture from " << t_path << "!")
     }
 
     m_texture.setSmooth(true);

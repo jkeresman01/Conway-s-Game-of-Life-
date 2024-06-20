@@ -2,11 +2,11 @@
 #include "headers/GameConstants.h"
 #include "headers/Logger.h"
 
-void Background::create(sf::RenderWindow* t_window, const std::string &t_path)
+void Background::create(sf::RenderWindow *t_window, const std::string &t_path)
 {
     if(!m_image.loadFromFile(t_path))
     {
-        LOG_ERROR("Image can't be loaded from " << t_path << "!");
+        LOG_ERROR("Failed to load texture from " << t_path << "!");
     }
 
     m_window = t_window;

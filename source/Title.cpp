@@ -6,7 +6,7 @@ void Title::create(sf::RenderWindow* t_window, const std::string &t_text, const 
 {
     if(!m_font.loadFromFile(t_path))
     {
-        LOG_ERROR("Font can't be loaded from " << t_path << "!");
+        LOG_ERROR("Failed to load font from " << t_path << "!");
     }
 
     m_window = t_window;
