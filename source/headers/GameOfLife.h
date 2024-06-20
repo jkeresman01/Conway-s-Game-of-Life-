@@ -11,12 +11,13 @@ class GameOfLife
 {
     public:
         GameOfLife();
+
         void run();
 
     private:
         sf::RenderWindow m_window;
         sf::Clock m_clock;
-        gc::game::State m_state;
+
         Background m_background;
         Button m_reshuffleButton;
         Button m_closeButton;
@@ -24,4 +25,6 @@ class GameOfLife
         Button m_playButton;
         Title m_title;
         Map m_map;
+
+        gc::game::State m_state;
 };

@@ -8,6 +8,7 @@ class Background
 {
     public:
         Background() = default;
+
         void create(sf::RenderWindow *t_window, const std::string &t_path);
         void draw();
 
