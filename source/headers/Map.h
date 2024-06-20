@@ -11,8 +11,9 @@ class Map
     public:
         Map() = default;
 
-        void create(sf::RenderWindow *t_window);
         void draw();
+
+        void create(sf::RenderWindow *t_window);
         void update();
         void reshuffle();
 
