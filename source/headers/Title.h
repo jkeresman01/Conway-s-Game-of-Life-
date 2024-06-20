@@ -14,7 +14,7 @@ class Title
         void draw();
 
     private:
-        sf::RenderWindow* m_window;
+        sf::RenderWindow *m_window;
         sf::Font m_font;
         sf::Text m_text;
 };
