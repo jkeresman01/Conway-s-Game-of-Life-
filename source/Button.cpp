@@ -5,6 +5,7 @@
 void Button::create(sf::RenderWindow *t_window, const std::string &t_path) 
 {
     m_window = t_window;
+
     setTexture(t_path);
     setScale(gc::button::SCALE);
 }

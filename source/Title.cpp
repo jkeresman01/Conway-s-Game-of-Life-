@@ -10,6 +10,7 @@ void Title::create(sf::RenderWindow* t_window, const std::string &t_text, const 
     }
 
     m_window = t_window;
+
     m_text.setString(t_text);
     m_text.setFont(m_font);
     m_text.setFillColor(sf::Color(250, 191, 106));

@@ -8,6 +8,7 @@ Cell::Cell()
     m_cell.setOutlineThickness(gc::cell::BORDER_THICKNESS);
     m_cell.setPosition(gc::cell::START_POSITION_X, gc::cell::START_POSITION_Y);
     m_cell.setOrigin(gc::cell::ORIGIN_X, gc::cell::ORIGIN_Y);
+
     setState(gc::cell::DEAD);
 }
 
