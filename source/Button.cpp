@@ -20,7 +20,7 @@ void Button::move(float t_positionX, float t_positionY)
     m_button.move(t_positionX, t_positionY);
 }
 
-void Button::setScale(const float t_scaleFactor)
+void Button::setScale(float t_scaleFactor)
 {
     m_scaleFactor = t_scaleFactor;
     m_button.setScale(m_scaleFactor, m_scaleFactor);
