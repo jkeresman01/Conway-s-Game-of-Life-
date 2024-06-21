@@ -15,7 +15,7 @@ void Button::draw()
     m_window->draw(m_button);
 }
 
-void Button::move(const float t_positionX, const float t_positionY)
+void Button::move(float t_positionX, float t_positionY)
 {
     m_button.move(t_positionX, t_positionY);
 }
