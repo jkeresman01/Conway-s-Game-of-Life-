@@ -6,6 +6,7 @@
 #include <ctime>
 
 #include <SFML/System/Vector2.hpp>
+
 #include <SFML/Window/Event.hpp>
 
 GameOfLife::GameOfLife()

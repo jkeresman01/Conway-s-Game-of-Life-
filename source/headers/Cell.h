@@ -14,8 +14,8 @@ class Cell
 
         bool isAlive() const;
 
-        void setPosition(const float t_position_x, const float t_position_y);
-        void setState(const gc::cell::State t_state);
+        void setPosition(float t_position_x, float t_position_y);
+        void setState(gc::cell::State t_state);
         void setWindow(sf::RenderWindow* t_window);
 
     private:

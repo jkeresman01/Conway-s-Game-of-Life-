@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdint>
+
 namespace gc
 {
     namespace cell
@@ -15,9 +17,9 @@ namespace gc
 
         constexpr float BORDER_THICKNESS = 0.5f; 
 
-        constexpr int NUMBER_OF_NEIGHBOURS = 8;
+        constexpr uint32_t NUMBER_OF_NEIGHBOURS = 8;
 
-        enum State
+        enum State : uint8_t
         {
             DEAD = 0,
             ALIVE = 1,
@@ -26,33 +28,34 @@ namespace gc
 
     namespace map
     {
-        constexpr int ROWS = 60; 
-        constexpr int COLUMNS = 120; 
+        constexpr uint32_t ROWS = 60; 
+        constexpr uint32_t COLUMNS = 120; 
 
-        constexpr int CRITERIA_ALL_DEAD_CELLS = 0;
-        constexpr int CRITERIA_20_PERCENT_ALIVE_CELLS = 20;
+        constexpr uint32_t CRITERIA_ALL_DEAD_CELLS = 0;
+        constexpr uint32_t CRITERIA_20_PERCENT_ALIVE_CELLS = 20;
     }
 
     namespace screen
     {
-        constexpr int WIDTH = 1280; 
-        constexpr int HEIGHT = 720; 
+        constexpr uint32_t WIDTH = 1280; 
+        constexpr uint32_t HEIGHT = 720; 
 
-        constexpr int POSITION_X  = 300; 
-        constexpr int POSITION_Y  = 200; 
+        constexpr uint32_t POSITION_X  = 300; 
+        constexpr uint32_t POSITION_Y  = 200; 
     }
 
     namespace game
     {
         constexpr float REFRESH_TIME_SECONDS = 2.0f;
-        constexpr int FRAMES_PER_SECOND = 60;
 
-        constexpr int UNDERPOPULATION_CRITERIA = 2;
-        constexpr int OVERPOPULATION_CRITERIA = 3;
+        constexpr uint32_t FRAMES_PER_SECOND = 60;
 
-        constexpr int BORN_CRITERIA = 3;
+        constexpr uint32_t UNDERPOPULATION_CRITERIA = 2;
+        constexpr uint32_t OVERPOPULATION_CRITERIA = 3;
 
-        enum State
+        constexpr uint32_t BORN_CRITERIA = 3;
+
+        enum State : uint8_t
         {
             PAUSED = 0,
             RUNNING = 1,
@@ -68,16 +71,16 @@ namespace gc
 
     namespace title
     {
-        constexpr int POSITION_X = 50;
-        constexpr int POSITION_Y = 10;
+        constexpr uint32_t POSITION_X = 50;
+        constexpr uint32_t POSITION_Y = 10;
 
-        constexpr int FONT_SIZE = 66;
+        constexpr uint32_t FONT_SIZE = 66;
     }
 
     namespace button
     {
-        constexpr int POSITION_X = screen::WIDTH - 20;
-        constexpr int POSITION_Y = 40;
+        constexpr uint32_t POSITION_X = screen::WIDTH - 20;
+        constexpr uint32_t POSITION_Y = 40;
 
         constexpr float SCALE = 1.2f;
     }

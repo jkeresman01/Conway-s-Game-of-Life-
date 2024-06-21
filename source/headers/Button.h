@@ -15,11 +15,11 @@ class Button
 
         void create(sf::RenderWindow *t_window, const std::string &t_path);
         void draw();
-        void move(const float t_positionX, const float t_positionY);
+        void move(float t_positionX, float t_positionY);
 
         bool isPressed();
 
-        void setScale(const float scale);
+        void setScale(float scale);
         void setTexture(const std::string &t_path);
 
     private:

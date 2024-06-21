@@ -19,14 +19,14 @@ class Map
 
     private:
         void initCells();
-        void changeForNextGeneration(Cell &t_cell, int t_positionX, int t_positonY);
+        void changeForNextGeneration(Cell &t_cell, uint32_t t_positionX, uint32_t t_positonY);
 
-        int generateNumber(int t_max, int t_min);
-        int countAliveNeighboursAtPosition(int t_positionX, int t_positonY);
+        uint32_t generateNumber(uint32_t t_max, uint32_t t_min);
+        uint32_t countAliveNeighboursAtPosition(uint32_t t_positionX, uint32_t t_positonY);
 
-        bool isBorder(int t_i, int t_j);
+        bool isBorder(uint32_t t_i, uint32_t t_j);
 
-        gc::cell::State getRandomCellState(int t_criteriaForAlive);
+        gc::cell::State getRandomCellState(uint32_t t_criteriaForAlive);
 
     private:
         sf::RenderWindow *m_window;

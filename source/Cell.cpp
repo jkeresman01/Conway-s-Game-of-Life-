@@ -27,12 +27,12 @@ void Cell::setWindow(sf::RenderWindow *t_window)
     m_window = t_window;
 }
 
-void Cell::setPosition(const float t_positionX, const float t_positionY)
+void Cell::setPosition(float t_positionX, float t_positionY)
 {
     m_cell.setPosition(t_positionX, t_positionY);
 }
 
-void Cell::setState(const gc::cell::State t_state)
+void Cell::setState(gc::cell::State t_state)
 {
     m_state = t_state;
     m_state ? m_cell.setFillColor(sf::Color(250, 191, 106, 180))
