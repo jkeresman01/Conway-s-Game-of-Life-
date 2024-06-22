@@ -34,6 +34,7 @@ void Button::setTexture(const std::string &t_path)
     }
 
     m_texture.setSmooth(true);
+
     m_button.setTexture(m_texture);
     m_button.setOrigin(m_button.getGlobalBounds().width / 2, m_button.getGlobalBounds().height / 2);
     m_button.setPosition(gc::button::POSITION_X, gc::button::POSITION_Y);

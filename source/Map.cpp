@@ -82,9 +82,10 @@ void Map::reshuffle()
     }
 }
 
-bool Map::isBorder(uint32_t t_i, uint32_t t_j)
+bool Map::isBorder(uint32_t t_rowIndex, uint32_t t_columnIndex)
 {
-    return t_i == 0 or t_i == gc::map::ROWS - 1 or t_j == 0 or t_j == gc::map::COLUMNS - 1;
+    return t_rowIndex == 0 or t_rowIndex == gc::map::ROWS - 1 or 
+           t_columnIndex == 0 or t_columnIndex == gc::map::COLUMNS - 1;
 }
 
 uint32_t Map::generateNumber(uint32_t t_max, uint32_t t_min)
