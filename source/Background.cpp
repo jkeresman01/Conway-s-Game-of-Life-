@@ -1,4 +1,5 @@
 #include "headers/Background.h"
+
 #include "headers/GameConstants.h"
 #include "headers/Logger.h"
 
