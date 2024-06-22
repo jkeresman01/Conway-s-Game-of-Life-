@@ -59,9 +59,9 @@ namespace gc
 
         enum State : uint8_t
         {
-            PAUSED = 0,
-            RUNNING = 1,
-            RESHUFFLED = 2,
+            PAUSED      = 0,
+            RUNNING     = 1,
+            RESHUFFLED  = 2,
         };
     }
 
@@ -76,7 +76,7 @@ namespace gc
         constexpr uint32_t POSITION_X = 50;
         constexpr uint32_t POSITION_Y = 10;
 
-        constexpr uint32_t FONT_SIZE = 66;
+        constexpr uint32_t FONT_SIZE  = 66;
     }
 
     namespace button
