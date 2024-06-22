@@ -116,7 +116,7 @@ void Map::changeForNextGeneration(Cell &t_cell, uint32_t t_positionX, uint32_t t
 
 uint32_t Map::countAliveNeighboursAtPosition(uint32_t t_positionX, uint32_t t_positionY)
 {
-    Cell neighbours[gc::cell::NUMBER_OF_NEIGHBOURS]
+    Cell neighbours[]
     {
         m_currentGeneration[t_positionX - 1][t_positionY],
         m_currentGeneration[t_positionX + 1][t_positionY],
