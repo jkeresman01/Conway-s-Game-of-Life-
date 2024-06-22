@@ -1,8 +1,9 @@
-#include "headers/Cell.h"
-#include "headers/GameConstants.h"
 #include "headers/Map.h"
 
 #include <algorithm>
+
+#include "headers/Cell.h"
+#include "headers/GameConstants.h"
 
 void Map::create(sf::RenderWindow* t_window)
 {

@@ -1,4 +1,5 @@
 #include "headers/Cell.h"
+
 #include "headers/GameConstants.h"
 
 Cell::Cell()

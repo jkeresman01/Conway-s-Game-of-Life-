@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Cell.h"
-#include "GameConstants.h"
-
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+
+#include "Cell.h"
+#include "GameConstants.h"
 
 class Map
 {

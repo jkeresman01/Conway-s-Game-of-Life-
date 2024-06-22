@@ -1,9 +1,9 @@
 #pragma once
 
-#include "GameConstants.h"
-
 #include <SFML/Graphics/RectangleShape.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+
+#include "GameConstants.h"
 
 class Cell
 {

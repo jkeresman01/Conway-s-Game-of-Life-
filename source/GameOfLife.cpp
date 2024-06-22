@@ -1,13 +1,13 @@
 #include "headers/GameOfLife.h"
-#include "headers/Background.h"
-#include "headers/Button.h"
-#include "headers/Title.h"
 
 #include <ctime>
 
 #include <SFML/System/Vector2.hpp>
-
 #include <SFML/Window/Event.hpp>
+
+#include "headers/Background.h"
+#include "headers/Button.h"
+#include "headers/Title.h"
 
 GameOfLife::GameOfLife()
     : m_window(sf::VideoMode(gc::screen::WIDTH, gc::screen::HEIGHT), "", sf::Style::None),
