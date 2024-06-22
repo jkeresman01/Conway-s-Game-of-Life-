@@ -75,7 +75,7 @@ void Map::reshuffle()
         {
             if(!isBorder(i, j))
             {
-                gc::cell::State randomCellState = getRandomCellState(gc::map::CRITERIA_20_PERCENT_ALIVE_CELLS);
+                gc::cell::State randomCellState = getRandomCellState(gc::map::RANDOM_20_PERCENT_ALIVE);
                 m_currentGeneration[i][j].setState(randomCellState);
             }
         }

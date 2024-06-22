@@ -6,10 +6,10 @@ namespace gc
 {
     namespace cell
     {
-        constexpr float WIDTH = 10.0f; 
+        constexpr float WIDTH  = 10.0f; 
         constexpr float HEIGHT = 10.0f; 
 
-        constexpr float ORIGIN_X = WIDTH / 2;
+        constexpr float ORIGIN_X  = WIDTH / 2;
         constexpr float  ORIGIN_Y = HEIGHT / 2;
 
         constexpr float START_POSITION_X = 45.0f; 
@@ -21,23 +21,26 @@ namespace gc
 
         enum State : uint8_t
         {
-            DEAD = 0,
+            DEAD  = 0,
             ALIVE = 1,
         };
     }
 
     namespace map
     {
-        constexpr uint32_t ROWS = 60; 
+        constexpr uint32_t ROWS    = 60; 
         constexpr uint32_t COLUMNS = 120; 
 
-        constexpr uint32_t CRITERIA_ALL_DEAD_CELLS = 0;
-        constexpr uint32_t CRITERIA_20_PERCENT_ALIVE_CELLS = 20;
+        enum Critera : uint8_t
+        {
+            ALL_DEAD                = 0,
+            RANDOM_20_PERCENT_ALIVE = 20,
+        };
     }
 
     namespace screen
     {
-        constexpr uint32_t WIDTH = 1280; 
+        constexpr uint32_t WIDTH  = 1280; 
         constexpr uint32_t HEIGHT = 720; 
 
         constexpr uint32_t POSITION_X  = 300; 
@@ -51,9 +54,8 @@ namespace gc
         constexpr uint32_t FRAMES_PER_SECOND = 60;
 
         constexpr uint32_t UNDERPOPULATION_CRITERIA = 2;
-        constexpr uint32_t OVERPOPULATION_CRITERIA = 3;
-
-        constexpr uint32_t BORN_CRITERIA = 3;
+        constexpr uint32_t OVERPOPULATION_CRITERIA  = 3;
+        constexpr uint32_t BORN_CRITERIA            = 3;
 
         enum State : uint8_t
         {
