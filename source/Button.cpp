@@ -1,7 +1,7 @@
 #include "headers/Button.h"
 
-#include "headers/Logger.h"
 #include "headers/GameConstants.h"
+#include "headers/Logger.h"
 
 void Button::create(sf::RenderWindow *t_window, const std::string &t_path) 
 {
