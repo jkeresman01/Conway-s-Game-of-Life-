@@ -10,7 +10,7 @@ namespace gc
         constexpr float HEIGHT = 10.0f; 
 
         constexpr float ORIGIN_X  = WIDTH / 2;
-        constexpr float  ORIGIN_Y = HEIGHT / 2;
+        constexpr float ORIGIN_Y  = HEIGHT / 2;
 
         constexpr float START_POSITION_X = 45.0f; 
         constexpr float START_POSITION_Y = 100.0f; 
