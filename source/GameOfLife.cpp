@@ -22,17 +22,17 @@ GameOfLife::GameOfLife()
 
     m_title.create(&m_window, "Conway's Game of Life", "resources/fonts/FloppyDisk.ttf");
 
-    m_closeButton.create(&m_window, "./resources/icons/close.png");
+    m_closeButton.create(&m_window, "resources/icons/close.png");
     m_closeButton.setScale(0.5f);
     m_closeButton.move(0, -20);
 
-    m_reshuffleButton.create(&m_window,  "./resources/icons/restart.png");
+    m_reshuffleButton.create(&m_window,  "resources/icons/restart.png");
     m_reshuffleButton.move(-50, gc::title::POSITION_Y);
 
-    m_pauseButton.create(&m_window, "./resources/icons/pause.png");
+    m_pauseButton.create(&m_window, "resources/icons/pause.png");
     m_pauseButton.move(-100, gc::title::POSITION_Y);
 
-    m_playButton.create(&m_window, "./resources/icons/play.png");
+    m_playButton.create(&m_window, "resources/icons/play.png");
     m_playButton.move(-150, gc::title::POSITION_Y);
 
     srand(time(nullptr));
