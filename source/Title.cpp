@@ -3,7 +3,7 @@
 #include "headers/GameConstants.h"
 #include "headers/Logger.h"
 
-void Title::create(sf::RenderWindow* t_window,
+void Title::create(sf::RenderWindow *t_window,
                    const std::string &t_text,
                    const std::filesystem::path &t_path)
 {
