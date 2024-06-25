@@ -1,5 +1,6 @@
 #pragma once
 
+#include <filesystem>
 #include <string>
 
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -13,14 +14,19 @@ class Button
     public:
         Button() = default;
 
-        void create(sf::RenderWindow *t_window, const std::string &t_path);
+        void create(sf::RenderWindow *t_window, const std::filesystem::path &t_path);
         void draw();
         void move(float t_positionX, float t_positionY);
 
         bool isPressed();
 
         void setScale(float scale);
-        void setTexture(const std::string &t_path);
+        void setTexture(const std::filesystem::path &t_path);
+
+    private:
+        void initButton(const std::filesystem::path &t_path);
+
+        void loadTexture(const std::filesystem::path &t_path);
 
     private:
         sf::RenderWindow *m_window;

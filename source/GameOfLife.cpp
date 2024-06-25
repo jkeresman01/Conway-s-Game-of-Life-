@@ -15,12 +15,12 @@ GameOfLife::GameOfLife()
 {
     m_window.setPosition(sf::Vector2i(gc::screen::POSITION_X, gc::screen::POSITION_Y));
 
-    m_background.create(&m_window, "./resources/images/background.jpg");
+    m_background.create(&m_window, "resources/images/background.jpg");
 
     m_map.create(&m_window);
     m_map.reshuffle();
 
-    m_title.create(&m_window, "Conway's Game of Life", "./resources/fonts/FloppyDisk.ttf");
+    m_title.create(&m_window, "Conway's Game of Life", "resources/fonts/FloppyDisk.ttf");
 
     m_closeButton.create(&m_window, "./resources/icons/close.png");
     m_closeButton.setScale(0.5f);

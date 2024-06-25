@@ -3,11 +3,21 @@
 #include "headers/GameConstants.h"
 #include "headers/Logger.h"
 
-void Button::create(sf::RenderWindow *t_window, const std::string &t_path) 
+void Button::create(sf::RenderWindow *t_window, const std::filesystem::path &t_path) 
 {
     m_window = t_window;
 
+    initButton(t_path);
+}
+
+void Button::initButton(const std::filesystem::path &t_path)
+{
     setTexture(t_path);
+
+    m_button.setTexture(m_texture);
+    m_button.setOrigin(m_button.getGlobalBounds().width / 2, m_button.getGlobalBounds().height / 2);
+    m_button.setPosition(gc::button::POSITION_X, gc::button::POSITION_Y);
+
     setScale(gc::button::SCALE);
 }
 
@@ -27,18 +37,18 @@ void Button::setScale(float t_scaleFactor)
     m_button.setScale(m_scaleFactor, m_scaleFactor);
 }
 
-void Button::setTexture(const std::string &t_path)
+void Button::setTexture(const std::filesystem::path &t_path)
 {
-    if(!m_texture.loadFromFile(t_path))
-    {
-        LOG_ERROR("Failed to load texture from " << t_path << "!")
-    }
-
+    loadTexture(t_path);
     m_texture.setSmooth(true);
+}
 
-    m_button.setTexture(m_texture);
-    m_button.setOrigin(m_button.getGlobalBounds().width / 2, m_button.getGlobalBounds().height / 2);
-    m_button.setPosition(gc::button::POSITION_X, gc::button::POSITION_Y);
+void Button::loadTexture(const std::filesystem::path &t_path)
+{
+    if(!m_texture.loadFromFile(t_path.string()))
+    {
+        LOG_ERROR("Failed to load texture from " << t_path.string() << "!")
+    }
 }
 
 bool Button::isPressed()
