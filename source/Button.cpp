@@ -14,7 +14,6 @@ void Button::initButton(const std::filesystem::path &t_path)
 {
     setTexture(t_path);
 
-    m_button.setTexture(m_texture);
     m_button.setOrigin(m_button.getGlobalBounds().width / 2, m_button.getGlobalBounds().height / 2);
     m_button.setPosition(gc::button::POSITION_X, gc::button::POSITION_Y);
 
@@ -49,6 +48,8 @@ void Button::loadTexture(const std::filesystem::path &t_path)
     {
         LOG_ERROR("Failed to load texture from " << t_path.string() << "!")
     }
+
+    m_button.setTexture(m_texture);
 }
 
 bool Button::isPressed()
