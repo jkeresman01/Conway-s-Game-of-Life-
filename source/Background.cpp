@@ -3,7 +3,8 @@
 #include "headers/GameConstants.h"
 #include "headers/Logger.h"
 
-void Background::create(sf::RenderWindow *t_window, const std::filesystem::path &t_path)
+void Background::create(sf::RenderWindow *t_window,
+                        const std::filesystem::path &t_path)
 {
     m_window = t_window;
 
@@ -25,7 +26,7 @@ void Background::loadTexture(const std::filesystem::path &t_path)
 {
     if(!m_texture.loadFromFile(t_path.string()))
     {
-        LOG_ERROR("Failed to load texture from " << t_path << "!");
+        LOG_ERROR("Failed to load texture from " << t_path.string() << "!");
     }
 
     m_backgound.setTexture(m_texture);
