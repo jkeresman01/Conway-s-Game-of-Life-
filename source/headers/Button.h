@@ -14,8 +14,11 @@ class Button
     public:
         Button() = default;
 
-        void create(sf::RenderWindow *t_window, const std::filesystem::path &t_path);
+        void create(sf::RenderWindow *t_window,
+                    const std::filesystem::path &t_path);
+
         void draw();
+
         void move(float t_positionX, float t_positionY);
 
         bool isPressed();

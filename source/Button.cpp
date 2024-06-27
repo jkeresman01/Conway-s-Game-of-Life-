@@ -3,7 +3,8 @@
 #include "headers/GameConstants.h"
 #include "headers/Logger.h"
 
-void Button::create(sf::RenderWindow *t_window, const std::filesystem::path &t_path) 
+void Button::create(sf::RenderWindow *t_window,
+                    const std::filesystem::path &t_path) 
 {
     m_window = t_window;
 
@@ -14,7 +15,8 @@ void Button::initButton(const std::filesystem::path &t_path)
 {
     setTexture(t_path);
 
-    m_button.setOrigin(m_button.getGlobalBounds().width / 2, m_button.getGlobalBounds().height / 2);
+    m_button.setOrigin(m_button.getGlobalBounds().width  / 2,
+                       m_button.getGlobalBounds().height / 2);
     m_button.setPosition(gc::button::POSITION_X, gc::button::POSITION_Y);
 
     setScale(gc::button::SCALE);
