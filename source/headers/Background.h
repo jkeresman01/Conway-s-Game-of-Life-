@@ -11,7 +11,9 @@ class Background
     public:
         Background() = default;
 
-        void create(sf::RenderWindow *t_window, const std::filesystem::path &t_path);
+        void create(sf::RenderWindow *t_window,
+                    const std::filesystem::path &t_path);
+
         void draw();
 
         void setImage(const std::filesystem::path &t_path);
