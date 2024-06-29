@@ -42,52 +42,66 @@ void GameOfLife::run()
 {
     while (m_window.isOpen()) 
     {
-        sf::Event event;
+        pollEvents();
+        updateState();
+        drawGame();
+    }
+}
 
-        while (m_window.pollEvent(event)) 
+void GameOfLife::pollEvents()
+{
+    sf::Event event;
+
+    while (m_window.pollEvent(event)) 
+    {
+        if ( m_closeButton.isPressed() or event.type == sf::Event::Closed)
         {
-            if (event.type == sf::Event::Closed or m_closeButton.isPressed())
-            {
-                m_window.close();
-            }
-
-            if(m_reshuffleButton.isPressed())
-            {
-                m_state = gc::game::RESHUFFLED;
-            }
-
-            if(m_pauseButton.isPressed())
-            {
-                m_state = gc::game::PAUSED;
-            }
-
-            if(m_playButton.isPressed())
-            {
-                m_state = gc::game::RUNNING;
-            }
-
+            m_window.close();
         }
 
-        if(m_state == gc::game::RESHUFFLED)
+        if(m_reshuffleButton.isPressed())
         {
-            m_map.reshuffle();
+            m_state = gc::game::RESHUFFLED;
+        }
+
+        if(m_pauseButton.isPressed())
+        {
+            m_state = gc::game::PAUSED;
+        }
+
+        if(m_playButton.isPressed())
+        {
             m_state = gc::game::RUNNING;
         }
 
-        if(m_clock.getElapsedTime().asSeconds() > gc::game::REFRESH_TIME_SECONDS and m_state != gc::game::PAUSED)
-        {
-            m_map.update();
-            m_clock.restart();
-        }
-
-        m_window.clear();
-        m_background.draw();
-        m_reshuffleButton.draw();
-        m_closeButton.draw();
-        m_pauseButton.draw();
-        m_playButton.draw();
-        m_title.draw();
-        m_map.draw();
-        m_window.display();
     }
+}
+
+void GameOfLife::updateState()
+{
+    if(m_state == gc::game::RESHUFFLED)
+    {
+        m_map.reshuffle();
+        m_state = gc::game::RUNNING;
+    }
+
+    if(m_clock.getElapsedTime().asSeconds() > gc::game::REFRESH_TIME_SECONDS and m_state != gc::game::PAUSED)
+    {
+        m_map.update();
+        m_clock.restart();
+    }
+}
+
+void GameOfLife::drawGame()
+{
+    m_window.clear();
+    m_background.draw();
+    m_reshuffleButton.draw();
+    m_closeButton.draw();
+    m_pauseButton.draw();
+    m_playButton.draw();
+    m_title.draw();
+    m_map.draw();
+    m_window.display();
+    
 }

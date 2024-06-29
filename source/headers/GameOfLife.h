@@ -15,6 +15,11 @@ class GameOfLife
         void run();
 
     private:
+        void pollEvents();
+        void updateState();
+        void drawGame();
+
+    private:
         sf::RenderWindow m_window;
         sf::Clock m_clock;
 
