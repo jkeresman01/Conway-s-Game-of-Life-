@@ -5,6 +5,8 @@
 #include "headers/Cell.h"
 #include "headers/GameConstants.h"
 
+typedef gc::cell::State CellState;
+
 void Map::create(sf::RenderWindow* t_window)
 {
     m_window = t_window;
@@ -52,6 +54,11 @@ void Map::update()
         }
     }
 
+    copyGenerations();
+}
+
+void Map::copyGenerations()
+{
     for(size_t i = 0; i < gc::map::ROWS; ++i)
     {
         for(size_t j = 0; j < gc::map::COLUMNS; ++j)
@@ -62,7 +69,6 @@ void Map::update()
             }
         }
     }
-
 }
 
 void Map::reshuffle()
@@ -93,7 +99,7 @@ uint32_t Map::generateNumber(uint32_t t_max, uint32_t t_min)
 
 gc::cell::State Map::getRandomCellState(uint32_t t_criteriaForAlive){
     uint32_t possiblityForAlive = generateNumber(100, 1);
-    return possiblityForAlive <= t_criteriaForAlive ? gc::cell::State::ALIVE : gc::cell::State::DEAD;
+    return possiblityForAlive <= t_criteriaForAlive ? CellState::ALIVE : CellState::DEAD;
 }
 
 void Map::changeForNextGeneration(Cell &t_cell, uint32_t t_positionX, uint32_t t_positionY)
@@ -103,12 +109,12 @@ void Map::changeForNextGeneration(Cell &t_cell, uint32_t t_positionX, uint32_t t
     if(t_cell.isAlive() and numberOfAliveNeighbours > gc::game::OVERPOPULATION_CRITERIA or 
        numberOfAliveNeighbours < gc::game::UNDERPOPULATION_CRITERIA)
     {
-        m_nextGeneration[t_positionX][t_positionY].setState(gc::cell::DEAD);
+        m_nextGeneration[t_positionX][t_positionY].setState(CellState::DEAD);
     }
 
     if(!t_cell.isAlive() and numberOfAliveNeighbours == gc::game::BORN_CRITERIA)
     {
-        m_nextGeneration[t_positionX][t_positionY].setState(gc::cell::ALIVE);
+        m_nextGeneration[t_positionX][t_positionY].setState(CellState::ALIVE);
     }
 }
 
