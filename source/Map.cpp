@@ -34,7 +34,7 @@ void Map::draw()
     {
         for(size_t j = 0; j < gc::map::COLUMNS; ++j)
         {
-                m_currentGeneration[i][j].draw();
+            m_currentGeneration[i][j].draw();
         }
     }
 }
