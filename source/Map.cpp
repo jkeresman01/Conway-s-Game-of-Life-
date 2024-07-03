@@ -79,7 +79,7 @@ void Map::reshuffle()
         {
             if(!isBorder(i, j))
             {
-                gc::cell::State randomCellState = getRandomCellState(gc::map::RANDOM_20_PERCENT_ALIVE);
+                CellState randomCellState = getRandomCellState(gc::map::RANDOM_20_PERCENT_ALIVE);
                 m_currentGeneration[i][j].setState(randomCellState);
             }
         }
@@ -88,7 +88,7 @@ void Map::reshuffle()
 
 bool Map::isBorder(uint32_t t_rowIndex, uint32_t t_columnIndex)
 {
-    return t_rowIndex == 0 or t_rowIndex == gc::map::ROWS - 1 or 
+    return t_rowIndex    == 0 or t_rowIndex    == gc::map::ROWS    - 1 or 
            t_columnIndex == 0 or t_columnIndex == gc::map::COLUMNS - 1;
 }
 
@@ -97,7 +97,7 @@ uint32_t Map::generateNumber(uint32_t t_max, uint32_t t_min)
     return rand() % (t_max - t_min + 1) + t_min;
 }
 
-gc::cell::State Map::getRandomCellState(uint32_t t_criteriaForAlive){
+CellState Map::getRandomCellState(uint32_t t_criteriaForAlive){
     uint32_t possiblityForAlive = generateNumber(100, 1);
     return possiblityForAlive <= t_criteriaForAlive ? CellState::ALIVE : CellState::DEAD;
 }
