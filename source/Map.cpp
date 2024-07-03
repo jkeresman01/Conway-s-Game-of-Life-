@@ -34,10 +34,7 @@ void Map::draw()
     {
         for(size_t j = 0; j < gc::map::COLUMNS; ++j)
         {
-            if(!isBorder(i, j))
-            {
                 m_currentGeneration[i][j].draw();
-            }
         }
     }
 }
