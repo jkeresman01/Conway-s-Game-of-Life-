@@ -1,7 +1,5 @@
 #include "headers/Cell.h"
 
-#include "headers/GameConstants.h"
-
 namespace gol
 {
 
