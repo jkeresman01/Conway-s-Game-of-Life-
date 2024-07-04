@@ -1,13 +1,6 @@
 #include "headers/GameOfLife.h"
 
-#include <ctime>
-
-#include <SFML/System/Vector2.hpp>
 #include <SFML/Window/Event.hpp>
-
-#include "headers/Background.h"
-#include "headers/Button.h"
-#include "headers/Title.h"
 
 namespace gol
 {
@@ -37,8 +30,6 @@ GameOfLife::GameOfLife()
 
     m_playButton.create(&m_window, "resources/icons/play.png");
     m_playButton.move(-150, title::POSITION_Y);
-
-    srand(time(nullptr));
 }
 
 void GameOfLife::run()
