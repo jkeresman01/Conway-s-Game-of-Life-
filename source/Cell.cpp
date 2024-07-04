@@ -5,9 +5,9 @@ namespace gol
 
 Cell::Cell()
 {
-    m_cell.setSize(sf::Vector2f(cell::HEIGHT, cell::WIDTH));
+    m_cell.setSize(sf::Vector2f(cell::WIDTH, cell::HEIGHT));
     m_cell.setOutlineColor(sf::Color::Black);
-    m_cell.setOutlineThickness(cell::BORDER_THICKNESS);
+    m_cell.setOutlineThickness(cell::OUTLINE_THICKNESS);
     m_cell.setPosition(cell::START_POSITION_X, cell::START_POSITION_Y);
     m_cell.setOrigin(cell::ORIGIN_X, cell::ORIGIN_Y);
 
