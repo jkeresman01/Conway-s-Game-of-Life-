@@ -41,14 +41,11 @@ void Map::draw()
 
 void Map::update()
 {
-    for(size_t i = 0; i < map::ROWS; ++i)
+    for(size_t i = 1; i < map::ROWS - 1; ++i)
     {
-        for(size_t j = 0; j < map::COLUMNS; ++j)
+        for(size_t j = 1; j < map::COLUMNS - 1; ++j)
         {
-            if(!isBorder(i, j))
-            {
-                changeForNextGeneration(m_currentGeneration[i][j], i, j);
-            }
+            changeForNextGeneration(m_currentGeneration[i][j], i, j);
         }
     }
 
@@ -57,37 +54,25 @@ void Map::update()
 
 void Map::copyGenerations()
 {
-    for(size_t i = 0; i < map::ROWS; ++i)
+    for(size_t i = 1; i < map::ROWS - 1; ++i)
     {
-        for(size_t j = 0; j < map::COLUMNS; ++j)
+        for(size_t j = 1; j < map::COLUMNS - 1; ++j)
         {
-            if(!isBorder(i, j))
-            {
-                m_currentGeneration[i][j] = m_nextGeneration[i][j];
-            }
+            m_currentGeneration[i][j] = m_nextGeneration[i][j];
         }
     }
 }
 
 void Map::reshuffle()
 {
-    for(size_t i = 0; i < map::ROWS; ++i)
+    for(size_t i = 0; i < map::ROWS - 1; ++i)
     {
-        for(size_t j = 0; j < map::COLUMNS; ++j)
+        for(size_t j = 1; j < map::COLUMNS - 1; ++j)
         {
-            if(!isBorder(i, j))
-            {
-                cell::State randomCellState = getRandomCellState(map::RANDOM_20_PERCENT_ALIVE);
-                m_currentGeneration[i][j].setState(randomCellState);
-            }
+            cell::State randomCellState = getRandomCellState(map::RANDOM_20_PERCENT_ALIVE);
+            m_currentGeneration[i][j].setState(randomCellState);
         }
     }
-}
-
-bool Map::isBorder(uint32_t t_rowIndex, uint32_t t_columnIndex)
-{
-    return t_rowIndex    == 0 or t_rowIndex    == map::ROWS    - 1 or 
-           t_columnIndex == 0 or t_columnIndex == map::COLUMNS - 1;
 }
 
 uint32_t Map::generateNumber(uint32_t t_max, uint32_t t_min)
