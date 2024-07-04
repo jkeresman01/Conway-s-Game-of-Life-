@@ -70,7 +70,7 @@ namespace gol
     {
         constexpr float SCALE_X = 0.3f;
         constexpr float SCALE_Y = 0.3f;
-    } // bacground
+    } // background
 
     namespace title
     {
@@ -78,7 +78,7 @@ namespace gol
         constexpr uint32_t POSITION_Y = 10;
 
         constexpr uint32_t FONT_SIZE  = 66;
-    } // tite
+    } // title
 
     namespace button
     {
