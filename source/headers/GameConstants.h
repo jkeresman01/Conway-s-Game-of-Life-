@@ -2,7 +2,7 @@
 
 #include <cstdint>
 
-namespace gc
+namespace gol
 {
     namespace cell
     {

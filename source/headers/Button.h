@@ -8,6 +8,9 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window/Mouse.hpp>
 
+namespace gol
+{
+
 class Button
 {
     public:
@@ -37,3 +40,5 @@ class Button
 
         float m_scaleFactor;
 };
+    
+}// gol

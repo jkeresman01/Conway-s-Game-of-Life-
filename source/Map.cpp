@@ -5,7 +5,8 @@
 #include "headers/Cell.h"
 #include "headers/GameConstants.h"
 
-typedef gc::cell::State CellState;
+namespace gol
+{
 
 void Map::create(sf::RenderWindow* t_window)
 {
@@ -16,14 +17,14 @@ void Map::create(sf::RenderWindow* t_window)
 
 void Map::initCells()
 {
-    for(size_t i = 0; i < gc::map::ROWS; ++i)
+    for(size_t i = 0; i < map::ROWS; ++i)
     {
-        for(size_t j = 0; j < gc::map::COLUMNS; ++j)
+        for(size_t j = 0; j < map::COLUMNS; ++j)
         {
             m_currentGeneration[i][j].setWindow(m_window);
             m_currentGeneration[i][j].setPosition(
-                    gc::cell::START_POSITION_X + (j * gc::cell::WIDTH), 
-                    gc::cell::START_POSITION_Y + (i * gc::cell::HEIGHT));
+                    cell::START_POSITION_X + (j * cell::WIDTH), 
+                    cell::START_POSITION_Y + (i * cell::HEIGHT));
 
             m_nextGeneration[i][j] = m_currentGeneration[i][j];
        }
@@ -32,9 +33,9 @@ void Map::initCells()
 
 void Map::draw()
 {
-    for(size_t i = 0; i < gc::map::ROWS; ++i)
+    for(size_t i = 0; i < map::ROWS; ++i)
     {
-        for(size_t j = 0; j < gc::map::COLUMNS; ++j)
+        for(size_t j = 0; j < map::COLUMNS; ++j)
         {
             m_currentGeneration[i][j].draw();
         }
@@ -43,9 +44,9 @@ void Map::draw()
 
 void Map::update()
 {
-    for(size_t i = 0; i < gc::map::ROWS; ++i)
+    for(size_t i = 0; i < map::ROWS; ++i)
     {
-        for(size_t j = 0; j < gc::map::COLUMNS; ++j)
+        for(size_t j = 0; j < map::COLUMNS; ++j)
         {
             if(!isBorder(i, j))
             {
@@ -59,9 +60,9 @@ void Map::update()
 
 void Map::copyGenerations()
 {
-    for(size_t i = 0; i < gc::map::ROWS; ++i)
+    for(size_t i = 0; i < map::ROWS; ++i)
     {
-        for(size_t j = 0; j < gc::map::COLUMNS; ++j)
+        for(size_t j = 0; j < map::COLUMNS; ++j)
         {
             if(!isBorder(i, j))
             {
@@ -73,13 +74,13 @@ void Map::copyGenerations()
 
 void Map::reshuffle()
 {
-    for(size_t i = 0; i < gc::map::ROWS; ++i)
+    for(size_t i = 0; i < map::ROWS; ++i)
     {
-        for(size_t j = 0; j < gc::map::COLUMNS; ++j)
+        for(size_t j = 0; j < map::COLUMNS; ++j)
         {
             if(!isBorder(i, j))
             {
-                CellState randomCellState = getRandomCellState(gc::map::RANDOM_20_PERCENT_ALIVE);
+                cell::State randomCellState = getRandomCellState(map::RANDOM_20_PERCENT_ALIVE);
                 m_currentGeneration[i][j].setState(randomCellState);
             }
         }
@@ -88,8 +89,8 @@ void Map::reshuffle()
 
 bool Map::isBorder(uint32_t t_rowIndex, uint32_t t_columnIndex)
 {
-    return t_rowIndex    == 0 or t_rowIndex    == gc::map::ROWS    - 1 or 
-           t_columnIndex == 0 or t_columnIndex == gc::map::COLUMNS - 1;
+    return t_rowIndex    == 0 or t_rowIndex    == map::ROWS    - 1 or 
+           t_columnIndex == 0 or t_columnIndex == map::COLUMNS - 1;
 }
 
 uint32_t Map::generateNumber(uint32_t t_max, uint32_t t_min)
@@ -97,24 +98,24 @@ uint32_t Map::generateNumber(uint32_t t_max, uint32_t t_min)
     return rand() % (t_max - t_min + 1) + t_min;
 }
 
-CellState Map::getRandomCellState(uint32_t t_criteriaForAlive){
+cell::State Map::getRandomCellState(uint32_t t_criteriaForAlive){
     uint32_t possiblityForAlive = generateNumber(100, 1);
-    return possiblityForAlive <= t_criteriaForAlive ? CellState::ALIVE : CellState::DEAD;
+    return possiblityForAlive <= t_criteriaForAlive ? cell::State::ALIVE : cell::State::DEAD;
 }
 
 void Map::changeForNextGeneration(Cell &t_cell, uint32_t t_positionX, uint32_t t_positionY)
 {
     uint32_t numberOfAliveNeighbours = countAliveNeighboursAtPosition(t_positionX, t_positionY);
 
-    if(t_cell.isAlive() and numberOfAliveNeighbours > gc::game::OVERPOPULATION_CRITERIA or 
-       numberOfAliveNeighbours < gc::game::UNDERPOPULATION_CRITERIA)
+    if(t_cell.isAlive() and numberOfAliveNeighbours > game::OVERPOPULATION_CRITERIA or 
+       numberOfAliveNeighbours < game::UNDERPOPULATION_CRITERIA)
     {
-        m_nextGeneration[t_positionX][t_positionY].setState(CellState::DEAD);
+        m_nextGeneration[t_positionX][t_positionY].setState(cell::State::DEAD);
     }
 
-    if(!t_cell.isAlive() and numberOfAliveNeighbours == gc::game::BORN_CRITERIA)
+    if(!t_cell.isAlive() and numberOfAliveNeighbours == game::BORN_CRITERIA)
     {
-        m_nextGeneration[t_positionX][t_positionY].setState(CellState::ALIVE);
+        m_nextGeneration[t_positionX][t_positionY].setState(cell::State::ALIVE);
     }
 }
 
@@ -132,6 +133,9 @@ uint32_t Map::countAliveNeighboursAtPosition(uint32_t t_positionX, uint32_t t_po
         m_currentGeneration[t_positionX - 1][t_positionY + 1],
     };
 
-    return std::count_if(neighbours, neighbours + gc::cell::NUMBER_OF_NEIGHBOURS, 
+    return std::count_if(neighbours, neighbours + cell::NUMBER_OF_NEIGHBOURS, 
             [](Cell &cell){ return cell.isAlive(); });
 }
+    
+}// gol
+

@@ -6,6 +6,9 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
 
+namespace gol
+{
+
 class Background
 {
     public:
@@ -26,3 +29,5 @@ class Background
         sf::Sprite m_backgound;
         sf::Texture m_texture;
 };
+    
+}// gol

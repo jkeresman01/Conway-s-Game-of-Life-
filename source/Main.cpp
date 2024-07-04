@@ -2,6 +2,6 @@
 
 int main()
 {
-    GameOfLife gameOfLife;
+    gol::GameOfLife gameOfLife;
     gameOfLife.run();
 }

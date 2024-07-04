@@ -7,6 +7,9 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Text.hpp>
 
+namespace gol
+{
+    
 class Title
 {
     public:
@@ -29,3 +32,5 @@ class Title
         sf::Font m_font;
         sf::Text m_text;
 };
+
+}// gol

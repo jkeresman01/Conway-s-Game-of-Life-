@@ -3,6 +3,9 @@
 #include "headers/GameConstants.h"
 #include "headers/Logger.h"
 
+namespace gol
+{
+
 void Background::create(sf::RenderWindow *t_window,
                         const std::filesystem::path &t_path)
 {
@@ -19,7 +22,7 @@ void Background::draw()
 void Background::setImage(const std::filesystem::path &t_path)
 {
     loadTexture(t_path);
-    m_backgound.setScale(gc::background::SCALE_X, gc::background::SCALE_Y);
+    m_backgound.setScale(background::SCALE_X, background::SCALE_Y);
 }
     
 void Background::loadTexture(const std::filesystem::path &t_path)
@@ -31,3 +34,5 @@ void Background::loadTexture(const std::filesystem::path &t_path)
 
     m_backgound.setTexture(m_texture);
 }
+    
+}// gol

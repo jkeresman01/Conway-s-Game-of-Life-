@@ -6,6 +6,9 @@
 #include "Cell.h"
 #include "GameConstants.h"
 
+namespace gol
+{
+
 class Map
 {
     public:
@@ -27,11 +30,13 @@ class Map
 
         bool isBorder(uint32_t t_rowIndex, uint32_t t_columnIndex);
 
-        gc::cell::State getRandomCellState(uint32_t t_criteriaForAlive);
+        cell::State getRandomCellState(uint32_t t_criteriaForAlive);
 
     private:
         sf::RenderWindow *m_window;
 
-        Cell m_currentGeneration[gc::map::ROWS][gc::map::COLUMNS];
-        Cell m_nextGeneration[gc::map::ROWS][gc::map::COLUMNS];
+        Cell m_currentGeneration[map::ROWS][map::COLUMNS];
+        Cell m_nextGeneration   [map::ROWS][map::COLUMNS];
 };
+
+}// gol

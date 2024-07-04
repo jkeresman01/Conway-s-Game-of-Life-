@@ -5,6 +5,9 @@
 
 #include "GameConstants.h"
 
+namespace gol
+{
+
 class Cell
 {
     public:
@@ -15,12 +18,14 @@ class Cell
         bool isAlive() const;
 
         void setPosition(float t_position_x, float t_position_y);
-        void setState(gc::cell::State t_state);
+        void setState(const cell::State &t_state);
         void setWindow(sf::RenderWindow* t_window);
 
     private:
         sf::RenderWindow *m_window;
         sf::RectangleShape m_cell;
 
-        gc::cell::State m_state;
+        cell::State m_state;
 };
+    
+}// gol

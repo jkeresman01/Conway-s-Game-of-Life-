@@ -3,6 +3,9 @@
 #include "headers/GameConstants.h"
 #include "headers/Logger.h"
 
+namespace gol
+{
+
 void Button::create(sf::RenderWindow *t_window,
                     const std::filesystem::path &t_path) 
 {
@@ -17,9 +20,9 @@ void Button::initButton(const std::filesystem::path &t_path)
 
     m_button.setOrigin(m_button.getGlobalBounds().width  / 2,
                        m_button.getGlobalBounds().height / 2);
-    m_button.setPosition(gc::button::POSITION_X, gc::button::POSITION_Y);
+    m_button.setPosition(button::POSITION_X, button::POSITION_Y);
 
-    setScale(gc::button::SCALE);
+    setScale(button::SCALE);
 }
 
 void Button::draw()
@@ -67,3 +70,6 @@ bool Button::isPressed()
 
     return isMousePressed and isMouseOnButton;
 }
+    
+}// gol
+

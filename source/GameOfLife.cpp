@@ -9,11 +9,14 @@
 #include "headers/Button.h"
 #include "headers/Title.h"
 
-GameOfLife::GameOfLife()
-    : m_window(sf::VideoMode(gc::screen::WIDTH, gc::screen::HEIGHT), "", sf::Style::None),
-    m_state(gc::game::RUNNING)
+namespace gol
 {
-    m_window.setPosition(sf::Vector2i(gc::screen::POSITION_X, gc::screen::POSITION_Y));
+
+GameOfLife::GameOfLife()
+    : m_window(sf::VideoMode(screen::WIDTH, screen::HEIGHT), "", sf::Style::None),
+    m_state(game::RUNNING)
+{
+    m_window.setPosition(sf::Vector2i(screen::POSITION_X, screen::POSITION_Y));
 
     m_background.create(&m_window, "resources/images/background.jpg");
 
@@ -27,13 +30,13 @@ GameOfLife::GameOfLife()
     m_closeButton.move(0, -20);
 
     m_reshuffleButton.create(&m_window,  "resources/icons/restart.png");
-    m_reshuffleButton.move(-50, gc::title::POSITION_Y);
+    m_reshuffleButton.move(-50, title::POSITION_Y);
 
     m_pauseButton.create(&m_window, "resources/icons/pause.png");
-    m_pauseButton.move(-100, gc::title::POSITION_Y);
+    m_pauseButton.move(-100, title::POSITION_Y);
 
     m_playButton.create(&m_window, "resources/icons/play.png");
-    m_playButton.move(-150, gc::title::POSITION_Y);
+    m_playButton.move(-150, title::POSITION_Y);
 
     srand(time(nullptr));
 }
@@ -61,17 +64,17 @@ void GameOfLife::pollEvents()
 
         if(m_reshuffleButton.isPressed())
         {
-            m_state = gc::game::RESHUFFLED;
+            m_state = game::State::RESHUFFLED;
         }
 
         if(m_pauseButton.isPressed())
         {
-            m_state = gc::game::PAUSED;
+            m_state = game::State::PAUSED;
         }
 
         if(m_playButton.isPressed())
         {
-            m_state = gc::game::RUNNING;
+            m_state = game::State::RUNNING;
         }
 
     }
@@ -79,13 +82,13 @@ void GameOfLife::pollEvents()
 
 void GameOfLife::updateState()
 {
-    if(m_state == gc::game::RESHUFFLED)
+    if(m_state == game::State::RESHUFFLED)
     {
         m_map.reshuffle();
-        m_state = gc::game::RUNNING;
+        m_state = game::State::RUNNING;
     }
 
-    if(m_clock.getElapsedTime().asSeconds() > gc::game::REFRESH_TIME_SECONDS and m_state != gc::game::PAUSED)
+    if(m_clock.getElapsedTime().asSeconds() > game::REFRESH_TIME_SECONDS and m_state != game::PAUSED)
     {
         m_map.update();
         m_clock.restart();
@@ -103,5 +106,6 @@ void GameOfLife::drawGame()
     m_title.draw();
     m_map.draw();
     m_window.display();
-    
 }
+    
+}// gol

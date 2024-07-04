@@ -7,6 +7,9 @@
 
 #include <SFML/System/Clock.hpp>
 
+namespace gol
+{
+
 class GameOfLife
 {
     public:
@@ -31,5 +34,7 @@ class GameOfLife
         Title m_title;
         Map m_map;
 
-        gc::game::State m_state;
+        game::State m_state;
 };
+    
+}// gol

@@ -3,6 +3,9 @@
 #include "headers/GameConstants.h"
 #include "headers/Logger.h"
 
+namespace gol
+{
+
 void Title::create(sf::RenderWindow *t_window,
                    const std::string &t_text,
                    const std::filesystem::path &t_path)
@@ -20,8 +23,8 @@ void Title::initText(const std::filesystem::path &t_path,
 
     m_text.setString(t_text);
     m_text.setFillColor(sf::Color(250, 191, 106));
-    m_text.setPosition(gc::title::POSITION_X, gc::title::POSITION_Y);
-    m_text.setCharacterSize(gc::title::FONT_SIZE);
+    m_text.setPosition(title::POSITION_X,title::POSITION_Y);
+    m_text.setCharacterSize(title::FONT_SIZE);
 }
 
 void Title::loadFont(const std::filesystem::path &t_path)
@@ -38,3 +41,6 @@ void Title::draw()
 {
     m_window->draw(m_text);
 }
+    
+}// gol
+
