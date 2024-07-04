@@ -16,7 +16,7 @@ namespace gol
         constexpr float START_POSITION_X = 45.0f; 
         constexpr float START_POSITION_Y = 100.0f; 
 
-        constexpr float BORDER_THICKNESS = 0.5f; 
+        constexpr float OUTLINE_THICKNESS = 0.5f; 
 
         constexpr uint32_t NUMBER_OF_NEIGHBOURS = 8;
 
@@ -54,9 +54,12 @@ namespace gol
 
         constexpr uint32_t FRAMES_PER_SECOND = 60;
 
-        constexpr uint32_t UNDERPOPULATION_CRITERIA = 2;
-        constexpr uint32_t OVERPOPULATION_CRITERIA  = 3;
-        constexpr uint32_t BORN_CRITERIA            = 3;
+        enum Criteria : uint8_t
+        {
+            UNDERPOPULATION = 2,
+            BORN            = 3,
+            OVERPOPULATION  = 4,
+        };
 
         enum State : uint8_t
         {

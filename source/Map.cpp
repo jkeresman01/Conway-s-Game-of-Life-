@@ -104,13 +104,13 @@ void Map::changeForNextGeneration(Cell &t_cell, uint32_t t_positionX, uint32_t t
 {
     uint32_t numberOfAliveNeighbours = countAliveNeighboursAtPosition(t_positionX, t_positionY);
 
-    if(t_cell.isAlive() and numberOfAliveNeighbours > game::OVERPOPULATION_CRITERIA or 
-       numberOfAliveNeighbours < game::UNDERPOPULATION_CRITERIA)
+    if(t_cell.isAlive() and numberOfAliveNeighbours >= game::Criteria::OVERPOPULATION or 
+       numberOfAliveNeighbours < game::Criteria::UNDERPOPULATION)
     {
         m_nextGeneration[t_positionX][t_positionY].setState(cell::State::DEAD);
     }
 
-    if(!t_cell.isAlive() and numberOfAliveNeighbours == game::BORN_CRITERIA)
+    if(!t_cell.isAlive() and numberOfAliveNeighbours == game::Criteria::BORN)
     {
         m_nextGeneration[t_positionX][t_positionY].setState(cell::State::ALIVE);
     }
