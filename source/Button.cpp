@@ -71,5 +71,5 @@ bool Button::isPressed()
     return isMousePressed and isMouseOnButton;
 }
     
-}// gol
+} // gol
 

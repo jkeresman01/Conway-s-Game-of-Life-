@@ -137,5 +137,5 @@ uint32_t Map::countAliveNeighboursAtPosition(uint32_t t_positionX, uint32_t t_po
             [](Cell &cell){ return cell.isAlive(); });
 }
     
-}// gol
+} // gol
 

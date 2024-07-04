@@ -33,4 +33,4 @@ class Title
         sf::Text m_text;
 };
 
-}// gol
+} // gol

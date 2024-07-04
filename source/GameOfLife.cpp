@@ -108,4 +108,4 @@ void GameOfLife::drawGame()
     m_window.display();
 }
     
-}// gol
+} // gol

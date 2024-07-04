@@ -28,4 +28,4 @@ class Cell
         cell::State m_state;
 };
     
-}// gol
+} // gol

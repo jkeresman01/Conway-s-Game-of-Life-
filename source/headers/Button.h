@@ -41,4 +41,4 @@ class Button
         float m_scaleFactor;
 };
     
-}// gol
+} // gol
