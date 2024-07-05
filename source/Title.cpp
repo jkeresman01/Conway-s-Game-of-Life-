@@ -10,7 +10,6 @@ void Title::create(sf::RenderWindow *t_window,
                    const std::string &t_text,
                    const std::filesystem::path &t_path)
 {
-
     m_window = t_window;
 
     initText(t_path, t_text);
