@@ -65,7 +65,7 @@ void Map::copyGenerations()
 
 void Map::reshuffle()
 {
-    for(size_t i = 0; i < map::ROWS - 1; ++i)
+    for(size_t i = 1; i < map::ROWS - 1; ++i)
     {
         for(size_t j = 1; j < map::COLUMNS - 1; ++j)
         {
