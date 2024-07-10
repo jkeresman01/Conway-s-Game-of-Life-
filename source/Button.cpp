@@ -65,11 +65,16 @@ bool Button::isPressed()
     bool isMouseOnButton = m_button.getGlobalBounds().contains(translatedPosition); 
     bool isMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 
-    isMouseOnButton ? m_button.setScale(m_scaleFactor * 1.1f, m_scaleFactor * 1.1f)
-                    : m_button.setScale(m_scaleFactor, m_scaleFactor);
+    transformOnMouseHover(isMouseOnButton);
 
     return isMousePressed and isMouseOnButton;
 }
     
+void Button::transformOnMouseHover(bool t_isMouseOnButton)
+{
+    t_isMouseOnButton ? m_button.setScale(m_scaleFactor * 1.1f, m_scaleFactor * 1.1f)
+                      : m_button.setScale(m_scaleFactor, m_scaleFactor);
+}
+
 } // gol
 

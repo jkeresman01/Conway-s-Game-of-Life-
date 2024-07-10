@@ -33,6 +33,8 @@ class Button
 
         void loadTexture(const std::filesystem::path &t_path);
 
+        void transformOnMouseHover(bool t_isMouseOnButton);
+
     private:
         sf::RenderWindow *m_window;
         sf::Texture m_texture;
