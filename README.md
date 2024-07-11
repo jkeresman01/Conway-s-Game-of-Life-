@@ -26,12 +26,12 @@ sudo apt-get install libsfml-dev
 
 Now you will need to compile the program:
 ```
-g++ -c *cpp
+g++ -std=c++17 -c *cpp
 ```
 
 In case you installed SFML to a non-standard path, you'll need to tell the compiler where to find the SFML headers:
 ```
-g++ -c *cpp -I<sfml-install-path>/include
+g++ -std=c++17 -c *cpp -I<sfml-install-path>/include
 ```
 
 You must then link the compiled file to the SFML libraries in order to get the final executable.
