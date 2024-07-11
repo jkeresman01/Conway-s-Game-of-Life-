@@ -22,6 +22,9 @@ class Background
         void setImage(const std::filesystem::path &t_path);
 
     private:
+        void initBackground(sf::RenderWindow *t_window,
+                            const std::filesystem::path &t_path);
+
         void loadTexture(const std::filesystem::path &t_path);
 
     private:

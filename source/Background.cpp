@@ -9,6 +9,12 @@ namespace gol
 void Background::create(sf::RenderWindow *t_window,
                         const std::filesystem::path &t_path)
 {
+    initBackground(t_window, t_path);
+}
+
+void Background::initBackground(sf::RenderWindow *t_window,
+                                const std::filesystem::path &t_path)
+{
     m_window = t_window;
 
     setImage(t_path);
@@ -22,6 +28,7 @@ void Background::draw()
 void Background::setImage(const std::filesystem::path &t_path)
 {
     loadTexture(t_path);
+
     m_backgound.setScale(background::SCALE_X, background::SCALE_Y);
 }
     
