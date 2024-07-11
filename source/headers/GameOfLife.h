@@ -50,6 +50,8 @@ class GameOfLife
         void drawEntities();
         void displayEntities();
 
+        bool isMapUpdateTime();
+
     private:
         sf::RenderWindow m_window;
         sf::Clock m_clock;

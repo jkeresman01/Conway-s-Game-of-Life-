@@ -153,12 +153,16 @@ void GameOfLife::reshuffleMap()
 
 void GameOfLife::updateMap()
 {
-    if(m_clock.getElapsedTime().asSeconds() > game::REFRESH_TIME_SECONDS and 
-       m_state != game::PAUSED)
+    if(isMapUpdateTime())
     {
         m_map.update();
         m_clock.restart();
     }
+}
+
+bool GameOfLife::isMapUpdateTime()
+{
+    return m_clock.getElapsedTime().asSeconds() > game::REFRESH_TIME_SECONDS and m_state != game::PAUSED;
 }
 
 void GameOfLife::draw()
