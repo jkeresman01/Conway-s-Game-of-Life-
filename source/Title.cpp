@@ -19,6 +19,11 @@ void Title::initText(const std::filesystem::path &t_path,
                      const std::string &t_text)
 {
     loadFont(t_path);
+    setDefaultSettings(t_text);
+}
+
+void Title::setDefaultSettings(const std::string &t_text)
+{
     m_text.setString(t_text);
     m_text.setFillColor(sf::Color(250, 191, 106));
     m_text.setPosition(title::POSITION_X, title::POSITION_Y);

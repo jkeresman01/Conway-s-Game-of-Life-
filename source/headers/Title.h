@@ -27,6 +27,8 @@ class Title
 
         void loadFont(const std::filesystem::path &t_path);
 
+        void setDefaultSettings(const std::string &t_text);
+
     private:
         sf::RenderWindow *m_window;
         sf::Font m_font;
