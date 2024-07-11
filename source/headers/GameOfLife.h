@@ -35,6 +35,8 @@ class GameOfLife
         void updateState();
         void drawGame();
 
+        void checkButtonState(const sf::Event &t_event);
+
         void checkIfCloseButtonIsPressed(const sf::Event &t_event);
 
         void checkIfResfuffleButtonIsPressed();

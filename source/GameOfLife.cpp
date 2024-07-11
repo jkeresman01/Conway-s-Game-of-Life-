@@ -71,7 +71,7 @@ void GameOfLife::initPlayButton()
 
 void GameOfLife::initReshuffleButton()
 {
-    m_reshuffleButton.create(&m_window,  "resources/icons/restart.png");
+    m_reshuffleButton.create(&m_window, "resources/icons/restart.png");
     m_reshuffleButton.move(-50, title::POSITION_Y);
 }
 
@@ -91,12 +91,17 @@ void GameOfLife::pollEvents()
 
     while (m_window.pollEvent(event)) 
     {
-        checkIfCloseButtonIsPressed(event);
-
-        checkIfPlayButtonIsPressed();
-        checkIfPauseButtonIsPressed();
-        checkIfResfuffleButtonIsPressed();
+        checkButtonState(event);
     }
+}
+
+void GameOfLife::checkButtonState(const sf::Event &t_event)
+{
+    checkIfCloseButtonIsPressed(t_event);
+
+    checkIfPlayButtonIsPressed();
+    checkIfPauseButtonIsPressed();
+    checkIfResfuffleButtonIsPressed();
 }
 
 void GameOfLife::checkIfCloseButtonIsPressed(const sf::Event &t_event)
