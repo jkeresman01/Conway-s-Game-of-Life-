@@ -18,9 +18,31 @@ class GameOfLife
         void run();
 
     private:
+        void initGameOfLife();
+
+        void initBackgound();
+        void initWindow();
+        void initMap();
+        void initButtons();
+        void initTitle();
+
+        void initCloseButton();
+        void initPauseButton();
+        void initPlayButton();
+        void initReshuffleButton();
+
         void pollEvents();
         void updateState();
         void drawGame();
+
+        void checkIfCloseButtonIsPressed(const sf::Event &t_event);
+
+        void checkIfResfuffleButtonIsPressed();
+        void checkIfPauseButtonIsPressed();
+        void checkIfPlayButtonIsPressed();
+
+        void reshuffleMap();
+        void updateMap();
 
     private:
         sf::RenderWindow m_window;
