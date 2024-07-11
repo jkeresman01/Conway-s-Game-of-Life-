@@ -81,7 +81,7 @@ void GameOfLife::run()
     {
         pollEvents();
         updateState();
-        drawGame();
+        draw();
     }
 }
 
@@ -161,9 +161,20 @@ void GameOfLife::updateMap()
     }
 }
 
-void GameOfLife::drawGame()
+void GameOfLife::draw()
+{
+    clearScreen();
+    drawEntities();
+    displayEntities();
+}
+
+void GameOfLife::clearScreen()
 {
     m_window.clear();
+}
+
+void GameOfLife::drawEntities()
+{
     m_background.draw();
     m_reshuffleButton.draw();
     m_closeButton.draw();
@@ -171,6 +182,10 @@ void GameOfLife::drawGame()
     m_playButton.draw();
     m_title.draw();
     m_map.draw();
+}
+
+void GameOfLife::displayEntities()
+{
     m_window.display();
 }
     

@@ -31,10 +31,6 @@ class GameOfLife
         void initPlayButton();
         void initReshuffleButton();
 
-        void pollEvents();
-        void updateState();
-        void drawGame();
-
         void checkButtonState(const sf::Event &t_event);
 
         void checkIfCloseButtonIsPressed(const sf::Event &t_event);
@@ -45,6 +41,14 @@ class GameOfLife
 
         void reshuffleMap();
         void updateMap();
+
+        void pollEvents();
+        void updateState();
+        void draw();
+
+        void clearScreen();
+        void drawEntities();
+        void displayEntities();
 
     private:
         sf::RenderWindow m_window;
