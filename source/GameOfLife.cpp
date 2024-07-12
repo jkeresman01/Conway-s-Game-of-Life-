@@ -106,7 +106,7 @@ void GameOfLife::checkButtonState(const sf::Event &t_event)
 
 void GameOfLife::checkIfCloseButtonIsPressed(const sf::Event &t_event)
 {
-    if ( m_closeButton.isPressed() or t_event.type == sf::Event::Closed)
+    if (m_closeButton.isPressed() or t_event.type == sf::Event::Closed)
     {
         m_window.close();
     }
