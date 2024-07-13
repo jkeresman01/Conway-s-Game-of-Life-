@@ -162,7 +162,8 @@ void GameOfLife::updateMap()
 
 bool GameOfLife::isMapUpdateTime()
 {
-    return m_clock.getElapsedTime().asSeconds() > game::REFRESH_TIME_SECONDS and m_state != game::PAUSED;
+    return m_clock.getElapsedTime().asSeconds() > game::REFRESH_TIME_SECONDS and
+           m_state != game::PAUSED;
 }
 
 void GameOfLife::draw()
