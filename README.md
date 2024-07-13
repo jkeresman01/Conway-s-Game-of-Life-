@@ -1,17 +1,15 @@
-# Conway's game of Life! #
+# Conway's Game of Life! #
 
-The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.
-It is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input.
-In this particular instance initial configuration is generated randomly, each cell has a 20% chance to be alive and 80% chance to be dead.
+The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970. It is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. In this particular instance, the initial configuration is generated randomly, with each cell having a 20% chance to be alive and an 80% chance to be dead.
 
-At each step in time (in this case evey 2s), the following transitions occur:
+At each step in time (in this case, every 2 seconds), the following transitions occur:
 
 * Any live cell with fewer than two live neighbors dies, as if by underpopulation.
 * Any live cell with two or three live neighbors lives on to the next generation.
 * Any live cell with more than three live neighbors dies, as if by overpopulation.
 * Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
 
-## Game preview ##
+## Game Preview ##
 
 ![GameOfLife01](https://github.com/jkeresman01/Conway-s-Game-of-Life-/assets/165517653/fc63a34f-84cb-4192-9f39-85bbfe52da50)
 
@@ -42,8 +40,12 @@ You can now execute the compiled program:
 ```
 ./game-of-life
 ```
-## Usefull resources ##
 
-* https://en.wikipedia.org/wiki/Conway's_Game_of_Life
-* https://www.youtube.com/watch?v=CgOcEZinQ2I
-* https://www.sfml-dev.org/tutorials/2.6/start-linux.php
+## Useful Resources ##
+
+| Resource                                                    | Link                                                              |
+|-------------------------------------------------------------|-------------------------------------------------------------------|
+| Wikipedia: Conway's Game of Life                            | [Link](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life)     |
+| YouTube: Conway's Game of Life                              | [Link](https://www.youtube.com/watch?v=CgOcEZinQ2I)               |
+| SFML: Documentation                                         | [Link](https://www.sfml-dev.org/tutorials/2.6/start-linux.php)    |
+
