@@ -25,7 +25,7 @@ namespace gol
             DEAD  = 0,
             ALIVE = 1,
         };
-    } // cell
+    }
 
     namespace map
     {
@@ -37,7 +37,7 @@ namespace gol
             ALL_DEAD                = 0,
             RANDOM_20_PERCENT_ALIVE = 20,
         };
-    } // map
+    } 
 
     namespace screen
     {
@@ -46,7 +46,7 @@ namespace gol
 
         constexpr uint32_t POSITION_X  = 300; 
         constexpr uint32_t POSITION_Y  = 200; 
-    } // screen
+    }
 
     namespace game
     {
@@ -67,13 +67,13 @@ namespace gol
             RUNNING     = 1,
             RESHUFFLED  = 2,
         };
-    } // game
+    } 
 
     namespace background
     {
         constexpr float SCALE_X = 0.3f;
         constexpr float SCALE_Y = 0.3f;
-    } // background
+    }
 
     namespace title
     {
@@ -81,7 +81,7 @@ namespace gol
         constexpr uint32_t POSITION_Y = 10;
 
         constexpr uint32_t FONT_SIZE  = 66;
-    } // title
+    }
 
     namespace button
     {
@@ -89,6 +89,6 @@ namespace gol
         constexpr uint32_t POSITION_Y = 40;
 
         constexpr float SCALE = 1.2f;
-    } // button
+    } 
 
 }// gol
