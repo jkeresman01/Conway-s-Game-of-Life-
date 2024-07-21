@@ -76,5 +76,4 @@ void Button::transformOnMouseHover(bool t_isMouseOnButton)
                       : m_button.setScale(m_scaleFactor, m_scaleFactor);
 }
 
-} // gol
-
+}

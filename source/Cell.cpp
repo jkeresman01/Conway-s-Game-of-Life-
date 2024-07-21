@@ -41,4 +41,4 @@ void Cell::setState(const cell::State &t_state)
             : m_cell.setFillColor(sf::Color(250, 191, 106, 10));
 }
     
-} // gol
+}

@@ -42,4 +42,4 @@ void Background::loadTexture(const std::filesystem::path &t_path)
     m_backgound.setTexture(m_texture);
 }
     
-} // gol
+}

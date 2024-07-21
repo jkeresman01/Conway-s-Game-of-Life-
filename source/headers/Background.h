@@ -33,4 +33,4 @@ class Background
         sf::Texture m_texture;
 };
     
-} // gol
+}

@@ -194,4 +194,4 @@ void GameOfLife::displayEntities()
     m_window.display();
 }
     
-} // gol
+}

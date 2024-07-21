@@ -45,5 +45,5 @@ void Title::draw()
     m_window->draw(m_text);
 }
     
-} // gol
+}
 

@@ -37,4 +37,4 @@ class Map
         Cell m_nextGeneration   [map::ROWS][map::COLUMNS];
 };
 
-} // gol
+}

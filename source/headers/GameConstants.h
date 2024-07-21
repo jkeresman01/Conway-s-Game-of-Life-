@@ -91,4 +91,4 @@ namespace gol
         constexpr float SCALE = 1.2f;
     } 
 
-}// gol
+}

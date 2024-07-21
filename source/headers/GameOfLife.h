@@ -67,4 +67,4 @@ class GameOfLife
         game::State m_state;
 };
     
-} // gol
+}
