@@ -33,7 +33,6 @@ class Button
         void initButton(const std::filesystem::path &t_path);
 
         void loadTexture(const std::filesystem::path &t_path);
-        void transformOnMouseHover(bool t_isMouseOnButton);
         void setStartPosition();
 
     private:
