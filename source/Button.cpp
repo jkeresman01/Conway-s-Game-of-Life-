@@ -9,20 +9,22 @@ namespace gol
 void Button::create(sf::RenderWindow *t_window,
                     const std::filesystem::path &t_path) 
 {
-    m_window = t_window;
-
     initButton(t_path);
+    setWindow(t_window);
 }
 
 void Button::initButton(const std::filesystem::path &t_path)
 {
     setTexture(t_path);
+    setStartPosition();
+    setScale(button::SCALE);
+}
 
+void Button::setStartPosition()
+{
     m_button.setOrigin(m_button.getGlobalBounds().width  / 2,
                        m_button.getGlobalBounds().height / 2);
     m_button.setPosition(button::POSITION_X, button::POSITION_Y);
-
-    setScale(button::SCALE);
 }
 
 void Button::draw()
@@ -43,18 +45,13 @@ void Button::setScale(float t_scaleFactor)
 
 void Button::setTexture(const std::filesystem::path &t_path)
 {
-    loadTexture(t_path);
-    m_texture.setSmooth(true);
-}
-
-void Button::loadTexture(const std::filesystem::path &t_path)
-{
     if(!m_texture.loadFromFile(t_path.string()))
     {
         LOG_ERROR("Failed to load texture from " << t_path.string() << "!")
     }
 
     m_button.setTexture(m_texture);
+    m_texture.setSmooth(true);
 }
 
 bool Button::isPressed()
@@ -72,8 +69,14 @@ bool Button::isPressed()
     
 void Button::transformOnMouseHover(bool t_isMouseOnButton)
 {
-    t_isMouseOnButton ? m_button.setScale(m_scaleFactor * 1.1f, m_scaleFactor * 1.1f)
+    t_isMouseOnButton ? m_button.setScale(m_scaleFactor * 1.1f,
+                                          m_scaleFactor * 1.1f)
                       : m_button.setScale(m_scaleFactor, m_scaleFactor);
+}
+
+void Button::setWindow(sf::RenderWindow *t_window)
+{
+    m_window = t_window;
 }
 
 }

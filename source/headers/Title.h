@@ -21,6 +21,8 @@ class Title
 
         void draw();
 
+        void setWindow(sf::RenderWindow *t_window);
+
     private:
         void initText(const std::filesystem::path &t_path,
                       const std::string &t_text);

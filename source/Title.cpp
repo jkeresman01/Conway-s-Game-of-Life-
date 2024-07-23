@@ -10,9 +10,8 @@ void Title::create(sf::RenderWindow *t_window,
                    const std::string &t_text,
                    const std::filesystem::path &t_path)
 {
-    m_window = t_window;
-
     initText(t_path, t_text);
+    setWindow(t_window);
 }
 
 void Title::initText(const std::filesystem::path &t_path,
@@ -45,5 +44,10 @@ void Title::draw()
     m_window->draw(m_text);
 }
     
+void Title::setWindow(sf::RenderWindow *t_window)
+{
+    m_window = t_window;
+}
+
 }
 

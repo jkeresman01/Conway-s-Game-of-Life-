@@ -27,13 +27,14 @@ class Button
 
         void setScale(float scale);
         void setTexture(const std::filesystem::path &t_path);
+        void setWindow(sf::RenderWindow *t_window);
 
     private:
         void initButton(const std::filesystem::path &t_path);
 
         void loadTexture(const std::filesystem::path &t_path);
-
         void transformOnMouseHover(bool t_isMouseOnButton);
+        void setStartPosition();
 
     private:
         sf::RenderWindow *m_window;

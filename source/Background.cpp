@@ -15,9 +15,8 @@ void Background::create(sf::RenderWindow *t_window,
 void Background::initBackground(sf::RenderWindow *t_window,
                                 const std::filesystem::path &t_path)
 {
-    m_window = t_window;
-
     setImage(t_path);
+    setWindow(t_window);
 }
 
 void Background::draw()
@@ -28,7 +27,6 @@ void Background::draw()
 void Background::setImage(const std::filesystem::path &t_path)
 {
     loadTexture(t_path);
-
     m_backgound.setScale(background::SCALE_X, background::SCALE_Y);
 }
     
@@ -42,4 +40,9 @@ void Background::loadTexture(const std::filesystem::path &t_path)
     m_backgound.setTexture(m_texture);
 }
     
+void Background::setWindow(sf::RenderWindow *t_window)
+{
+    m_window = t_window;
+}
+
 }

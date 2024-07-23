@@ -20,6 +20,7 @@ class Background
         void draw();
 
         void setImage(const std::filesystem::path &t_path);
+        void setWindow(sf::RenderWindow *t_window);
 
     private:
         void initBackground(sf::RenderWindow *t_window,
