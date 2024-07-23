@@ -88,6 +88,7 @@ namespace gol
         constexpr uint32_t POSITION_X = screen::WIDTH - 20;
         constexpr uint32_t POSITION_Y = 40;
 
+        constexpr float INCREASE_FACTOR = 1.1f;
         constexpr float SCALE = 1.2f;
     } 
 

@@ -13,6 +13,11 @@ void Button::create(sf::RenderWindow *t_window,
     setWindow(t_window);
 }
 
+void Button::setWindow(sf::RenderWindow *t_window)
+{
+    m_window = t_window;
+}
+
 void Button::initButton(const std::filesystem::path &t_path)
 {
     setTexture(t_path);
@@ -62,21 +67,11 @@ bool Button::isPressed()
     bool isMouseOnButton = m_button.getGlobalBounds().contains(translatedPosition); 
     bool isMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 
-    transformOnMouseHover(isMouseOnButton);
+    isMouseOnButton ? m_button.setScale(m_scaleFactor * button::INCREASE_FACTOR,
+                                        m_scaleFactor * button::INCREASE_FACTOR)
+                    : m_button.setScale(m_scaleFactor, m_scaleFactor);
 
     return isMousePressed and isMouseOnButton;
 }
     
-void Button::transformOnMouseHover(bool t_isMouseOnButton)
-{
-    t_isMouseOnButton ? m_button.setScale(m_scaleFactor * 1.1f,
-                                          m_scaleFactor * 1.1f)
-                      : m_button.setScale(m_scaleFactor, m_scaleFactor);
-}
-
-void Button::setWindow(sf::RenderWindow *t_window)
-{
-    m_window = t_window;
-}
-
 }
