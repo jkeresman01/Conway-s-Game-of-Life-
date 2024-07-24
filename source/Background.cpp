@@ -26,20 +26,15 @@ void Background::draw()
 
 void Background::setImage(const std::filesystem::path &t_path)
 {
-    loadTexture(t_path);
-    m_backgound.setScale(background::SCALE_X, background::SCALE_Y);
-}
-    
-void Background::loadTexture(const std::filesystem::path &t_path)
-{
     if(!m_texture.loadFromFile(t_path.string()))
     {
         LOG_ERROR("Failed to load texture from " << t_path.string() << "!");
     }
 
     m_backgound.setTexture(m_texture);
+    m_backgound.setScale(background::SCALE_X, background::SCALE_Y);
 }
-    
+   
 void Background::setWindow(sf::RenderWindow *t_window)
 {
     m_window = t_window;

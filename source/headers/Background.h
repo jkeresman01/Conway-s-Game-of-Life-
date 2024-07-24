@@ -26,8 +26,6 @@ class Background
         void initBackground(sf::RenderWindow *t_window,
                             const std::filesystem::path &t_path);
 
-        void loadTexture(const std::filesystem::path &t_path);
-
     private:
         sf::RenderWindow *m_window;
         sf::Sprite m_backgound;
