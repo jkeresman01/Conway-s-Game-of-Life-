@@ -40,7 +40,6 @@ jobs:
 
   test:
     name: Test
-    needs: build
     runs-on: ubuntu-latest
 
     steps:
@@ -59,8 +58,7 @@ jobs:
       run: sudo apt-get install -y libgtest-dev
 
     - name: Configure CMake for Tests
-      run: mkdir -p build && cd build && cmake ../test
+      run: mkdir -p test/build && cd test/build && cmake ../test
 
     - name: Build and Run Tests
       run: cd test/build && make && ./runTests
-
