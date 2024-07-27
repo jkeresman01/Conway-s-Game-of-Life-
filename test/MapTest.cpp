@@ -13,10 +13,8 @@ int main(int argc, char **argv) {
 class MapTest : public ::testing::Test {
 protected:
     Map map;
-    sf::RenderWindow window;
-
     void SetUp() override {
-        map.create(&window);
+        map.create(nullptr);
     }
 };
 
