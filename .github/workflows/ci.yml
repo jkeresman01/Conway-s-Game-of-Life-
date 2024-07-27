@@ -61,5 +61,13 @@ jobs:
     - name: Configure CMake for Tests
       run: cd test/ && mkdir build && cd build && cmake ..
 
-    - name: Build and Run Tests
-      run: cd test/build && make && ./runTests
+    - name: Build Test
+      run: cd test/build && make
+      
+    - name: Run tests with Xvfb
+      run: |
+        sudo apt-get install -y xvfb
+        Xvfb :99 -screen 0 1024x768x24 &
+        export DISPLAY=:99
+        cd test/build
+        ./runTests
