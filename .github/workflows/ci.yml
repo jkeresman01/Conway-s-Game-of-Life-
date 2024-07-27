@@ -1,4 +1,4 @@
-name: CI
+name: CI Conoway's Game of Life
 
 on:
   push:
@@ -9,8 +9,8 @@ on:
       - main
 
 jobs:
-  build:
-
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up C++ environment
       uses: actions/setup-cpp@v1
@@ -29,7 +29,7 @@ jobs:
         build-type: Release
 
     - name: Cache SFML
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: /usr/local/lib/sfml
         key: ${{ runner.os }}-sfml
@@ -43,7 +43,7 @@ jobs:
         sudo apt-get install -y libsfml-dev
 
     - name: Cache GoogleTest
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: /usr/src/gtest
         key: ${{ runner.os }}-gtest
@@ -61,19 +61,20 @@ jobs:
         sudo cp *.a /usr/lib
 
     - name: Configure CMake
-      run: mkdir build && cd build && cmake ..
+      run: mkdir -p build && cd build && cmake ..
 
     - name: Build the project
       run: cd build && make
 
     - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: build
         path: build/
 
   test:
-    needs: build
+    name: Test
+    needs: deploy
     runs-on: ubuntu-latest
 
     strategy:
@@ -83,13 +84,13 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Download Build Artifacts
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: build
 
     - name: Run tests
-      run: cd build/test && ./runTests
+      run: cd build && ./runTests
 
