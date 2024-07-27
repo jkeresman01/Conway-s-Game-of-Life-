@@ -52,6 +52,9 @@ jobs:
       with:
         name: build
 
+    - name: Install SFML
+      run: sudo apt-get install -y libsfml-dev
+
     - name: Install GoogleTest
       run: sudo apt-get install -y libgtest-dev
 
