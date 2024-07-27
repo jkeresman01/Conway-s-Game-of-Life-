@@ -26,9 +26,12 @@ void Background::draw()
 
 void Background::setImage(const std::filesystem::path &t_path)
 {
-    if(!m_texture.loadFromFile(t_path.string()))
+    bool isTextureLoadedSuccessfully = m_texture.loadFromFile(t_path.string());
+
+    if(!isTextureLoadedSuccessfully)
     {
         LOG_ERROR("Failed to load texture from " << t_path.string() << "!");
+        return;
     }
 
     m_backgound.setTexture(m_texture);

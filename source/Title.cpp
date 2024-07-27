@@ -31,9 +31,12 @@ void Title::setDefaultSettings(const std::string &t_text)
 
 void Title::loadFont(const std::filesystem::path &t_path)
 {
-    if(!m_font.loadFromFile(t_path))
+    bool isFontLoadedSuccessfully = m_font.loadFromFile(t_path);
+
+    if(!isFontLoadedSuccessfully)
     {
         LOG_ERROR("Failed to load font from " << t_path << "!");
+        return;
     }
 
     m_text.setFont(m_font);
