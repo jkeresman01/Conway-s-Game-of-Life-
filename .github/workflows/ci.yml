@@ -53,7 +53,7 @@ jobs:
         name: build
 
     - name: Configure CMake for Tests
-      run: mkdir -p test/build && cd test/build && cmake ../test
+      run: mkdir -p build && cd build && cmake ../test
 
     - name: Build and Run Tests
       run: cd test/build && make && ./runTests
