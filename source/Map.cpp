@@ -39,6 +39,16 @@ void Map::draw()
     }
 }
 
+Cell Map::getCellAtPosition_CurrentGeneration(uint32_t t_positionX, uint32_t t_positonY)
+{
+    return m_currentGeneration[t_positionX][t_positonY];
+}
+
+Cell Map::getCellAtPosition_NextGeneration(uint32_t t_positionX, uint32_t t_positonY)
+{
+    return m_nextGeneration[t_positionX][t_positonY];
+}
+
 void Map::update()
 {
     for(size_t i = 1; i < map::ROWS - 1; ++i)
@@ -69,7 +79,7 @@ void Map::reshuffle()
     {
         for(size_t j = 1; j < map::COLUMNS - 1; ++j)
         {
-            cell::State randomCellState = getRandomCellState(map::RANDOM_20_PERCENT_ALIVE);
+            cell::State randomCellState = getRandomCellState(map::Critera::RANDOM);
             m_currentGeneration[i][j].setState(randomCellState);
         }
     }

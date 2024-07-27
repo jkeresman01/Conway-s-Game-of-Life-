@@ -10,7 +10,7 @@ namespace gol
         constexpr float WIDTH  = 10.0f; 
         constexpr float HEIGHT = 10.0f; 
 
-        constexpr float ORIGIN_X  = WIDTH / 2;
+        constexpr float ORIGIN_X  = WIDTH  / 2;
         constexpr float ORIGIN_Y  = HEIGHT / 2;
 
         constexpr float START_POSITION_X = 45.0f; 
@@ -34,8 +34,9 @@ namespace gol
 
         enum Critera : uint8_t
         {
-            ALL_DEAD                = 0,
-            RANDOM_20_PERCENT_ALIVE = 20,
+            ALL_DEAD  = 0,
+            RANDOM    = 20,
+            ALL_ALIVE = 100,
         };
     } 
 

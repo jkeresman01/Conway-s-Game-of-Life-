@@ -34,7 +34,7 @@ void Cell::setPosition(float t_positionX, float t_positionY)
     m_cell.setPosition(t_positionX, t_positionY);
 }
 
-void Cell::setState(const cell::State &t_state)
+void Cell::setState(cell::State t_state)
 {
     m_state = t_state;
     m_state ? m_cell.setFillColor(sf::Color(250, 191, 106, 180))

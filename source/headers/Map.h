@@ -20,6 +20,11 @@ class Map
         void update();
         void reshuffle();
 
+        Cell getCellAtPosition_CurrentGeneration(uint32_t t_positionX, uint32_t t_positonY); 
+        Cell getCellAtPosition_NextGeneration(uint32_t t_positionX, uint32_t t_positonY); 
+
+        void setWindow(sf::RenderWindow *t_window);
+
     private:
         void initCells();
         void copyGenerations();
