@@ -20,38 +20,26 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up C++ environment
-      uses: actions/setup-cpp@v2
-      with:
-        compiler: ${{ matrix.compiler }}
-        build-type: Release
+      run: |
+        if [ ${{ matrix.compiler }} == 'gcc' ]; then
+          sudo apt-get install -y gcc g++
+        elif [ ${{ matrix.compiler }} == 'clang' ]; then
+          sudo apt-get install -y clang
+        fi
 
-    - name: Cache SFML
-      uses: actions/cache@v4
-      with:
-        path: /usr/local/lib/sfml
-        key: ${{ runner.os }}-sfml
-        restore-keys: |
-          ${{ runner.os }}-sfml
+    - name: Install CMake
+      run: |
+        sudo apt-get install -y cmake
 
     - name: Install SFML
-      if: steps.cache.outputs.cache-hit != 'true'
       run: |
         sudo apt-get update
         sudo apt-get install -y libsfml-dev
 
-    - name: Cache GoogleTest
-      uses: actions/cache@v3
-      with:
-        path: /usr/src/gtest
-        key: ${{ runner.os }}-gtest
-        restore-keys: |
-          ${{ runner.os }}-gtest
-
     - name: Install GoogleTest
-      if: steps.cache.outputs.cache-hit != 'true'
       run: |
         sudo apt-get update
         sudo apt-get install -y libgtest-dev
@@ -84,7 +72,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Download Build Artifacts
       uses: actions/download-artifact@v3
