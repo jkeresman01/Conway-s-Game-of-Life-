@@ -1,4 +1,4 @@
-name: CI Conoway's Game of Life
+name: C++ CI
 
 on:
   push:
@@ -13,84 +13,46 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        os: [ubuntu-18.04, ubuntu-20.04]
-        compiler: [gcc, clang]
-
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up C++ environment
-      uses: actions/setup-cpp@v1
+    - name: Set up CMake
+      uses: cmake/setup-cmake@v4
       with:
-        compiler: ${{ matrix.compiler }}
-        build-type: Release
+        cmake-version: '3.24.2'
 
-    - name: Cache SFML
-      uses: actions/cache@v3
+    - name: Set up GCC
+      uses: actions/setup-gcc@v1
       with:
-        path: /usr/local/lib/sfml
-        key: ${{ runner.os }}-sfml
-        restore-keys: |
-          ${{ runner.os }}-sfml
+        gcc-version: '11'
 
-    - name: Install SFML
-      if: steps.cache.outputs.cache-hit != 'true'
+    - name: Install dependencies
       run: |
         sudo apt-get update
         sudo apt-get install -y libsfml-dev
 
-    - name: Cache GoogleTest
-      uses: actions/cache@v3
-      with:
-        path: /usr/src/gtest
-        key: ${{ runner.os }}-gtest
-        restore-keys: |
-          ${{ runner.os }}-gtest
-
-    - name: Install GoogleTest
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y libgtest-dev
-        cd /usr/src/gtest
-        sudo cmake CMakeLists.txt
-        sudo make
-        sudo cp *.a /usr/lib
-
-    - name: Configure CMake
-      run: mkdir -p build && cd build && cmake ..
-
-    - name: Build the project
-      run: cd build && make
-
-    - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: build
-        path: build/
-
   test:
-    name: Test
-    needs: deploy
+    name: Build and Test
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        os: [ubuntu-18.04, ubuntu-20.04]
-        compiler: [gcc, clang]
-
+    needs: deploy
     steps:
-    - name: Checkout repository
+    - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Download Build Artifacts
-      uses: actions/download-artifact@v3
-      with:
-        name: build
+    - name: Configure CMake
+      run: |
+        mkdir -p build
+        cd build
+        cmake ..
+
+    - name: Build
+      run: |
+        cd build
+        make runTests
 
     - name: Run tests
-      run: cd build && ./runTests
+      run: |
+        cd build
+        ./runTests
 
