@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build:
@@ -17,14 +14,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up C++ environment
-      run: |
-          sudo apt-get install -y gcc g++
-        fi
+    - name: Set up GCC
+      run: sudo apt-get install -y gcc g++
 
     - name: Install CMake
-      run: |
-        sudo apt-get install -y cmake
+      run: sudo apt-get install -y cmake
 
     - name: Install SFML
       run: |
@@ -56,11 +50,6 @@ jobs:
     name: Test
     needs: build
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        os: [ubuntu-18.04, ubuntu-20.04]
-        compiler: [gcc, clang]
 
     steps:
     - name: Checkout repository
