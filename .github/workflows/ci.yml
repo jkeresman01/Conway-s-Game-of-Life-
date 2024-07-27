@@ -21,8 +21,7 @@ jobs:
       run: sudo apt-get install -y cmake
 
     - name: Install SFML
-      run: |
-        sudo apt-get install -y libsfml-dev
+      run: sudo apt-get install -y libsfml-dev
 
     - name: Install GoogleTest
       run: sudo apt-get install -y libgtest-dev
@@ -53,9 +52,9 @@ jobs:
       with:
         name: build
 
-    - name: Configure CMake
-      run: sudo mkdir -p test/build && cd test/build && cmake ..
+    - name: Configure CMake for Tests
+      run: mkdir -p test/build && cd test/build && cmake ../test
 
-    - name: Run tests
-      run: cd /tests/build && ./runTests
+    - name: Build and Run Tests
+      run: cd test/build && make && ./runTests
 
