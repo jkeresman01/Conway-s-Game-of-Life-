@@ -50,9 +50,9 @@ void Button::setScale(float t_scaleFactor)
 
 void Button::setTexture(const std::filesystem::path &t_path)
 {
-    bool isTextureLoadedSuccssfully = m_texture.loadFromFile(t_path.string());
+    bool isTextureLoadedSuccessfully = m_texture.loadFromFile(t_path.string());
 
-    if(!isTextureLoadedSuccssfully)
+    if(!isTextureLoadedSuccessfully)
     {
         LOG_ERROR("Failed to load texture from " << t_path.string() << "!")
         return;
