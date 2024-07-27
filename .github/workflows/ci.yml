@@ -53,6 +53,9 @@ jobs:
       with:
         name: build
 
+    - name: Configure CMake
+      uses: mkdir -p /tests/build && cd /tests/build cmake ..
+
     - name: Run tests
-      run: cd build && ./runTests
+      run: cd /tests/build && ./runTests
 
