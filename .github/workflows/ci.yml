@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, ubuntu-20.04]
+        compiler: [gcc, clang]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up C++ environment
+      uses: actions/setup-cpp@v1
+      with:
+        compiler: ${{ matrix.compiler }}
+        build-type: Release
+
+    - name: Cache SFML
+      uses: actions/cache@v2
+      with:
+        path: /usr/local/lib/sfml
+        key: ${{ runner.os }}-sfml
+        restore-keys: |
+          ${{ runner.os }}-sfml
+
+    - name: Install SFML
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libsfml-dev
+
+    - name: Cache GoogleTest
+      uses: actions/cache@v2
+      with:
+        path: /usr/src/gtest
+        key: ${{ runner.os }}-gtest
+        restore-keys: |
+          ${{ runner.os }}-gtest
+
+    - name: Install GoogleTest
+      if: steps.cache.outputs.cache-hit != 'true'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libgtest-dev
+        cd /usr/src/gtest
+        sudo cmake CMakeLists.txt
+        sudo make
+        sudo cp *.a /usr/lib
+
+    - name: Configure CMake
+      run: mkdir build && cd build && cmake ..
+
+    - name: Build the project
+      run: cd build && make
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build
+        path: build/
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, ubuntu-20.04]
+        compiler: [gcc, clang]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Download Build Artifacts
+      uses: actions/download-artifact@v2
+      with:
+        name: build
+
+    - name: Run tests
+      run: cd build/test && ./runTests
+
