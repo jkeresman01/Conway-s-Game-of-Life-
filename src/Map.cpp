@@ -39,14 +39,14 @@ void Map::draw()
     }
 }
 
-Cell Map::getCellAtPosition_CurrentGeneration(uint32_t t_positionX, uint32_t t_positonY)
+Cell* Map::getCellAtPosition_CurrentGeneration(uint32_t t_positionX, uint32_t t_positonY)
 {
-    return m_currentGeneration[t_positionX][t_positonY];
+    return &m_currentGeneration[t_positionX][t_positonY];
 }
 
-Cell Map::getCellAtPosition_NextGeneration(uint32_t t_positionX, uint32_t t_positonY)
+Cell* Map::getCellAtPosition_NextGeneration(uint32_t t_positionX, uint32_t t_positonY)
 {
-    return m_nextGeneration[t_positionX][t_positonY];
+    return &m_nextGeneration[t_positionX][t_positonY];
 }
 
 void Map::update()
@@ -104,10 +104,13 @@ void Map::changeForNextGeneration(Cell &t_cell, uint32_t t_positionX, uint32_t t
     {
         m_nextGeneration[t_positionX][t_positionY].setState(cell::State::DEAD);
     }
-
-    if(!t_cell.isAlive() and numberOfAliveNeighbours == game::Criteria::BORN)
+    else if(!t_cell.isAlive() and numberOfAliveNeighbours == game::Criteria::BORN)
     {
         m_nextGeneration[t_positionX][t_positionY].setState(cell::State::ALIVE);
+    } 
+    else 
+    {
+        m_nextGeneration[t_positionX][t_positionY] = m_currentGeneration[t_positionX][t_positionY];
     }
 }
 
