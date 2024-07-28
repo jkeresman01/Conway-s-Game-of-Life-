@@ -22,6 +22,7 @@ set(SOURCE_FILES
 
 set(TEST_FILES
     MapTest.cpp
+    CellTest.cpp
 )
 
 add_executable(runTests ${SOURCE_FILES} ${TEST_FILES})

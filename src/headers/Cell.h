@@ -21,6 +21,9 @@ class Cell
         void setState(cell::State t_state);
         void setWindow(sf::RenderWindow* t_window);
 
+        std::pair<uint32_t, uint32_t> getPosition();
+        sf::Color getColor();
+
     private:
         sf::RenderWindow *m_window;
         sf::RectangleShape m_cell;

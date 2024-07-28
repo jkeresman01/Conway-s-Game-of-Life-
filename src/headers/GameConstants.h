@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML/Graphics/Color.hpp>
+
 #include <cstdint>
 
 namespace gol
@@ -25,6 +27,12 @@ namespace gol
             DEAD  = 0,
             ALIVE = 1,
         };
+
+        namespace Colors
+        {
+            const sf::Color DEAD  = sf::Color(250, 191, 106, 10);
+            const sf::Color ALIVE = sf::Color(250, 191, 106, 180);
+        }
     }
 
     namespace map

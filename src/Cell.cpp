@@ -3,7 +3,7 @@
 namespace gol
 {
 
-Cell::Cell()
+Cell::Cell() : m_window(nullptr)
 {
     m_cell.setSize(sf::Vector2f(cell::WIDTH, cell::HEIGHT));
     m_cell.setOutlineColor(sf::Color::Black);
@@ -24,6 +24,11 @@ bool Cell::isAlive() const
     return m_state;
 }
 
+sf::Color Cell::getColor()
+{
+    return m_cell.getFillColor();
+}
+
 void Cell::setWindow(sf::RenderWindow *t_window)
 {
     m_window = t_window;
@@ -37,8 +42,8 @@ void Cell::setPosition(float t_positionX, float t_positionY)
 void Cell::setState(cell::State t_state)
 {
     m_state = t_state;
-    m_state ? m_cell.setFillColor(sf::Color(250, 191, 106, 180))
-            : m_cell.setFillColor(sf::Color(250, 191, 106, 10));
+    m_state ? m_cell.setFillColor(cell::Colors::ALIVE)
+            : m_cell.setFillColor(cell::Colors::DEAD);
 }
     
 }
