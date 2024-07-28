@@ -1,8 +1,9 @@
 #include "headers/Button.h"
 
+#include <utility>
+
 #include "headers/GameConstants.h"
 #include "headers/Logger.h"
-#include <utility>
 
 namespace gol
 {
