@@ -2,6 +2,7 @@
 
 #include "headers/GameConstants.h"
 #include "headers/Logger.h"
+#include <utility>
 
 namespace gol
 {
@@ -60,6 +61,11 @@ void Button::setTexture(const std::filesystem::path &t_path)
 
     m_button.setTexture(m_texture);
     m_texture.setSmooth(true);
+}
+
+std::pair<uint32_t, uint32_t> Button::getPosition()
+{
+    return std::make_pair(m_button.getPosition().x, m_button.getPosition().y);
 }
 
 bool Button::isPressed()

@@ -7,6 +7,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window/Mouse.hpp>
+#include <utility>
 
 namespace gol
 {
@@ -28,6 +29,8 @@ class Button
         void setScale(float scale);
         void setTexture(const std::filesystem::path &t_path);
         void setWindow(sf::RenderWindow *t_window);
+
+        std::pair<uint32_t, uint32_t> getPosition();
 
     private:
         void initButton(const std::filesystem::path &t_path);
