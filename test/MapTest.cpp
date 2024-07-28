@@ -28,19 +28,134 @@ TEST_F(MapTest, AfterMapIsCreated_WillCellsBeDeadInCurrentGeneration)
     {
         for(size_t j = 0; j < map::COLUMNS; ++j)
         {
-            Cell cell = map.getCellAtPosition_CurrentGeneration(i, j);
-            EXPECT_EQ(cell.isAlive(), false);
+            Cell *cell = map.getCellAtPosition_CurrentGeneration(i, j);
+            EXPECT_EQ(cell->isAlive(), false);
         }
     }
 }
+
 TEST_F(MapTest, AfterMapIsCreated_WillCellsBeDeadInNextGeneration) 
 {
     for(size_t i = 0; i < map::ROWS; ++i)
     {
         for(size_t j = 0; j < map::COLUMNS; ++j)
         {
-            Cell cell = map.getCellAtPosition_NextGeneration(i, j);
-            EXPECT_EQ(cell.isAlive(), false);
+            Cell *cell = map.getCellAtPosition_NextGeneration(i, j);
+            EXPECT_EQ(cell->isAlive(), false);
         }
     }
 }
+
+TEST_F(MapTest, AfterMapUpdate_WillCellStayDeadIfAllNeighborsAreDead) 
+{
+    map.update();
+
+    Cell *cell = map.getCellAtPosition_NextGeneration(0, 0);
+    EXPECT_EQ(cell->isAlive(), false);
+}
+
+
+TEST_F(MapTest, AfterMapUpdate_WillCellStayAliveWithTwoAliveNeighbours) 
+{
+    Cell* cell = map.getCellAtPosition_CurrentGeneration(2, 2);
+    cell->setState(cell::State::ALIVE);
+
+    Cell* firstNeighbour = map.getCellAtPosition_CurrentGeneration(2, 3);
+    firstNeighbour->setState(cell::State::ALIVE);
+
+    Cell* secondNeighbour = map.getCellAtPosition_CurrentGeneration(3, 2);
+    secondNeighbour->setState(cell::State::ALIVE);
+
+    map.update();
+
+    Cell* cellNextGeneration = map.getCellAtPosition_NextGeneration(2, 2);
+    EXPECT_EQ(cell->isAlive(), true);
+}
+
+TEST_F(MapTest, AfterMapUpdate_WillCellStayAliveWithThreeAliveNeighbours) 
+{
+    Cell* cell = map.getCellAtPosition_CurrentGeneration(2, 2);
+    cell->setState(cell::State::ALIVE);
+
+    Cell* firstNeighbour = map.getCellAtPosition_CurrentGeneration(2, 3);
+    firstNeighbour->setState(cell::State::ALIVE);
+
+    Cell* secondNeighbour = map.getCellAtPosition_CurrentGeneration(3, 2);
+    secondNeighbour->setState(cell::State::ALIVE);
+
+    Cell* thirdNeighbour = map.getCellAtPosition_CurrentGeneration(3, 3);
+    thirdNeighbour->setState(cell::State::ALIVE);
+
+    map.update();
+
+    Cell* cellNextGeneration = map.getCellAtPosition_NextGeneration(2, 2);
+    EXPECT_EQ(cell->isAlive(), true);
+}
+
+TEST_F(MapTest, AfterMapUpdate_WillCellDieOfUnderpopulationWithOneAliveNeighbour) 
+{
+    Cell* cell = map.getCellAtPosition_CurrentGeneration(2, 2);
+    cell->setState(cell::State::ALIVE);
+
+    Cell* neighbour = map.getCellAtPosition_CurrentGeneration(2, 3);
+    neighbour->setState(cell::State::ALIVE);
+
+    map.update();
+
+    Cell* cellNextGeneration = map.getCellAtPosition_NextGeneration(2, 2);
+    EXPECT_EQ(cell->isAlive(), false);
+}
+
+TEST_F(MapTest, AfterMapUpdate_WillCellDieOfUnderpopulationWithNoAliveNeighbours) 
+{
+    Cell* cell = map.getCellAtPosition_CurrentGeneration(2, 2);
+    cell->setState(cell::State::ALIVE);
+
+    map.update();
+
+    Cell* cellNextGeneration = map.getCellAtPosition_NextGeneration(2, 2);
+    EXPECT_EQ(cell->isAlive(), false);
+}
+
+TEST_F(MapTest, AfterMapUpdate_WillCellDieOfOverpoulationWithFourAliveNeighbours) 
+{
+    Cell* cell = map.getCellAtPosition_CurrentGeneration(2, 2);
+    cell->setState(cell::State::ALIVE);
+
+    Cell* firstNeighbour = map.getCellAtPosition_CurrentGeneration(2, 3);
+    firstNeighbour->setState(cell::State::ALIVE);
+
+    Cell* secondNeighbour = map.getCellAtPosition_CurrentGeneration(3, 2);
+    secondNeighbour->setState(cell::State::ALIVE);
+
+    Cell* thirdNeighbour = map.getCellAtPosition_CurrentGeneration(3, 3);
+    thirdNeighbour->setState(cell::State::ALIVE);
+
+    Cell* fourthNeighbour = map.getCellAtPosition_CurrentGeneration(1, 1);
+    fourthNeighbour->setState(cell::State::ALIVE);
+
+    map.update();
+
+    Cell* cellNextGeneration = map.getCellAtPosition_NextGeneration(2, 2);
+    EXPECT_EQ(cell->isAlive(), false);
+}
+
+TEST_F(MapTest, AfterMapUpdate_WillCellBeBornWithThreeAliveNeighbours) 
+{
+    Cell* cell = map.getCellAtPosition_CurrentGeneration(2, 2);
+
+    Cell* firstNeighbour = map.getCellAtPosition_CurrentGeneration(2, 3);
+    firstNeighbour->setState(cell::State::ALIVE);
+
+    Cell* secondNeighbour = map.getCellAtPosition_CurrentGeneration(3, 2);
+    secondNeighbour->setState(cell::State::ALIVE);
+
+    Cell* thirdNeighbour = map.getCellAtPosition_CurrentGeneration(3, 3);
+    thirdNeighbour->setState(cell::State::ALIVE);
+
+    map.update();
+
+    Cell* cellNextGeneration = map.getCellAtPosition_NextGeneration(2, 2);
+    EXPECT_EQ(cell->isAlive(), true);
+}
+
