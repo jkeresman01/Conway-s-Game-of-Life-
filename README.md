@@ -57,8 +57,7 @@ Build and Run the game:
 
 ``` shell
 cd src
-mkdir build
-cd build
+mkdir build && cd build
 cmake ..
 make
 ./game-of-life
