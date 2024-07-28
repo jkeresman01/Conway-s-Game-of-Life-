@@ -18,28 +18,52 @@ At each step in time (in this case, every 2 seconds), the following transitions 
 If the version of SFML that you want to install is available in the official repository, then install it using your package manager.
 
 For example, on Debian, Ubuntu you would do:
-```
+``` shell
 sudo apt-get install libsfml-dev
 ```
 
 Now you will need to compile the program:
-```
-g++ -std=c++17 -c *cpp
+``` shell
+g++ -std=c++17 -c *.cpp
 ```
 
 In case you installed SFML to a non-standard path, you'll need to tell the compiler where to find the SFML headers:
-```
-g++ -std=c++17 -c *cpp -I<sfml-install-path>/include
+``` shell
+g++ -std=c++17 -c *.cpp -I<sfml-install-path>/include
 ```
 
 You must then link the compiled file to the SFML libraries in order to get the final executable.
-```
+``` shell
 g++ *.o -o game-of-life -lsfml-graphics -lsfml-window -lsfml-system
 ```
 You can now execute the compiled program:
-```
+``` shell
 ./game-of-life
 ```
+
+### Build and run the game with CMake ###
+
+Install SFML using your package manager, for example, on Debian, Ubuntu you would do:
+``` shell
+sudo apt-get install libsfml-dev
+```
+
+Clone the repository
+``` shell
+git clone https://github.com/jkeresman01/Conway-s-Game-of-Life-
+```
+
+Build and Run the game:
+
+``` shell
+cd src
+mkdir build
+cd build
+cmake ..
+make
+./game-of-life
+```
+
 
 ## Useful Resources ##
 
