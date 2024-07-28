@@ -56,7 +56,7 @@ git clone https://github.com/jkeresman01/Conway-s-Game-of-Life-
 Build and Run the game:
 
 ``` shell
-cd src
+cd Conway-s-Game-of-Life-/src
 mkdir build && cd build
 cmake ..
 make
