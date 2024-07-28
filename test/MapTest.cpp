@@ -72,7 +72,7 @@ TEST_F(MapTest, AfterMapUpdate_WillCellStayAliveWithTwoAliveNeighbours)
     EXPECT_EQ(cell->isAlive(), true);
 }
 
-TEST_F(MapTest, AfterMapUpdate_WillCellStayAliveWithThreeAliveNeighbours) 
+TEST_F(MapTest, AfterMapUpdate_WillCellWithThreeAliveNeighboursStayAlive) 
 {
     Cell* cell = map.getCellAtPosition_CurrentGeneration(2, 2);
     cell->setState(cell::State::ALIVE);
@@ -89,10 +89,10 @@ TEST_F(MapTest, AfterMapUpdate_WillCellStayAliveWithThreeAliveNeighbours)
     map.update();
 
     Cell* cellNextGeneration = map.getCellAtPosition_NextGeneration(2, 2);
-    EXPECT_EQ(cell->isAlive(), true);
+    EXPECT_EQ(cellNextGeneration->isAlive(), true);
 }
 
-TEST_F(MapTest, AfterMapUpdate_WillCellDieOfUnderpopulationWithOneAliveNeighbour) 
+TEST_F(MapTest, AfterMapUpdate_WillCellWithOneAliveNeighbourDieOfUnderpopulation) 
 {
     Cell* cell = map.getCellAtPosition_CurrentGeneration(2, 2);
     cell->setState(cell::State::ALIVE);
@@ -102,11 +102,11 @@ TEST_F(MapTest, AfterMapUpdate_WillCellDieOfUnderpopulationWithOneAliveNeighbour
 
     map.update();
 
-    Cell* cellNextGeneration = map.getCellAtPosition_NextGeneration(2, 2);
-    EXPECT_EQ(cell->isAlive(), false);
+    Cell* cellInNextGeneration = map.getCellAtPosition_NextGeneration(2, 2);
+    EXPECT_EQ(cellInNextGeneration->isAlive(), false);
 }
 
-TEST_F(MapTest, AfterMapUpdate_WillCellDieOfUnderpopulationWithNoAliveNeighbours) 
+TEST_F(MapTest, AfterMapUpdate_WillCellWithNoAliveNeighboursDieOfUnderpopulation) 
 {
     Cell* cell = map.getCellAtPosition_CurrentGeneration(2, 2);
     cell->setState(cell::State::ALIVE);
@@ -117,7 +117,7 @@ TEST_F(MapTest, AfterMapUpdate_WillCellDieOfUnderpopulationWithNoAliveNeighbours
     EXPECT_EQ(cell->isAlive(), false);
 }
 
-TEST_F(MapTest, AfterMapUpdate_WillCellDieOfOverpoulationWithFourAliveNeighbours) 
+TEST_F(MapTest, AfterMapUpdate_WillCellWithFourAliveNeighboursDieOfOverpoulation) 
 {
     Cell* cell = map.getCellAtPosition_CurrentGeneration(2, 2);
     cell->setState(cell::State::ALIVE);
@@ -136,11 +136,11 @@ TEST_F(MapTest, AfterMapUpdate_WillCellDieOfOverpoulationWithFourAliveNeighbours
 
     map.update();
 
-    Cell* cellNextGeneration = map.getCellAtPosition_NextGeneration(2, 2);
-    EXPECT_EQ(cell->isAlive(), false);
+    Cell* cellInNextGeneration = map.getCellAtPosition_NextGeneration(2, 2);
+    EXPECT_EQ(cellInNextGeneration->isAlive(), false);
 }
 
-TEST_F(MapTest, AfterMapUpdate_WillCellBeBornWithThreeAliveNeighbours) 
+TEST_F(MapTest, AfterMapUpdate_WillDeadCellWithThreeAliveNeighboursBeBorn) 
 {
     Cell* cell = map.getCellAtPosition_CurrentGeneration(2, 2);
 
@@ -155,7 +155,7 @@ TEST_F(MapTest, AfterMapUpdate_WillCellBeBornWithThreeAliveNeighbours)
 
     map.update();
 
-    Cell* cellNextGeneration = map.getCellAtPosition_NextGeneration(2, 2);
-    EXPECT_EQ(cell->isAlive(), true);
+    Cell* cellInNextGeneration = map.getCellAtPosition_NextGeneration(2, 2);
+    EXPECT_EQ(cellInNextGeneration->isAlive(), true);
 }
 
