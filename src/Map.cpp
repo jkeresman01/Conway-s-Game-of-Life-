@@ -97,30 +97,27 @@ cell::State Map::getRandomCellState(uint32_t criteriaForAlive)
 {
     uint32_t possiblityForAlive = generateNumber(100, 1);
     return possiblityForAlive <= criteriaForAlive ? cell::State::ALIVE
-                                                    : cell::State::DEAD;
+                                                  : cell::State::DEAD;
 }
 
-void Map::changeForNextGeneration(Cell &cell, uint32_t positionX,
+void Map::changeForNextGeneration(Cell &cell,
+                                  uint32_t positionX,
                                   uint32_t positionY)
 {
-    uint32_t numberOfAliveNeighbours =
-        countAliveNeighboursAtPosition(positionX, positionY);
+    uint32_t aliveNeighbours = countAliveNeighboursAtPosition(positionX, positionY);
 
-    if (cell.isAlive() and
-            numberOfAliveNeighbours >= game::Criteria::OVERPOPULATION or
-        numberOfAliveNeighbours < game::Criteria::UNDERPOPULATION)
+    if (cell.isAlive() and aliveNeighbours >= game::Criteria::OVERPOPULATION or
+        aliveNeighbours < game::Criteria::UNDERPOPULATION)
     {
         m_nextGeneration[positionX][positionY].setState(cell::State::DEAD);
     }
-    else if (!cell.isAlive() and
-             numberOfAliveNeighbours == game::Criteria::BORN)
+    else if (!cell.isAlive() and aliveNeighbours == game::Criteria::BORN)
     {
         m_nextGeneration[positionX][positionY].setState(cell::State::ALIVE);
     }
     else
     {
-        m_nextGeneration[positionX][positionY] =
-            m_currentGeneration[positionX][positionY];
+        m_nextGeneration[positionX][positionY] = m_currentGeneration[positionX][positionY];
     }
 }
 
