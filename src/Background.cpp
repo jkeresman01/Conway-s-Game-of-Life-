@@ -6,17 +6,17 @@
 namespace gol
 {
 
-void Background::create(sf::RenderWindow *t_window,
-                        const std::filesystem::path &t_path)
+void Background::create(sf::RenderWindow *window,
+                        const std::filesystem::path &path)
 {
-    initBackground(t_window, t_path);
+    initBackground(window, path);
 }
 
-void Background::initBackground(sf::RenderWindow *t_window,
-                                const std::filesystem::path &t_path)
+void Background::initBackground(sf::RenderWindow *window,
+                                const std::filesystem::path &path)
 {
-    setImage(t_path);
-    setWindow(t_window);
+    setImage(path);
+    setWindow(window);
 }
 
 void Background::draw()
@@ -24,13 +24,13 @@ void Background::draw()
     m_window->draw(m_background);
 }
 
-void Background::setImage(const std::filesystem::path &t_path)
+void Background::setImage(const std::filesystem::path &path)
 {
-    bool isTextureLoadedSuccessfully = m_texture.loadFromFile(t_path.string());
+    bool isTextureLoadedSuccessfully = m_texture.loadFromFile(path.string());
 
     if (!isTextureLoadedSuccessfully)
     {
-        LOG_ERROR("Failed to load texture from " << t_path.string() << "!");
+        LOG_ERROR("Failed to load texture from " << path.string() << "!");
         return;
     }
 
@@ -38,9 +38,9 @@ void Background::setImage(const std::filesystem::path &t_path)
     m_background.setScale(background::SCALE_X, background::SCALE_Y);
 }
 
-void Background::setWindow(sf::RenderWindow *t_window)
+void Background::setWindow(sf::RenderWindow *window)
 {
-    m_window = t_window;
+    m_window = window;
 }
 
 } // namespace gol

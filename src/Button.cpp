@@ -8,21 +8,21 @@
 namespace gol
 {
 
-void Button::create(sf::RenderWindow *t_window,
-                    const std::filesystem::path &t_path)
+void Button::create(sf::RenderWindow *window,
+                    const std::filesystem::path &path)
 {
-    initButton(t_path);
-    setWindow(t_window);
+    initButton(path);
+    setWindow(window);
 }
 
-void Button::setWindow(sf::RenderWindow *t_window)
+void Button::setWindow(sf::RenderWindow *window)
 {
-    m_window = t_window;
+    m_window = window;
 }
 
-void Button::initButton(const std::filesystem::path &t_path)
+void Button::initButton(const std::filesystem::path &path)
 {
-    setTexture(t_path);
+    setTexture(path);
     setStartPosition();
     setScale(button::SCALE);
 }
@@ -39,24 +39,24 @@ void Button::draw()
     m_window->draw(m_button);
 }
 
-void Button::move(float t_positionX, float t_positionY)
+void Button::move(float positionX, float positionY)
 {
-    m_button.move(t_positionX, t_positionY);
+    m_button.move(positionX, positionY);
 }
 
-void Button::setScale(float t_scaleFactor)
+void Button::setScale(float scaleFactor)
 {
-    m_scaleFactor = t_scaleFactor;
+    m_scaleFactor = scaleFactor;
     m_button.setScale(m_scaleFactor, m_scaleFactor);
 }
 
-void Button::setTexture(const std::filesystem::path &t_path)
+void Button::setTexture(const std::filesystem::path &path)
 {
-    bool isTextureLoadedSuccessfully = m_texture.loadFromFile(t_path.string());
+    bool isTextureLoadedSuccessfully = m_texture.loadFromFile(path.string());
 
     if (!isTextureLoadedSuccessfully)
     {
-        LOG_ERROR("Failed to load texture from " << t_path.string() << "!")
+        LOG_ERROR("Failed to load texture from " << path.string() << "!")
         return;
     }
 

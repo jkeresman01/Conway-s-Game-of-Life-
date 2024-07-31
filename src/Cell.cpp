@@ -29,19 +29,19 @@ sf::Color Cell::getColor()
     return m_cell.getFillColor();
 }
 
-void Cell::setWindow(sf::RenderWindow *t_window)
+void Cell::setWindow(sf::RenderWindow *window)
 {
-    m_window = t_window;
+    m_window = window;
 }
 
-void Cell::setPosition(float t_positionX, float t_positionY)
+void Cell::setPosition(float positionX, float positionY)
 {
-    m_cell.setPosition(t_positionX, t_positionY);
+    m_cell.setPosition(positionX, positionY);
 }
 
-void Cell::setState(cell::State t_state)
+void Cell::setState(cell::State state)
 {
-    m_state = t_state;
+    m_state = state;
     m_state ? m_cell.setFillColor(cell::Colors::ALIVE)
             : m_cell.setFillColor(cell::Colors::DEAD);
 }

@@ -15,20 +15,20 @@ class Title
   public:
     Title() = default;
 
-    void create(sf::RenderWindow *t_window, const std::string &t_text,
-                const std::filesystem::path &t_path);
+    void create(sf::RenderWindow *window, const std::string &text,
+                const std::filesystem::path &path);
 
     void draw();
 
-    void setWindow(sf::RenderWindow *t_window);
+    void setWindow(sf::RenderWindow *window);
 
   private:
-    void initText(const std::filesystem::path &t_path,
-                  const std::string &t_text);
+    void initText(const std::filesystem::path &path,
+                  const std::string &text);
 
-    void loadFont(const std::filesystem::path &t_path);
+    void loadFont(const std::filesystem::path &path);
 
-    void setDefaultSettings(const std::string &t_text);
+    void setDefaultSettings(const std::string &text);
 
   private:
     sf::RenderWindow *m_window;

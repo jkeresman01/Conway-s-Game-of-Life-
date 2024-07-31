@@ -5,9 +5,9 @@
 namespace gol
 {
 
-void Map::create(sf::RenderWindow *t_window)
+void Map::create(sf::RenderWindow *window)
 {
-    m_window = t_window;
+    m_window = window;
 
     initCells();
 }
@@ -39,16 +39,16 @@ void Map::draw()
     }
 }
 
-Cell *Map::getCellAtPosition_CurrentGeneration(uint32_t t_positionX,
-                                               uint32_t t_positonY)
+Cell *Map::getCellAtPosition_CurrentGeneration(uint32_t positionX,
+                                               uint32_t positonY)
 {
-    return &m_currentGeneration[t_positionX][t_positonY];
+    return &m_currentGeneration[positionX][positonY];
 }
 
-Cell *Map::getCellAtPosition_NextGeneration(uint32_t t_positionX,
-                                            uint32_t t_positonY)
+Cell *Map::getCellAtPosition_NextGeneration(uint32_t positionX,
+                                            uint32_t positonY)
 {
-    return &m_nextGeneration[t_positionX][t_positonY];
+    return &m_nextGeneration[positionX][positonY];
 }
 
 void Map::update()
@@ -88,54 +88,54 @@ void Map::reshuffle()
     }
 }
 
-uint32_t Map::generateNumber(uint32_t t_max, uint32_t t_min)
+uint32_t Map::generateNumber(uint32_t max, uint32_t min)
 {
-    return rand() % (t_max - t_min + 1) + t_min;
+    return rand() % (max - min + 1) + min;
 }
 
-cell::State Map::getRandomCellState(uint32_t t_criteriaForAlive)
+cell::State Map::getRandomCellState(uint32_t criteriaForAlive)
 {
     uint32_t possiblityForAlive = generateNumber(100, 1);
-    return possiblityForAlive <= t_criteriaForAlive ? cell::State::ALIVE
+    return possiblityForAlive <= criteriaForAlive ? cell::State::ALIVE
                                                     : cell::State::DEAD;
 }
 
-void Map::changeForNextGeneration(Cell &t_cell, uint32_t t_positionX,
-                                  uint32_t t_positionY)
+void Map::changeForNextGeneration(Cell &cell, uint32_t positionX,
+                                  uint32_t positionY)
 {
     uint32_t numberOfAliveNeighbours =
-        countAliveNeighboursAtPosition(t_positionX, t_positionY);
+        countAliveNeighboursAtPosition(positionX, positionY);
 
-    if (t_cell.isAlive() and
+    if (cell.isAlive() and
             numberOfAliveNeighbours >= game::Criteria::OVERPOPULATION or
         numberOfAliveNeighbours < game::Criteria::UNDERPOPULATION)
     {
-        m_nextGeneration[t_positionX][t_positionY].setState(cell::State::DEAD);
+        m_nextGeneration[positionX][positionY].setState(cell::State::DEAD);
     }
-    else if (!t_cell.isAlive() and
+    else if (!cell.isAlive() and
              numberOfAliveNeighbours == game::Criteria::BORN)
     {
-        m_nextGeneration[t_positionX][t_positionY].setState(cell::State::ALIVE);
+        m_nextGeneration[positionX][positionY].setState(cell::State::ALIVE);
     }
     else
     {
-        m_nextGeneration[t_positionX][t_positionY] =
-            m_currentGeneration[t_positionX][t_positionY];
+        m_nextGeneration[positionX][positionY] =
+            m_currentGeneration[positionX][positionY];
     }
 }
 
-uint32_t Map::countAliveNeighboursAtPosition(uint32_t t_positionX,
-                                             uint32_t t_positionY)
+uint32_t Map::countAliveNeighboursAtPosition(uint32_t positionX,
+                                             uint32_t positionY)
 {
     Cell neighbours[]{
-        m_currentGeneration[t_positionX - 1][t_positionY],
-        m_currentGeneration[t_positionX + 1][t_positionY],
-        m_currentGeneration[t_positionX][t_positionY - 1],
-        m_currentGeneration[t_positionX][t_positionY + 1],
-        m_currentGeneration[t_positionX - 1][t_positionY - 1],
-        m_currentGeneration[t_positionX + 1][t_positionY + 1],
-        m_currentGeneration[t_positionX + 1][t_positionY - 1],
-        m_currentGeneration[t_positionX - 1][t_positionY + 1],
+        m_currentGeneration[positionX - 1][positionY],
+        m_currentGeneration[positionX + 1][positionY],
+        m_currentGeneration[positionX][positionY - 1],
+        m_currentGeneration[positionX][positionY + 1],
+        m_currentGeneration[positionX - 1][positionY - 1],
+        m_currentGeneration[positionX + 1][positionY + 1],
+        m_currentGeneration[positionX + 1][positionY - 1],
+        m_currentGeneration[positionX - 1][positionY + 1],
     };
 
     return std::count_if(neighbours, neighbours + cell::NUMBER_OF_NEIGHBOURS,

@@ -97,18 +97,18 @@ void GameOfLife::pollEvents()
     }
 }
 
-void GameOfLife::checkButtonState(const sf::Event &t_event)
+void GameOfLife::checkButtonState(const sf::Event &event)
 {
-    checkIfCloseButtonIsPressed(t_event);
+    checkIfCloseButtonIsPressed(event);
 
     checkIfPlayButtonIsPressed();
     checkIfPauseButtonIsPressed();
     checkIfResfuffleButtonIsPressed();
 }
 
-void GameOfLife::checkIfCloseButtonIsPressed(const sf::Event &t_event)
+void GameOfLife::checkIfCloseButtonIsPressed(const sf::Event &event)
 {
-    if (m_closeButton.isPressed() or t_event.type == sf::Event::Closed)
+    if (m_closeButton.isPressed() or event.type == sf::Event::Closed)
     {
         m_window.close();
     }

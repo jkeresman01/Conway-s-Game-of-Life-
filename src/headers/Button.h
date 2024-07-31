@@ -17,25 +17,25 @@ class Button
   public:
     Button() = default;
 
-    void create(sf::RenderWindow *t_window,
-                const std::filesystem::path &t_path);
+    void create(sf::RenderWindow *window,
+                const std::filesystem::path &path);
 
     void draw();
 
-    void move(float t_positionX, float t_positionY);
+    void move(float positionX, float positionY);
 
     bool isPressed();
 
     void setScale(float scale);
-    void setTexture(const std::filesystem::path &t_path);
-    void setWindow(sf::RenderWindow *t_window);
+    void setTexture(const std::filesystem::path &path);
+    void setWindow(sf::RenderWindow *window);
 
     std::pair<uint32_t, uint32_t> getPosition();
 
   private:
-    void initButton(const std::filesystem::path &t_path);
+    void initButton(const std::filesystem::path &path);
 
-    void loadTexture(const std::filesystem::path &t_path);
+    void loadTexture(const std::filesystem::path &path);
     void setStartPosition();
 
   private:

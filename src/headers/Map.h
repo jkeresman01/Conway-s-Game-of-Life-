@@ -16,28 +16,28 @@ class Map
 
     void draw();
 
-    void create(sf::RenderWindow *t_window);
+    void create(sf::RenderWindow *window);
     void update();
     void reshuffle();
 
-    Cell *getCellAtPosition_CurrentGeneration(uint32_t t_positionX,
-                                              uint32_t t_positonY);
-    Cell *getCellAtPosition_NextGeneration(uint32_t t_positionX,
-                                           uint32_t t_positonY);
+    Cell *getCellAtPosition_CurrentGeneration(uint32_t positionX,
+                                              uint32_t positonY);
+    Cell *getCellAtPosition_NextGeneration(uint32_t positionX,
+                                           uint32_t positonY);
 
-    void setWindow(sf::RenderWindow *t_window);
+    void setWindow(sf::RenderWindow *window);
 
   private:
     void initCells();
     void copyGenerations();
-    void changeForNextGeneration(Cell &t_cell, uint32_t t_positionX,
-                                 uint32_t t_positonY);
+    void changeForNextGeneration(Cell &cell, uint32_t positionX,
+                                 uint32_t positonY);
 
-    uint32_t generateNumber(uint32_t t_max, uint32_t t_min);
-    uint32_t countAliveNeighboursAtPosition(uint32_t t_positionX,
-                                            uint32_t t_positonY);
+    uint32_t generateNumber(uint32_t max, uint32_t min);
+    uint32_t countAliveNeighboursAtPosition(uint32_t positionX,
+                                            uint32_t positonY);
 
-    cell::State getRandomCellState(uint32_t t_criteriaForAlive);
+    cell::State getRandomCellState(uint32_t criteriaForAlive);
 
   private:
     sf::RenderWindow *m_window;

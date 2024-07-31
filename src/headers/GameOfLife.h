@@ -31,9 +31,9 @@ class GameOfLife
     void initPlayButton();
     void initReshuffleButton();
 
-    void checkButtonState(const sf::Event &t_event);
+    void checkButtonState(const sf::Event &event);
 
-    void checkIfCloseButtonIsPressed(const sf::Event &t_event);
+    void checkIfCloseButtonIsPressed(const sf::Event &event);
 
     void checkIfResfuffleButtonIsPressed();
     void checkIfPauseButtonIsPressed();
