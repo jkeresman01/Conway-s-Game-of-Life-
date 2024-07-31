@@ -30,7 +30,8 @@ class Map
   private:
     void initCells();
     void copyGenerations();
-    void changeForNextGeneration(Cell &cell, uint32_t positionX,
+    void changeForNextGeneration(Cell &cell,
+                                 uint32_t positionX,
                                  uint32_t positonY);
 
     uint32_t generateNumber(uint32_t max, uint32_t min);
