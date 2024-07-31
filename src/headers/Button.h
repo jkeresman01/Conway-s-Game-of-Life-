@@ -2,12 +2,12 @@
 
 #include <filesystem>
 #include <string>
+#include <utility>
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window/Mouse.hpp>
-#include <utility>
 
 namespace gol
 {
