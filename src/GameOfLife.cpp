@@ -6,19 +6,18 @@ namespace gol
 {
 
 GameOfLife::GameOfLife()
-    : m_window(sf::VideoMode(screen::WIDTH, screen::HEIGHT), "", sf::Style::None),
-    m_state(game::RUNNING)
+    : m_window(sf::VideoMode(screen::WIDTH, screen::HEIGHT), "", sf::Style::None), m_state(game::RUNNING)
 {
     initGameOfLife();
 }
 
 void GameOfLife::initGameOfLife()
 {
-   initWindow(); 
-   initBackgound();
-   initTitle();
-   initButtons();
-   initMap();
+    initWindow();
+    initBackgound();
+    initTitle();
+    initButtons();
+    initMap();
 }
 
 void GameOfLife::initWindow()
@@ -77,7 +76,7 @@ void GameOfLife::initReshuffleButton()
 
 void GameOfLife::run()
 {
-    while (m_window.isOpen()) 
+    while (m_window.isOpen())
     {
         pollEvents();
         updateState();
@@ -89,7 +88,7 @@ void GameOfLife::pollEvents()
 {
     sf::Event event;
 
-    while (m_window.pollEvent(event)) 
+    while (m_window.pollEvent(event))
     {
         checkButtonState(event);
     }
@@ -114,7 +113,7 @@ void GameOfLife::checkIfCloseButtonIsPressed(const sf::Event &t_event)
 
 void GameOfLife::checkIfResfuffleButtonIsPressed()
 {
-    if(m_reshuffleButton.isPressed())
+    if (m_reshuffleButton.isPressed())
     {
         m_state = game::State::RESHUFFLED;
     }
@@ -122,7 +121,7 @@ void GameOfLife::checkIfResfuffleButtonIsPressed()
 
 void GameOfLife::checkIfPauseButtonIsPressed()
 {
-    if(m_pauseButton.isPressed())
+    if (m_pauseButton.isPressed())
     {
         m_state = game::State::PAUSED;
     }
@@ -130,7 +129,7 @@ void GameOfLife::checkIfPauseButtonIsPressed()
 
 void GameOfLife::checkIfPlayButtonIsPressed()
 {
-    if(m_playButton.isPressed())
+    if (m_playButton.isPressed())
     {
         m_state = game::State::RUNNING;
     }
@@ -144,7 +143,7 @@ void GameOfLife::updateState()
 
 void GameOfLife::reshuffleMap()
 {
-    if(m_state == game::State::RESHUFFLED)
+    if (m_state == game::State::RESHUFFLED)
     {
         m_map.reshuffle();
         m_state = game::State::RUNNING;
@@ -153,7 +152,7 @@ void GameOfLife::reshuffleMap()
 
 void GameOfLife::updateMap()
 {
-    if(isMapUpdateTime())
+    if (isMapUpdateTime())
     {
         m_map.update();
         m_clock.restart();
@@ -162,8 +161,7 @@ void GameOfLife::updateMap()
 
 bool GameOfLife::isMapUpdateTime()
 {
-    return m_clock.getElapsedTime().asSeconds() > game::REFRESH_TIME_SECONDS and
-           m_state != game::PAUSED;
+    return m_clock.getElapsedTime().asSeconds() > game::REFRESH_TIME_SECONDS and m_state != game::PAUSED;
 }
 
 void GameOfLife::draw()
@@ -193,5 +191,5 @@ void GameOfLife::displayEntities()
 {
     m_window.display();
 }
-    
-}
+
+} // namespace gol

@@ -5,9 +5,8 @@
 
 using namespace gol;
 
-class ButtonTest : public ::testing::Test 
+class ButtonTest : public ::testing::Test
 {
-protected:
+  protected:
     Button button;
 };
-

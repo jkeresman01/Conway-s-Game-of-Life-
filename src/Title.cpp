@@ -6,16 +6,13 @@
 namespace gol
 {
 
-void Title::create(sf::RenderWindow *t_window,
-                   const std::string &t_text,
-                   const std::filesystem::path &t_path)
+void Title::create(sf::RenderWindow *t_window, const std::string &t_text, const std::filesystem::path &t_path)
 {
     initText(t_path, t_text);
     setWindow(t_window);
 }
 
-void Title::initText(const std::filesystem::path &t_path,
-                     const std::string &t_text)
+void Title::initText(const std::filesystem::path &t_path, const std::string &t_text)
 {
     loadFont(t_path);
     setDefaultSettings(t_text);
@@ -33,7 +30,7 @@ void Title::loadFont(const std::filesystem::path &t_path)
 {
     bool isFontLoadedSuccessfully = m_font.loadFromFile(t_path);
 
-    if(!isFontLoadedSuccessfully)
+    if (!isFontLoadedSuccessfully)
     {
         LOG_ERROR("Failed to load font from " << t_path << "!");
         return;
@@ -46,11 +43,10 @@ void Title::draw()
 {
     m_window->draw(m_text);
 }
-    
+
 void Title::setWindow(sf::RenderWindow *t_window)
 {
     m_window = t_window;
 }
 
-}
-
+} // namespace gol

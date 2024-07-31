@@ -9,32 +9,29 @@
 
 namespace gol
 {
-    
+
 class Title
 {
-    public:
-        Title() = default;
+  public:
+    Title() = default;
 
-        void create(sf::RenderWindow *t_window,
-                    const std::string &t_text,
-                    const std::filesystem::path &t_path);
+    void create(sf::RenderWindow *t_window, const std::string &t_text, const std::filesystem::path &t_path);
 
-        void draw();
+    void draw();
 
-        void setWindow(sf::RenderWindow *t_window);
+    void setWindow(sf::RenderWindow *t_window);
 
-    private:
-        void initText(const std::filesystem::path &t_path,
-                      const std::string &t_text);
+  private:
+    void initText(const std::filesystem::path &t_path, const std::string &t_text);
 
-        void loadFont(const std::filesystem::path &t_path);
+    void loadFont(const std::filesystem::path &t_path);
 
-        void setDefaultSettings(const std::string &t_text);
+    void setDefaultSettings(const std::string &t_text);
 
-    private:
-        sf::RenderWindow *m_window;
-        sf::Font m_font;
-        sf::Text m_text;
+  private:
+    sf::RenderWindow *m_window;
+    sf::Font m_font;
+    sf::Text m_text;
 };
 
-}
+} // namespace gol
