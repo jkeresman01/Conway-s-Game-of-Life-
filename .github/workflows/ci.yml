@@ -29,6 +29,12 @@ jobs:
     - name: Format Code
       run: clang-format -i $(find . -name '*.cpp' -or -name '*.h') --style=microsoft
 
+    - name: Install Clang-Tidy
+      run: sudo apt-get install -y clang-tidy
+
+    - name: Lint Code
+      run: clang-tidy $(find . -name '*.cpp' -or -name '*.h')
+
     - name: Install GoogleTest
       run: sudo apt-get install -y libgtest-dev
 
