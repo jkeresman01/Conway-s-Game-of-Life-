@@ -6,7 +6,9 @@ namespace gol
 {
 
 GameOfLife::GameOfLife()
-    : m_window(sf::VideoMode(screen::WIDTH, screen::HEIGHT), "", sf::Style::None), m_state(game::RUNNING)
+    : m_window(sf::VideoMode(screen::WIDTH, screen::HEIGHT), "",
+               sf::Style::None),
+      m_state(game::RUNNING)
 {
     initGameOfLife();
 }
@@ -38,7 +40,8 @@ void GameOfLife::initMap()
 
 void GameOfLife::initTitle()
 {
-    m_title.create(&m_window, "Conway's Game of Life", "resources/fonts/FloppyDisk.ttf");
+    m_title.create(&m_window, "Conway's Game of Life",
+                   "resources/fonts/FloppyDisk.ttf");
 }
 
 void GameOfLife::initButtons()
@@ -161,7 +164,8 @@ void GameOfLife::updateMap()
 
 bool GameOfLife::isMapUpdateTime()
 {
-    return m_clock.getElapsedTime().asSeconds() > game::REFRESH_TIME_SECONDS and m_state != game::PAUSED;
+    return m_clock.getElapsedTime().asSeconds() > game::REFRESH_TIME_SECONDS and
+           m_state != game::PAUSED;
 }
 
 void GameOfLife::draw()

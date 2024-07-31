@@ -6,13 +6,15 @@
 namespace gol
 {
 
-void Title::create(sf::RenderWindow *t_window, const std::string &t_text, const std::filesystem::path &t_path)
+void Title::create(sf::RenderWindow *t_window, const std::string &t_text,
+                   const std::filesystem::path &t_path)
 {
     initText(t_path, t_text);
     setWindow(t_window);
 }
 
-void Title::initText(const std::filesystem::path &t_path, const std::string &t_text)
+void Title::initText(const std::filesystem::path &t_path,
+                     const std::string &t_text)
 {
     loadFont(t_path);
     setDefaultSettings(t_text);

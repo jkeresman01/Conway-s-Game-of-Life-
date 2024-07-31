@@ -14,7 +14,8 @@ class Background
   public:
     Background() = default;
 
-    void create(sf::RenderWindow *t_window, const std::filesystem::path &t_path);
+    void create(sf::RenderWindow *t_window,
+                const std::filesystem::path &t_path);
 
     void draw();
 
@@ -22,7 +23,8 @@ class Background
     void setWindow(sf::RenderWindow *t_window);
 
   private:
-    void initBackground(sf::RenderWindow *t_window, const std::filesystem::path &t_path);
+    void initBackground(sf::RenderWindow *t_window,
+                        const std::filesystem::path &t_path);
 
   private:
     sf::RenderWindow *m_window;

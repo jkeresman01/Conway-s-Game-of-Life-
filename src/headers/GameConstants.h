@@ -9,6 +9,7 @@ namespace gol
 
 namespace cell
 {
+
 constexpr float WIDTH = 10.0f;
 constexpr float HEIGHT = 10.0f;
 

@@ -42,7 +42,8 @@ void Cell::setPosition(float t_positionX, float t_positionY)
 void Cell::setState(cell::State t_state)
 {
     m_state = t_state;
-    m_state ? m_cell.setFillColor(cell::Colors::ALIVE) : m_cell.setFillColor(cell::Colors::DEAD);
+    m_state ? m_cell.setFillColor(cell::Colors::ALIVE)
+            : m_cell.setFillColor(cell::Colors::DEAD);
 }
 
 } // namespace gol

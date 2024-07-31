@@ -6,12 +6,14 @@
 namespace gol
 {
 
-void Background::create(sf::RenderWindow *t_window, const std::filesystem::path &t_path)
+void Background::create(sf::RenderWindow *t_window,
+                        const std::filesystem::path &t_path)
 {
     initBackground(t_window, t_path);
 }
 
-void Background::initBackground(sf::RenderWindow *t_window, const std::filesystem::path &t_path)
+void Background::initBackground(sf::RenderWindow *t_window,
+                                const std::filesystem::path &t_path)
 {
     setImage(t_path);
     setWindow(t_window);
