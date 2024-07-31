@@ -28,7 +28,7 @@ class Background
 
     private:
         sf::RenderWindow *m_window;
-        sf::Sprite m_backgound;
+        sf::Sprite m_background;
         sf::Texture m_texture;
 };
     
