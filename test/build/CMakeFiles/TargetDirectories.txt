@@ -1,3 +1,0 @@
-/home/josip/faks/semestar_2/SPA/domace_zadace/SPA_DZ_02/test/build/CMakeFiles/rebuild_cache.dir
-/home/josip/faks/semestar_2/SPA/domace_zadace/SPA_DZ_02/test/build/CMakeFiles/edit_cache.dir
-/home/josip/faks/semestar_2/SPA/domace_zadace/SPA_DZ_02/test/build/CMakeFiles/runTests.dir

@@ -33,7 +33,7 @@ jobs:
       run: sudo apt-get install -y clang-tidy
 
     - name: Lint Code
-      run: clang-tidy $(find . -name '*.cpp' -or -name '*.h')
+      run: clang-tidy $(find . -name '*.cpp' -or -name '*.h') -- -std=c++17
 
     - name: Install GoogleTest
       run: sudo apt-get install -y libgtest-dev
