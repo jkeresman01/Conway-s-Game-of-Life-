@@ -117,10 +117,14 @@ void Map::changeForNextGeneration(Cell &t_cell, uint32_t t_positionX, uint32_t t
 uint32_t Map::countAliveNeighboursAtPosition(uint32_t t_positionX, uint32_t t_positionY)
 {
     Cell neighbours[]{
-        m_currentGeneration[t_positionX - 1][t_positionY],     m_currentGeneration[t_positionX + 1][t_positionY],
-        m_currentGeneration[t_positionX][t_positionY - 1],     m_currentGeneration[t_positionX][t_positionY + 1],
-        m_currentGeneration[t_positionX - 1][t_positionY - 1], m_currentGeneration[t_positionX + 1][t_positionY + 1],
-        m_currentGeneration[t_positionX + 1][t_positionY - 1], m_currentGeneration[t_positionX - 1][t_positionY + 1],
+        m_currentGeneration[t_positionX - 1][t_positionY],
+        m_currentGeneration[t_positionX + 1][t_positionY],
+        m_currentGeneration[t_positionX][t_positionY - 1],
+        m_currentGeneration[t_positionX][t_positionY + 1],
+        m_currentGeneration[t_positionX - 1][t_positionY - 1],
+        m_currentGeneration[t_positionX + 1][t_positionY + 1],
+        m_currentGeneration[t_positionX + 1][t_positionY - 1],
+        m_currentGeneration[t_positionX - 1][t_positionY + 1],
     };
 
     return std::count_if(neighbours, neighbours + cell::NUMBER_OF_NEIGHBOURS,
