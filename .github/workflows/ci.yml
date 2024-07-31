@@ -27,7 +27,7 @@ jobs:
       run: sudo apt-get install -y clang-format
 
     - name: Format Code
-      run: clang-format -i $(find . -name '*.cpp' -or -name '*.h') --style=microsoft
+      run: clang-format -i $(find . -name '*.cpp' -or -name '*.h')
 
     - name: Install GoogleTest
       run: sudo apt-get install -y libgtest-dev
