@@ -6,7 +6,8 @@ namespace gol
 {
 
 GameOfLife::GameOfLife()
-    : m_window(sf::VideoMode(screen::WIDTH, screen::HEIGHT), "",
+    : m_window(sf::VideoMode(screen::WIDTH, screen::HEIGHT),
+               "",
                sf::Style::None),
       m_state(game::RUNNING)
 {

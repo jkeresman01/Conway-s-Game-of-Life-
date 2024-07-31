@@ -34,6 +34,7 @@ namespace Colors
 const sf::Color DEAD = sf::Color(250, 191, 106, 10);
 const sf::Color ALIVE = sf::Color(250, 191, 106, 180);
 } // namespace Colors
+
 } // namespace cell
 
 namespace map
@@ -47,19 +48,23 @@ enum Critera : uint8_t
     RANDOM = 20,
     ALL_ALIVE = 100,
 };
+
 } // namespace map
 
 namespace screen
 {
+
 constexpr uint32_t WIDTH = 1280;
 constexpr uint32_t HEIGHT = 720;
 
 constexpr uint32_t POSITION_X = 300;
 constexpr uint32_t POSITION_Y = 200;
+
 } // namespace screen
 
 namespace game
 {
+
 constexpr float REFRESH_TIME_SECONDS = 2.0f;
 
 constexpr uint32_t FRAMES_PER_SECOND = 60;
@@ -77,29 +82,36 @@ enum State : uint8_t
     RUNNING = 1,
     RESHUFFLED = 2,
 };
+
 } // namespace game
 
 namespace background
 {
+
 constexpr float SCALE_X = 0.3f;
 constexpr float SCALE_Y = 0.3f;
+
 } // namespace background
 
 namespace title
 {
+
 constexpr uint32_t POSITION_X = 50;
 constexpr uint32_t POSITION_Y = 10;
 
 constexpr uint32_t FONT_SIZE = 66;
+
 } // namespace title
 
 namespace button
 {
+
 constexpr uint32_t POSITION_X = screen::WIDTH - 20;
 constexpr uint32_t POSITION_Y = 40;
 
 constexpr float INCREASE_FACTOR = 1.1f;
 constexpr float SCALE = 1.2f;
+
 } // namespace button
 
 } // namespace gol
