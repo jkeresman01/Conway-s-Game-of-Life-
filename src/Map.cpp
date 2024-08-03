@@ -18,9 +18,8 @@ void Map::initCells()
         for (size_t j = 0; j < map::COLUMNS; ++j)
         {
             m_currentGeneration[i][j].setWindow(m_window);
-            m_currentGeneration[i][j].setPosition(
-                    cell::START_POSITION_X + (j * cell::WIDTH),
-                    cell::START_POSITION_Y + (i * cell::HEIGHT));
+            m_currentGeneration[i][j].setPosition(cell::START_POSITION_X + (j * cell::WIDTH),
+                                                  cell::START_POSITION_Y + (i * cell::HEIGHT));
 
             m_nextGeneration[i][j] = m_currentGeneration[i][j];
         }

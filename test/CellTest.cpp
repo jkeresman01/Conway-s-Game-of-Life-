@@ -18,7 +18,7 @@ TEST_F(CellTest, AfterCellIsCreated_WillCellBeDead)
 
 TEST_F(CellTest, AfterCellIsCreate_WillCellColorBeTransparentDead)
 {
-    EXPECT_EQ(cell.getColor(), cell::Colors::DEAD);
+    EXPECT_EQ(cell.getColor(), cell::Colors::TRANSPARENT_DEAD);
 }
 
 TEST_F(CellTest, AfterCellStateChangesToAlive_WillCellStateBeAlive)
@@ -30,5 +30,5 @@ TEST_F(CellTest, AfterCellStateChangesToAlive_WillCellStateBeAlive)
 TEST_F(CellTest, AfterCellStateChangesToAlive_WillCellColorBeYellowAlive)
 {
     cell.setState(cell::State::ALIVE);
-    EXPECT_EQ(cell.getColor(), cell::Colors::ALIVE);
+    EXPECT_EQ(cell.getColor(), cell::Colors::YELLLOW_ALIVE);
 }

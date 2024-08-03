@@ -31,8 +31,8 @@ enum State : uint8_t
 
 namespace Colors
 {
-const sf::Color DEAD = sf::Color(250, 191, 106, 10);
-const sf::Color ALIVE = sf::Color(250, 191, 106, 180);
+const sf::Color TRANSPARENT_DEAD = sf::Color(250, 191, 106, 10);
+const sf::Color YELLLOW_ALIVE = sf::Color(250, 191, 106, 180);
 } // namespace Colors
 
 } // namespace cell
