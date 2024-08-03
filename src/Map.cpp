@@ -94,7 +94,7 @@ void Map::changeForNextGeneration(Cell &cell, uint32_t positionX, uint32_t posit
     {
         m_nextGeneration[positionX][positionY].setState(cell::State::DEAD);
     }
-    else if (!cell.isAlive() and aliveNeighbours == game::Criteria::BORN)
+    else if (!cell.isAlive() and aliveNeighbours == game::Criteria::REPRODUCTION)
     {
         m_nextGeneration[positionX][positionY].setState(cell::State::ALIVE);
     }

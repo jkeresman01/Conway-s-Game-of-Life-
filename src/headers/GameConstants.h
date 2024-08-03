@@ -72,7 +72,7 @@ constexpr uint32_t FRAMES_PER_SECOND = 60;
 enum Criteria : uint8_t
 {
     UNDERPOPULATION = 2,
-    BORN = 3,
+    REPRODUCTION = 3,
     OVERPOPULATION = 4,
 };
 
