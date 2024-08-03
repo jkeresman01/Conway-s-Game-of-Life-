@@ -13,8 +13,7 @@ void Title::create(sf::RenderWindow *window, const std::string &text,
     setWindow(window);
 }
 
-void Title::initText(const std::filesystem::path &path,
-                     const std::string &text)
+void Title::initText(const std::filesystem::path &path, const std::string &text)
 {
     loadFont(path);
     setDefaultSettings(text);

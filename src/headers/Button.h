@@ -17,8 +17,7 @@ class Button
   public:
     Button() = default;
 
-    void create(sf::RenderWindow *window,
-                const std::filesystem::path &path);
+    void create(sf::RenderWindow *window, const std::filesystem::path &path);
 
     void draw();
 

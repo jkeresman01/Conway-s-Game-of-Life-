@@ -23,8 +23,7 @@ class Title
     void setWindow(sf::RenderWindow *window);
 
   private:
-    void initText(const std::filesystem::path &path,
-                  const std::string &text);
+    void initText(const std::filesystem::path &path, const std::string &text);
 
     void loadFont(const std::filesystem::path &path);
 
