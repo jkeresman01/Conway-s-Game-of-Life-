@@ -7,8 +7,7 @@ namespace gol
 
 void Map::create(sf::RenderWindow *window)
 {
-    m_window = window;
-
+    setWindow(window);
     initCells();
 }
 
@@ -19,8 +18,9 @@ void Map::initCells()
         for (size_t j = 0; j < map::COLUMNS; ++j)
         {
             m_currentGeneration[i][j].setWindow(m_window);
-            m_currentGeneration[i][j].setPosition(cell::START_POSITION_X + (j * cell::WIDTH),
-                                                  cell::START_POSITION_Y + (i * cell::HEIGHT));
+            m_currentGeneration[i][j].setPosition(
+                    cell::START_POSITION_X + (j * cell::WIDTH),
+                    cell::START_POSITION_Y + (i * cell::HEIGHT));
 
             m_nextGeneration[i][j] = m_currentGeneration[i][j];
         }
@@ -36,16 +36,6 @@ void Map::draw()
             m_currentGeneration[i][j].draw();
         }
     }
-}
-
-Cell *Map::getCellAtPosition_CurrentGeneration(uint32_t positionX, uint32_t positonY)
-{
-    return &m_currentGeneration[positionX][positonY];
-}
-
-Cell *Map::getCellAtPosition_NextGeneration(uint32_t positionX, uint32_t positonY)
-{
-    return &m_nextGeneration[positionX][positonY];
 }
 
 void Map::update()
@@ -129,6 +119,21 @@ uint32_t Map::countAliveNeighboursAtPosition(uint32_t positionX, uint32_t positi
 
     return std::count_if(neighbours, neighbours + cell::NUMBER_OF_NEIGHBOURS,
                          [](Cell &cell) { return cell.isAlive(); });
+}
+
+Cell *Map::getCellAtPosition_CurrentGeneration(uint32_t positionX, uint32_t positionY)
+{
+    return &m_currentGeneration[positionX][positionY];
+}
+
+Cell *Map::getCellAtPosition_NextGeneration(uint32_t positionX, uint32_t positionY)
+{
+    return &m_nextGeneration[positionX][positionY];
+}
+
+void Map::setWindow(sf::RenderWindow *window)
+{
+    m_window = window;
 }
 
 } // namespace gol
