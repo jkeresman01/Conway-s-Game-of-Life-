@@ -21,11 +21,10 @@ set(SOURCE_FILES
 )
 
 set(TEST_FILES
-    ButtonTest.cpp
-    CellTest.cpp
+    Test.cpp
     MapTest.cpp
 )
 
-add_executable(runTests ${SOURCE_FILES} ${TEST_FILES})
+add_executable(run-tests ${SOURCE_FILES} ${TEST_FILES})
 
-target_link_libraries(runTests ${GTEST_LIBRARIES} pthread sfml-graphics sfml-window sfml-system)
+target_link_libraries(run-tests ${GTEST_LIBRARIES} pthread sfml-graphics sfml-window sfml-system)

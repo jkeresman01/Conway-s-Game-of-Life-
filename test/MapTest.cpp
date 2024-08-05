@@ -5,13 +5,6 @@
 
 using namespace gol;
 
-int main(int argc, char **argv)
-{
-    ::testing::InitGoogleTest(&argc, argv);
-
-    return RUN_ALL_TESTS();
-}
-
 class MapTest : public ::testing::Test
 {
   protected:
