@@ -28,7 +28,7 @@ class Map
   private:
     void initCells();
     void copyGenerations();
-    void changeForNextGeneration(Cell &cell, uint32_t positionX, uint32_t positionY);
+    void updateCellState(uint32_t positionX, uint32_t positionY);
 
     uint32_t generateNumber(uint32_t max, uint32_t min);
     uint32_t countAliveNeighboursAtPosition(uint32_t positionX, uint32_t positionY);
