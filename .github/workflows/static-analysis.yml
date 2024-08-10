@@ -1,0 +1,22 @@
+name: Static analysis
+
+on:
+  push:
+    branches: main
+
+jobs:
+  cppcheck:
+    name: Static analysis
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install cppcheck
+      run: sudo apt-get install -y cppcheck
+
+    - name: Static Anlaysis with cppcheck
+      run: |
+        cppcheck --enable=all . --suppress=missingIncludeSystem --suppress=toomanyconfigs
+
