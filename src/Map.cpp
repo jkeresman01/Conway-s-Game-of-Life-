@@ -85,7 +85,7 @@ uint32_t Map::countAliveNeighboursAtPosition(uint32_t positionX, uint32_t positi
     };
 
     return std::count_if(neighbours, neighbours + cell::NUMBER_OF_NEIGHBOURS,
-                         [](Cell &cell) { return cell.isAlive(); });
+                         [](const Cell &cell) { return cell.isAlive(); });
 }
 
 void Map::copyGenerations()
