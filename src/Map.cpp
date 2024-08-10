@@ -53,15 +53,14 @@ void Map::update()
 void Map::updateCellState(uint32_t positionX, uint32_t positionY)
 {
     uint32_t aliveNeighbours = countAliveNeighboursAtPosition(positionX, positionY);
+    Cell cell = m_currentGeneration[positionX][positionY];
 
-    if (m_currentGeneration[positionX][positionY].isAlive() and
-            aliveNeighbours >= game::Criteria::OVERPOPULATION or
+    if (cell.isAlive() and aliveNeighbours >= game::Criteria::OVERPOPULATION or
         aliveNeighbours < game::Criteria::UNDERPOPULATION)
     {
         m_nextGeneration[positionX][positionY].setState(cell::State::DEAD);
     }
-    else if (!m_currentGeneration[positionX][positionY].isAlive() and
-             aliveNeighbours == game::Criteria::REPRODUCTION)
+    else if (!cell.isAlive() and aliveNeighbours == game::Criteria::REPRODUCTION)
     {
         m_nextGeneration[positionX][positionY].setState(cell::State::ALIVE);
     }
