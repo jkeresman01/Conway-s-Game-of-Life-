@@ -24,11 +24,6 @@ bool Cell::isAlive() const
     return m_state;
 }
 
-sf::Color Cell::getColor()
-{
-    return m_cell.getFillColor();
-}
-
 void Cell::setWindow(sf::RenderWindow *window)
 {
     m_window = window;

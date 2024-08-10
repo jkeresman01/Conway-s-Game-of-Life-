@@ -22,7 +22,6 @@ class Cell
     void setWindow(sf::RenderWindow *window);
 
     std::pair<uint32_t, uint32_t> getPosition();
-    sf::Color getColor();
 
   private:
     sf::RenderWindow *m_window;
