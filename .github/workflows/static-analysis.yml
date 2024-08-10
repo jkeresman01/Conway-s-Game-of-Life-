@@ -20,7 +20,6 @@ jobs:
       run: |
         cppcheck --enable=all . \
         --suppress=missingIncludeSystem \
-        --suppress=toomanyconfigs \
         --suppress=unusedFunction:test/MapTest.cpp 2> cppcheck-report.txt
         if [ -s cppcheck-report.txt ]; then
           echo "Reported issue: "
