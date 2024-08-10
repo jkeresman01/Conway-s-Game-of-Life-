@@ -43,7 +43,7 @@ void Map::update()
     {
         for (size_t j = 1; j < map::COLUMNS - 1; ++j)
         {
-            updateCellState( i, j);
+            updateCellState(i, j);
         }
     }
 
@@ -54,12 +54,14 @@ void Map::updateCellState(uint32_t positionX, uint32_t positionY)
 {
     uint32_t aliveNeighbours = countAliveNeighboursAtPosition(positionX, positionY);
 
-    if (m_currentGeneration[positionX][positionY].isAlive() and aliveNeighbours >= game::Criteria::OVERPOPULATION or
+    if (m_currentGeneration[positionX][positionY].isAlive() and
+            aliveNeighbours >= game::Criteria::OVERPOPULATION or
         aliveNeighbours < game::Criteria::UNDERPOPULATION)
     {
         m_nextGeneration[positionX][positionY].setState(cell::State::DEAD);
     }
-    else if (!m_currentGeneration[positionX][positionY].isAlive() and aliveNeighbours == game::Criteria::REPRODUCTION)
+    else if (!m_currentGeneration[positionX][positionY].isAlive() and
+             aliveNeighbours == game::Criteria::REPRODUCTION)
     {
         m_nextGeneration[positionX][positionY].setState(cell::State::ALIVE);
     }
@@ -85,7 +87,6 @@ uint32_t Map::countAliveNeighboursAtPosition(uint32_t positionX, uint32_t positi
     return std::count_if(neighbours, neighbours + cell::NUMBER_OF_NEIGHBOURS,
                          [](Cell &cell) { return cell.isAlive(); });
 }
-
 
 void Map::copyGenerations()
 {
