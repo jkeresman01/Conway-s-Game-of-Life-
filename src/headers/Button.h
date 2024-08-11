@@ -24,8 +24,6 @@ class Button
 
     void setScale(float scale);
 
-    std::pair<uint32_t, uint32_t> getPosition() const;
-
   private:
     void loadTexture(const std::filesystem::path &path);
     void setStartPosition();

@@ -1,7 +1,5 @@
 #include "headers/Button.h"
 
-#include <utility>
-
 #include "headers/GameConstants.h"
 #include "headers/Logger.h"
 
@@ -49,11 +47,6 @@ void Button::loadTexture(const std::filesystem::path &path)
 
     m_button.setTexture(m_texture);
     m_texture.setSmooth(true);
-}
-
-std::pair<uint32_t, uint32_t> Button::getPosition() const
-{
-    return std::make_pair(m_button.getPosition().x, m_button.getPosition().y);
 }
 
 bool Button::isPressed(sf::RenderWindow &window)
