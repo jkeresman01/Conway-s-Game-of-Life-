@@ -14,7 +14,7 @@ set(SOURCE_FILES
     src/GameOfLife.cpp
     src/Main.cpp
     src/Map.cpp
-    src/Title.cpp
+    src/Label.cpp
 )
 
 add_executable(game-of-life ${SOURCE_FILES})

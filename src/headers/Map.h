@@ -12,18 +12,14 @@ namespace gol
 class Map
 {
   public:
-    Map() = default;
+    Map();
 
-    void draw();
-
-    void create(sf::RenderWindow *window);
+    void render(sf::RenderWindow &window) const;
     void update();
     void reshuffle();
 
     Cell *getCellAtPosition_CurrentGeneration(uint32_t positionX, uint32_t positionY);
     Cell *getCellAtPosition_NextGeneration(uint32_t positionX, uint32_t positionY);
-
-    void setWindow(sf::RenderWindow *window);
 
   private:
     void initCells();
@@ -31,13 +27,11 @@ class Map
     void updateCellState(uint32_t positionX, uint32_t positionY);
 
     uint32_t generateNumber(uint32_t max, uint32_t min);
-    uint32_t countAliveNeighboursAtPosition(uint32_t positionX, uint32_t positionY);
+    uint32_t countAliveNeighbours(uint32_t positionX, uint32_t positionY);
 
     cell::State getRandomCellState(uint32_t criteriaForAlive);
 
   private:
-    sf::RenderWindow *m_window;
-
     Cell m_currentGeneration[map::ROWS][map::COLUMNS];
     Cell m_nextGeneration[map::ROWS][map::COLUMNS];
 };

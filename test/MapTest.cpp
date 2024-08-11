@@ -9,11 +9,6 @@ class MapTest : public ::testing::Test
 {
   protected:
     Map map;
-
-    void SetUp() override
-    {
-        map.create(nullptr);
-    }
 };
 
 TEST_F(MapTest, AfterMapIsCreated_WillCellsBeDeadInCurrentGeneration)

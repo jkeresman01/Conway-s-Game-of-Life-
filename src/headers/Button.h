@@ -15,34 +15,26 @@ namespace gol
 class Button
 {
   public:
-    Button() = default;
+    explicit Button(const std::filesystem::path &filepath);
 
-    void create(sf::RenderWindow *window, const std::filesystem::path &path);
-
-    void draw();
+    void render(sf::RenderWindow &window) const;
 
     void move(float positionX, float positionY);
-
-    bool isPressed();
+    bool isPressed(sf::RenderWindow &window);
 
     void setScale(float scale);
-    void setTexture(const std::filesystem::path &path);
-    void setWindow(sf::RenderWindow *window);
 
-    std::pair<uint32_t, uint32_t> getPosition();
+    std::pair<uint32_t, uint32_t> getPosition() const;
+    ;
 
   private:
-    void initButton(const std::filesystem::path &path);
-
     void loadTexture(const std::filesystem::path &path);
     void setStartPosition();
 
   private:
-    sf::RenderWindow *m_window;
     sf::Texture m_texture;
     sf::Sprite m_button;
-
-    float m_scaleFactor;
+    float m_scale;
 };
 
 } // namespace gol

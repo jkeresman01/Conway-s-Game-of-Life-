@@ -5,9 +5,8 @@
 namespace gol
 {
 
-void Map::create(sf::RenderWindow *window)
+Map::Map()
 {
-    setWindow(window);
     initCells();
 }
 
@@ -17,22 +16,20 @@ void Map::initCells()
     {
         for (size_t j = 0; j < map::COLUMNS; ++j)
         {
-            m_currentGeneration[i][j].setWindow(m_window);
             m_currentGeneration[i][j].setPosition(cell::START_POSITION_X + (j * cell::WIDTH),
                                                   cell::START_POSITION_Y + (i * cell::HEIGHT));
-
             m_nextGeneration[i][j] = m_currentGeneration[i][j];
         }
     }
 }
 
-void Map::draw()
+void Map::render(sf::RenderWindow &window) const
 {
     for (size_t i = 0; i < map::ROWS; ++i)
     {
         for (size_t j = 0; j < map::COLUMNS; ++j)
         {
-            m_currentGeneration[i][j].draw();
+            m_currentGeneration[i][j].render(window);
         }
     }
 }
@@ -52,7 +49,7 @@ void Map::update()
 
 void Map::updateCellState(uint32_t positionX, uint32_t positionY)
 {
-    uint32_t aliveNeighbours = countAliveNeighboursAtPosition(positionX, positionY);
+    uint32_t aliveNeighbours = countAliveNeighbours(positionX, positionY);
     Cell cell = m_currentGeneration[positionX][positionY];
 
     if (cell.isAlive() and aliveNeighbours >= game::Criteria::OVERPOPULATION or
@@ -70,7 +67,7 @@ void Map::updateCellState(uint32_t positionX, uint32_t positionY)
     }
 }
 
-uint32_t Map::countAliveNeighboursAtPosition(uint32_t positionX, uint32_t positionY)
+uint32_t Map::countAliveNeighbours(uint32_t positionX, uint32_t positionY)
 {
     Cell neighbours[]{
         m_currentGeneration[positionX - 1][positionY],
@@ -129,11 +126,6 @@ Cell *Map::getCellAtPosition_CurrentGeneration(uint32_t positionX, uint32_t posi
 Cell *Map::getCellAtPosition_NextGeneration(uint32_t positionX, uint32_t positionY)
 {
     return &m_nextGeneration[positionX][positionY];
-}
-
-void Map::setWindow(sf::RenderWindow *window)
-{
-    m_window = window;
 }
 
 } // namespace gol

@@ -12,20 +12,14 @@ namespace gol
 class Background
 {
   public:
-    Background() = default;
+    explicit Background(const std::filesystem::path &filepath);
 
-    void create(sf::RenderWindow *window, const std::filesystem::path &path);
-
-    void draw();
-
-    void setImage(const std::filesystem::path &path);
-    void setWindow(sf::RenderWindow *window);
+    void render(sf::RenderWindow &window) const;
 
   private:
-    void initBackground(sf::RenderWindow *window, const std::filesystem::path &path);
+    void loadTexture(const std::filesystem::path &filepath);
 
   private:
-    sf::RenderWindow *m_window;
     sf::Sprite m_background;
     sf::Texture m_texture;
 };

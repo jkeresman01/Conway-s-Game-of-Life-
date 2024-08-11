@@ -6,23 +6,17 @@
 namespace gol
 {
 
-void Background::create(sf::RenderWindow *window, const std::filesystem::path &path)
+Background::Background(const std::filesystem::path &filepath)
 {
-    initBackground(window, path);
+    loadTexture(filepath);
 }
 
-void Background::initBackground(sf::RenderWindow *window, const std::filesystem::path &path)
+void Background::render(sf::RenderWindow &window) const
 {
-    setImage(path);
-    setWindow(window);
+    window.draw(m_background);
 }
 
-void Background::draw()
-{
-    m_window->draw(m_background);
-}
-
-void Background::setImage(const std::filesystem::path &path)
+void Background::loadTexture(const std::filesystem::path &path)
 {
     bool isTextureLoadedSuccessfully = m_texture.loadFromFile(path.string());
 
@@ -34,11 +28,6 @@ void Background::setImage(const std::filesystem::path &path)
 
     m_background.setTexture(m_texture);
     m_background.setScale(background::SCALE_X, background::SCALE_Y);
-}
-
-void Background::setWindow(sf::RenderWindow *window)
-{
-    m_window = window;
 }
 
 } // namespace gol

@@ -17,7 +17,7 @@ set(SOURCE_FILES
     ../src/Cell.cpp
     ../src/GameOfLife.cpp
     ../src/Map.cpp
-    ../src/Title.cpp
+    ../src/Label.cpp
 )
 
 set(TEST_FILES

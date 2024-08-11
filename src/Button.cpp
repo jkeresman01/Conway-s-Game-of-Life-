@@ -8,20 +8,9 @@
 namespace gol
 {
 
-void Button::create(sf::RenderWindow *window, const std::filesystem::path &path)
+Button::Button(const std::filesystem::path &path)
 {
-    initButton(path);
-    setWindow(window);
-}
-
-void Button::setWindow(sf::RenderWindow *window)
-{
-    m_window = window;
-}
-
-void Button::initButton(const std::filesystem::path &path)
-{
-    setTexture(path);
+    loadTexture(path);
     setStartPosition();
     setScale(button::SCALE);
 }
@@ -32,9 +21,9 @@ void Button::setStartPosition()
     m_button.setPosition(button::POSITION_X, button::POSITION_Y);
 }
 
-void Button::draw()
+void Button::render(sf::RenderWindow &window) const
 {
-    m_window->draw(m_button);
+    window.draw(m_button);
 }
 
 void Button::move(float positionX, float positionY)
@@ -42,13 +31,13 @@ void Button::move(float positionX, float positionY)
     m_button.move(positionX, positionY);
 }
 
-void Button::setScale(float scaleFactor)
+void Button::setScale(float scale)
 {
-    m_scaleFactor = scaleFactor;
-    m_button.setScale(m_scaleFactor, m_scaleFactor);
+    m_scale = scale;
+    m_button.setScale(m_scale, m_scale);
 }
 
-void Button::setTexture(const std::filesystem::path &path)
+void Button::loadTexture(const std::filesystem::path &path)
 {
     bool isTextureLoadedSuccessfully = m_texture.loadFromFile(path.string());
 
@@ -62,22 +51,22 @@ void Button::setTexture(const std::filesystem::path &path)
     m_texture.setSmooth(true);
 }
 
-std::pair<uint32_t, uint32_t> Button::getPosition()
+std::pair<uint32_t, uint32_t> Button::getPosition() const
 {
     return std::make_pair(m_button.getPosition().x, m_button.getPosition().y);
 }
 
-bool Button::isPressed()
+bool Button::isPressed(sf::RenderWindow &window)
 {
-    auto mousePosition = sf::Mouse::getPosition(*m_window);
-    auto translatedPosition = m_window->mapPixelToCoords(mousePosition);
+    auto mousePosition = sf::Mouse::getPosition(window);
+    auto translatedPosition = window.mapPixelToCoords(mousePosition);
 
     bool isMouseOnButton = m_button.getGlobalBounds().contains(translatedPosition);
     bool isMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 
-    isMouseOnButton ? m_button.setScale(m_scaleFactor * button::INCREASE_FACTOR,
-                                        m_scaleFactor * button::INCREASE_FACTOR)
-                    : m_button.setScale(m_scaleFactor, m_scaleFactor);
+    isMouseOnButton
+        ? m_button.setScale(m_scale * button::INCREASE_FACTOR, m_scale * button::INCREASE_FACTOR)
+        : m_button.setScale(m_scale, m_scale);
 
     return isMousePressed and isMouseOnButton;
 }
