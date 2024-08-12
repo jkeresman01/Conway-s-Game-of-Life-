@@ -1,6 +1,7 @@
 #include "headers/Map.h"
 
 #include <algorithm>
+#include <cstring>
 
 namespace gol
 {

@@ -1,22 +1,19 @@
 #include "headers/Button.h"
 
 #include "headers/GameConstants.h"
-#include "headers/Logger.h"
+#include "headers/ResourceManager.h"
 
 namespace gol
 {
 
-Button::Button(const std::filesystem::path &path)
+Button::Button(const std::filesystem::path &filepath)
 {
-    loadTexture(path);
-    setStartPosition();
-    setScale(button::SCALE);
-}
-
-void Button::setStartPosition()
-{
+    m_button.setTexture(ResourceManager::Instance().getTexture(filepath));
+    m_texture.setSmooth(true);
     m_button.setOrigin(m_button.getGlobalBounds().width / 2, m_button.getGlobalBounds().height / 2);
     m_button.setPosition(button::POSITION_X, button::POSITION_Y);
+
+    setScale(button::SCALE);
 }
 
 void Button::render(sf::RenderWindow &window) const
@@ -33,20 +30,6 @@ void Button::setScale(float scale)
 {
     m_scale = scale;
     m_button.setScale(m_scale, m_scale);
-}
-
-void Button::loadTexture(const std::filesystem::path &path)
-{
-    bool isTextureLoadedSuccessfully = m_texture.loadFromFile(path.string());
-
-    if (!isTextureLoadedSuccessfully)
-    {
-        LOG_ERROR("Failed to load texture from " << path.string() << "!")
-        return;
-    }
-
-    m_button.setTexture(m_texture);
-    m_texture.setSmooth(true);
 }
 
 bool Button::isPressed(sf::RenderWindow &window)

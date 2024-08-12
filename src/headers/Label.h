@@ -18,10 +18,6 @@ class Label
     void render(sf::RenderWindow &window) const;
 
   private:
-    void loadFont(const std::filesystem::path &path);
-    void setInitSettings(const std::string &text);
-
-  private:
     sf::Font m_font;
     sf::Text m_text;
 };

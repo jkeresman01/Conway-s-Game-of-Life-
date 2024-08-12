@@ -4,6 +4,7 @@
 #include "Button.h"
 #include "Label.h"
 #include "Map.h"
+#include "ResourceManager.h"
 
 #include <SFML/System/Clock.hpp>
 
@@ -33,6 +34,7 @@ class GameOfLife
     Button m_playButton;
     Label m_title;
     Map m_map;
+    ResourceManager m_resourceManager;
 
     game::State m_state;
 };

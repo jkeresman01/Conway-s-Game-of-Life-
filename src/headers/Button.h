@@ -19,14 +19,10 @@ class Button
 
     void render(sf::RenderWindow &window) const;
 
-    void move(float positionX, float positionY);
     bool isPressed(sf::RenderWindow &window);
+    void move(float positionX, float positionY);
 
     void setScale(float scale);
-
-  private:
-    void loadTexture(const std::filesystem::path &path);
-    void setStartPosition();
 
   private:
     sf::Texture m_texture;
