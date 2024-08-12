@@ -13,6 +13,7 @@ include_directories(../src/headers)
 
 set(SOURCE_FILES
     ../src/Background.cpp
+    ../src/ResourceManager.cpp
     ../src/Button.cpp
     ../src/Cell.cpp
     ../src/GameOfLife.cpp
