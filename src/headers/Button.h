@@ -6,7 +6,6 @@
 
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/Texture.hpp>
 #include <SFML/Window/Mouse.hpp>
 
 namespace gol
@@ -25,7 +24,6 @@ class Button
     void setScale(float scale);
 
   private:
-    sf::Texture m_texture;
     sf::Sprite m_button;
     float m_scale;
 };

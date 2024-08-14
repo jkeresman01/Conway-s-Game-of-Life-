@@ -3,7 +3,6 @@
 #include <filesystem>
 #include <string>
 
-#include <SFML/Graphics/Font.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Text.hpp>
 
@@ -18,7 +17,6 @@ class Label
     void render(sf::RenderWindow &window) const;
 
   private:
-    sf::Font m_font;
     sf::Text m_text;
 };
 
