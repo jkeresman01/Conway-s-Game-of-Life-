@@ -52,11 +52,11 @@ void Map::updateCellState(uint32_t positionX, uint32_t positionY)
     if (cell.isAlive() and aliveNeighbours >= State::OVERPOPULATION or
         aliveNeighbours < State::UNDERPOPULATION)
     {
-        m_nextGeneration[positionX][positionY].setState(cell::State::DEAD);
+        m_nextGeneration[positionX][positionY].setState(cell::DEAD);
     }
     else if (!cell.isAlive() and aliveNeighbours == State::REPRODUCTION)
     {
-        m_nextGeneration[positionX][positionY].setState(cell::State::ALIVE);
+        m_nextGeneration[positionX][positionY].setState(cell::ALIVE);
     }
     else
     {

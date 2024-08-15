@@ -9,7 +9,6 @@ namespace gol
 Button::Button(const std::filesystem::path &filepath)
 {
     m_button.setTexture(ResourceManager::Instance().getTexture(filepath));
-    m_texture.setSmooth(true);
     m_button.setOrigin(m_button.getGlobalBounds().width / 2, m_button.getGlobalBounds().height / 2);
     m_button.setPosition(button::POSITION_X, button::POSITION_Y);
 
