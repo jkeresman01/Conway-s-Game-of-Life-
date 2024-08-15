@@ -1,4 +1,5 @@
 #include "headers/Map.h"
+#include "headers/Random.h"
 
 #include <algorithm>
 #include <cstring>
@@ -7,11 +8,6 @@ namespace gol
 {
 
 Map::Map()
-{
-    initCells();
-}
-
-void Map::initCells()
 {
     for (size_t i = 0; i < map::ROWS; ++i)
     {
@@ -108,14 +104,9 @@ void Map::reshuffle()
     }
 }
 
-uint32_t Map::generateNumber(uint32_t max, uint32_t min)
-{
-    return rand() % (max - min + 1) + min;
-}
-
 cell::State Map::getRandomCellState(uint32_t criteriaForAlive)
 {
-    uint32_t possiblityForAlive = generateNumber(100, 1);
+    uint32_t possiblityForAlive = Random::generate(100);
     return possiblityForAlive <= criteriaForAlive ? cell::State::ALIVE : cell::State::DEAD;
 }
 
