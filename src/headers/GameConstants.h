@@ -62,19 +62,18 @@ constexpr uint32_t POSITION_Y = 200;
 
 } // namespace screen
 
-namespace game
-{
-
-constexpr float REFRESH_TIME_SECONDS = 2.0f;
-
-constexpr uint32_t FRAMES_PER_SECOND = 60;
-
-enum Criteria : uint8_t
+enum State : uint8_t
 {
     UNDERPOPULATION = 2,
     REPRODUCTION = 3,
     OVERPOPULATION = 4,
 };
+
+namespace game
+{
+
+constexpr float REFRESH_TIME_SECONDS = 2.0f;
+constexpr uint32_t FRAMES_PER_SECOND = 60;
 
 enum State : uint8_t
 {

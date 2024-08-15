@@ -49,12 +49,11 @@ void Map::updateCellState(uint32_t positionX, uint32_t positionY)
     uint32_t aliveNeighbours = countAliveNeighbours(positionX, positionY);
     Cell cell = m_currentGeneration[positionX][positionY];
 
-    if (cell.isAlive() and aliveNeighbours >= game::Criteria::OVERPOPULATION or
-        aliveNeighbours < game::Criteria::UNDERPOPULATION)
+    if (cell.isAlive() and aliveNeighbours >= State::OVERPOPULATION or aliveNeighbours < State::UNDERPOPULATION)
     {
         m_nextGeneration[positionX][positionY].setState(cell::State::DEAD);
     }
-    else if (!cell.isAlive() and aliveNeighbours == game::Criteria::REPRODUCTION)
+    else if (!cell.isAlive() and aliveNeighbours == State::REPRODUCTION)
     {
         m_nextGeneration[positionX][positionY].setState(cell::State::ALIVE);
     }
@@ -98,8 +97,8 @@ void Map::reshuffle()
     {
         for (size_t j = 1; j < map::COLUMNS - 1; ++j)
         {
-            cell::State randomCellState = getRandomCellState(map::Critera::RANDOM);
-            m_currentGeneration[i][j].setState(randomCellState);
+            cell::State cellState = getRandomCellState(map::RANDOM);
+            m_currentGeneration[i][j].setState(cellState);
         }
     }
 }
@@ -107,7 +106,7 @@ void Map::reshuffle()
 cell::State Map::getRandomCellState(uint32_t criteriaForAlive)
 {
     uint32_t possiblityForAlive = Random::generate(100);
-    return possiblityForAlive <= criteriaForAlive ? cell::State::ALIVE : cell::State::DEAD;
+    return possiblityForAlive <= criteriaForAlive ? cell::ALIVE : cell::DEAD;
 }
 
 Cell *Map::getCellAtPosition_CurrentGeneration(uint32_t positionX, uint32_t positionY)
