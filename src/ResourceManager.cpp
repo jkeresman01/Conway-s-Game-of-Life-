@@ -7,8 +7,9 @@ namespace gol
 
 const sf::Texture &ResourceManager::getTexture(const std::filesystem::path &filepath)
 {
-    std::unordered_map<std::string, sf::Texture>::const_iterator it;
-    if (it = m_textures.find(filepath.string()); it == m_textures.end())
+    std::unordered_map<std::string, sf::Texture>::const_iterator it =
+        m_textures.find(filepath.string());
+    if (it == m_textures.end())
     {
         loadTexture(filepath);
         it = m_textures.find(filepath);
@@ -20,7 +21,9 @@ void ResourceManager::loadTexture(const std::filesystem::path &filepath)
 {
     sf::Texture texture;
 
-    if (texture.loadFromFile(filepath))
+    bool isTextureLoadedSuccessfully = texture.loadFromFile(filepath);
+
+    if (isTextureLoadedSuccessfully)
     {
         m_textures.emplace(filepath.string(), texture);
     }
@@ -32,12 +35,14 @@ void ResourceManager::loadTexture(const std::filesystem::path &filepath)
 
 const sf::Font &ResourceManager::getFont(const std::filesystem::path &filepath)
 {
-    std::unordered_map<std::string, sf::Font>::const_iterator it;
-    if (it = m_fonts.find(filepath.string()); it == m_fonts.end())
+    std::unordered_map<std::string, sf::Font>::const_iterator it = m_fonts.find(filepath.string());
+
+    if (it == m_fonts.end())
     {
         loadFont(filepath);
         it = m_fonts.find(filepath);
     }
+
     return it->second;
 }
 
@@ -45,7 +50,8 @@ void ResourceManager::loadFont(const std::filesystem::path &filepath)
 {
     sf::Font font;
 
-    if (font.loadFromFile(filepath))
+    bool isFontLoadedSuccesfully = font.loadFromFile(filepath);
+    if (isFontLoadedSuccesfully)
     {
         m_fonts.emplace(filepath.string(), font);
     }
