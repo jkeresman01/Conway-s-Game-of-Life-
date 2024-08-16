@@ -27,7 +27,7 @@ class Cell
     float getWidth() const { return m_height; }
     float getHeight() const { return m_height; }
     State getState() const { return m_state; }
-    sf::Vector2f getPosition() const { return m_position; };
+    sf::Vector2f getPosition() const { return m_position; }
 
   private:
     sf::RectangleShape m_cell;
