@@ -8,11 +8,15 @@
 namespace gol
 {
 
+typedef std::unordered_map<std::string, sf::Font> FontMapT;
+typedef std::unordered_map<std::string, sf::Texture> TextureMapT;
+
 class ResourceManager
 {
   public:
     ResourceManager()                        = default;
     ResourceManager(const ResourceManager &) = delete;
+
     ResourceManager operator=(const ResourceManager &) = delete;
 
     static ResourceManager &Instance();
@@ -25,8 +29,8 @@ class ResourceManager
     void loadTexture(const std::filesystem::path &filepath);
 
   private:
-    std::unordered_map<std::string, sf::Font> m_fonts;
-    std::unordered_map<std::string, sf::Texture> m_textures;
+    FontMapT m_fonts;
+    TextureMapT m_textures;
 };
 
 } // namespace gol

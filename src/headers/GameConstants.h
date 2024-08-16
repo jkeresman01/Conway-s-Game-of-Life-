@@ -14,7 +14,6 @@ namespace screen
 namespace game
 {
 
-
 } // namespace game
 
 } // namespace gol

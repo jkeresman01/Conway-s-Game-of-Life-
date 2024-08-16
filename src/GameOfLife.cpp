@@ -6,8 +6,8 @@ namespace gol
 {
 
 GameOfLife::GameOfLife()
-    : m_window(sf::VideoMode(SCREEN_WIDTH, SCREE_HEIGHT), "", sf::Style::None),
-      m_resourceManager(), m_background("resources/images/background.jpg"),
+    : m_window(sf::VideoMode(SCREEN_WIDTH, SCREE_HEIGHT), "", sf::Style::None), m_resourceManager(),
+      m_background("resources/images/background.jpg"),
       m_title("Conway's Game of Life", "resources/fonts/FloppyDisk.ttf"),
       m_closeButton("resources/icons/close.png"), m_playButton("resources/icons/play.png"),
       m_pauseButton("resources/icons/pause.png"), m_reshuffleButton("resources/icons/restart.png"),
@@ -69,7 +69,7 @@ void GameOfLife::update()
         m_clock.restart();
     }
 
-    if (m_state ==RESHUFFLED)
+    if (m_state == RESHUFFLED)
     {
         m_map.reshuffle();
         m_state = RUNNING;

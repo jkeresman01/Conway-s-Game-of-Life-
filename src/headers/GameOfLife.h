@@ -18,7 +18,6 @@ enum GameState
     RESHUFFLED = 2,
 };
 
-
 class GameOfLife
 {
   public:
@@ -44,16 +43,13 @@ class GameOfLife
     ResourceManager m_resourceManager;
     GameState m_state;
 
-
-    static const uint32_t SCREEN_WIDTH  = 1280;
+    static const uint32_t SCREEN_WIDTH = 1280;
     static const uint32_t SCREE_HEIGHT = 720;
 
     const uint32_t POSITION_X = 300;
     const uint32_t POSITION_Y = 200;
 
-
     const float REFRESH_TIME_SECONDS = 2.0f;
-
 };
 
 } // namespace gol
