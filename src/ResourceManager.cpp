@@ -7,7 +7,7 @@ namespace gol
 
 const sf::Texture &ResourceManager::getTexture(const std::filesystem::path &filepath)
 {
-    TextureMapT::const_iterator it = m_textures.find(filepath.string());
+    TextureMapT::iterator it = m_textures.find(filepath.string());
 
     if (it == m_textures.end())
     {
@@ -30,13 +30,13 @@ void ResourceManager::loadTexture(const std::filesystem::path &filepath)
     }
     else
     {
-        LOG_ERROR("Failed to texture from " << filepath.string() << "!");
+        LOG_ERROR("Failed to load texture from " << filepath.string() << "!");
     }
 }
 
 const sf::Font &ResourceManager::getFont(const std::filesystem::path &filepath)
 {
-    FontMapT::const_iterator it = m_fonts.find(filepath.string());
+    FontMapT::iterator it = m_fonts.find(filepath.string());
 
     if (it == m_fonts.end())
     {
