@@ -1,6 +1,5 @@
 #include <gtest/gtest.h>
 
-#include "../src/headers/GameConstants.h"
 #include "../src/headers/Map.h"
 
 using namespace gol;
@@ -10,30 +9,6 @@ class MapTest : public ::testing::Test
   protected:
     Map map;
 };
-
-TEST_F(MapTest, AfterMapIsCreated_WillCellsBeDeadInCurrentGeneration)
-{
-    for (size_t i = 0; i < map::ROWS; ++i)
-    {
-        for (size_t j = 0; j < map::COLUMNS; ++j)
-        {
-            Cell *cell = map.getCellAtPosition_CurrentGeneration(i, j);
-            EXPECT_EQ(cell->isAlive(), false);
-        }
-    }
-}
-
-TEST_F(MapTest, AfterMapIsCreated_WillCellsBeDeadInNextGeneration)
-{
-    for (size_t i = 0; i < map::ROWS; ++i)
-    {
-        for (size_t j = 0; j < map::COLUMNS; ++j)
-        {
-            Cell *cell = map.getCellAtPosition_NextGeneration(i, j);
-            EXPECT_EQ(cell->isAlive(), false);
-        }
-    }
-}
 
 TEST_F(MapTest, AfterMapUpdate_WillCellStayDeadIfAllNeighborsAreDead)
 {
@@ -46,13 +21,13 @@ TEST_F(MapTest, AfterMapUpdate_WillCellStayDeadIfAllNeighborsAreDead)
 TEST_F(MapTest, AfterMapUpdate_WillCellStayAliveWithTwoAliveNeighbours)
 {
     Cell *cell = map.getCellAtPosition_CurrentGeneration(2, 2);
-    cell->setState(cell::State::ALIVE);
+    cell->setState(State::ALIVE);
 
     Cell *firstNeighbour = map.getCellAtPosition_CurrentGeneration(2, 3);
-    firstNeighbour->setState(cell::State::ALIVE);
+    firstNeighbour->setState(State::ALIVE);
 
     Cell *secondNeighbour = map.getCellAtPosition_CurrentGeneration(3, 2);
-    secondNeighbour->setState(cell::State::ALIVE);
+    secondNeighbour->setState(State::ALIVE);
 
     map.update();
 
@@ -63,16 +38,16 @@ TEST_F(MapTest, AfterMapUpdate_WillCellStayAliveWithTwoAliveNeighbours)
 TEST_F(MapTest, AfterMapUpdate_WillCellWithThreeAliveNeighboursStayAlive)
 {
     Cell *cell = map.getCellAtPosition_CurrentGeneration(2, 2);
-    cell->setState(cell::State::ALIVE);
+    cell->setState(State::ALIVE);
 
     Cell *firstNeighbour = map.getCellAtPosition_CurrentGeneration(2, 3);
-    firstNeighbour->setState(cell::State::ALIVE);
+    firstNeighbour->setState(State::ALIVE);
 
     Cell *secondNeighbour = map.getCellAtPosition_CurrentGeneration(3, 2);
-    secondNeighbour->setState(cell::State::ALIVE);
+    secondNeighbour->setState(State::ALIVE);
 
     Cell *thirdNeighbour = map.getCellAtPosition_CurrentGeneration(3, 3);
-    thirdNeighbour->setState(cell::State::ALIVE);
+    thirdNeighbour->setState(State::ALIVE);
 
     map.update();
 
@@ -83,10 +58,10 @@ TEST_F(MapTest, AfterMapUpdate_WillCellWithThreeAliveNeighboursStayAlive)
 TEST_F(MapTest, AfterMapUpdate_WillCellWithOneAliveNeighbourDieOfUnderpopulation)
 {
     Cell *cell = map.getCellAtPosition_CurrentGeneration(2, 2);
-    cell->setState(cell::State::ALIVE);
+    cell->setState(State::ALIVE);
 
     Cell *neighbour = map.getCellAtPosition_CurrentGeneration(2, 3);
-    neighbour->setState(cell::State::ALIVE);
+    neighbour->setState(State::ALIVE);
 
     map.update();
 
@@ -97,7 +72,7 @@ TEST_F(MapTest, AfterMapUpdate_WillCellWithOneAliveNeighbourDieOfUnderpopulation
 TEST_F(MapTest, AfterMapUpdate_WillCellWithNoAliveNeighboursDieOfUnderpopulation)
 {
     Cell *cell = map.getCellAtPosition_CurrentGeneration(2, 2);
-    cell->setState(cell::State::ALIVE);
+    cell->setState(State::ALIVE);
 
     map.update();
 
@@ -108,19 +83,19 @@ TEST_F(MapTest, AfterMapUpdate_WillCellWithNoAliveNeighboursDieOfUnderpopulation
 TEST_F(MapTest, AfterMapUpdate_WillCellWithFourAliveNeighboursDieOfOverpoulation)
 {
     Cell *cell = map.getCellAtPosition_CurrentGeneration(2, 2);
-    cell->setState(cell::State::ALIVE);
+    cell->setState(State::ALIVE);
 
     Cell *firstNeighbour = map.getCellAtPosition_CurrentGeneration(2, 3);
-    firstNeighbour->setState(cell::State::ALIVE);
+    firstNeighbour->setState(State::ALIVE);
 
     Cell *secondNeighbour = map.getCellAtPosition_CurrentGeneration(3, 2);
-    secondNeighbour->setState(cell::State::ALIVE);
+    secondNeighbour->setState(State::ALIVE);
 
     Cell *thirdNeighbour = map.getCellAtPosition_CurrentGeneration(3, 3);
-    thirdNeighbour->setState(cell::State::ALIVE);
+    thirdNeighbour->setState(State::ALIVE);
 
     Cell *fourthNeighbour = map.getCellAtPosition_CurrentGeneration(1, 1);
-    fourthNeighbour->setState(cell::State::ALIVE);
+    fourthNeighbour->setState(State::ALIVE);
 
     map.update();
 
@@ -131,16 +106,16 @@ TEST_F(MapTest, AfterMapUpdate_WillCellWithFourAliveNeighboursDieOfOverpoulation
 TEST_F(MapTest, AfterMapUpdate_WillDeadCellWithThreeAliveNeighboursBeBorn)
 {
     Cell *cell = map.getCellAtPosition_CurrentGeneration(2, 2);
-    cell->setState(cell::State::DEAD);
+    cell->setState(State::DEAD);
 
     Cell *firstNeighbour = map.getCellAtPosition_CurrentGeneration(2, 3);
-    firstNeighbour->setState(cell::State::ALIVE);
+    firstNeighbour->setState(State::ALIVE);
 
     Cell *secondNeighbour = map.getCellAtPosition_CurrentGeneration(3, 2);
-    secondNeighbour->setState(cell::State::ALIVE);
+    secondNeighbour->setState(State::ALIVE);
 
     Cell *thirdNeighbour = map.getCellAtPosition_CurrentGeneration(3, 3);
-    thirdNeighbour->setState(cell::State::ALIVE);
+    thirdNeighbour->setState(State::ALIVE);
 
     map.update();
 

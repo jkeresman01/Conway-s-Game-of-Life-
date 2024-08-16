@@ -1,6 +1,5 @@
 #include "headers/Button.h"
 
-#include "headers/GameConstants.h"
 #include "headers/ResourceManager.h"
 
 namespace gol
@@ -10,9 +9,9 @@ Button::Button(const std::filesystem::path &filepath)
 {
     m_button.setTexture(ResourceManager::Instance().getTexture(filepath));
     m_button.setOrigin(m_button.getGlobalBounds().width / 2, m_button.getGlobalBounds().height / 2);
-    m_button.setPosition(button::POSITION_X, button::POSITION_Y);
+    m_button.setPosition(POSITION_X, POSITION_Y);
 
-    setScale(button::SCALE);
+    setScale(SCALE);
 }
 
 void Button::render(sf::RenderWindow &window) const
@@ -33,15 +32,14 @@ void Button::setScale(float scale)
 
 bool Button::isPressed(sf::RenderWindow &window)
 {
-    auto mousePosition = sf::Mouse::getPosition(window);
+    auto mousePosition      = sf::Mouse::getPosition(window);
     auto translatedPosition = window.mapPixelToCoords(mousePosition);
 
     bool isMouseOnButton = m_button.getGlobalBounds().contains(translatedPosition);
-    bool isMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+    bool isMousePressed  = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 
-    isMouseOnButton
-        ? m_button.setScale(m_scale * button::INCREASE_FACTOR, m_scale * button::INCREASE_FACTOR)
-        : m_button.setScale(m_scale, m_scale);
+    isMouseOnButton ? m_button.setScale(m_scale * INCREASE_FACTOR, m_scale * INCREASE_FACTOR)
+                    : m_button.setScale(m_scale, m_scale);
 
     return isMousePressed and isMouseOnButton;
 }

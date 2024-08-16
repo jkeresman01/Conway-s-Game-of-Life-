@@ -6,21 +6,21 @@ namespace gol
 {
 
 GameOfLife::GameOfLife()
-    : m_window(sf::VideoMode(screen::WIDTH, screen::HEIGHT), "", sf::Style::None),
+    : m_window(sf::VideoMode(SCREEN_WIDTH, SCREE_HEIGHT), "", sf::Style::None),
       m_resourceManager(), m_background("resources/images/background.jpg"),
       m_title("Conway's Game of Life", "resources/fonts/FloppyDisk.ttf"),
       m_closeButton("resources/icons/close.png"), m_playButton("resources/icons/play.png"),
       m_pauseButton("resources/icons/pause.png"), m_reshuffleButton("resources/icons/restart.png"),
-      m_state(game::RESHUFFLED)
+      m_state(RESHUFFLED)
 {
 
-    m_window.setPosition(sf::Vector2i(screen::POSITION_X, screen::POSITION_Y));
+    m_window.setPosition(sf::Vector2i(POSITION_X, POSITION_Y));
 
     m_closeButton.setScale(0.5f);
     m_closeButton.move(0, -20);
-    m_playButton.move(-150, title::POSITION_Y);
-    m_pauseButton.move(-100, title::POSITION_Y);
-    m_reshuffleButton.move(-50, title::POSITION_Y);
+    m_playButton.move(-150, 10);
+    m_pauseButton.move(-100, 10);
+    m_reshuffleButton.move(-50, 10);
 }
 
 void GameOfLife::run()
@@ -47,33 +47,32 @@ void GameOfLife::processEvents()
 
     if (m_reshuffleButton.isPressed(m_window))
     {
-        m_state = game::State::RESHUFFLED;
+        m_state = RESHUFFLED;
     }
 
     if (m_pauseButton.isPressed(m_window))
     {
-        m_state = game::State::PAUSED;
+        m_state = PAUSED;
     }
 
     if (m_playButton.isPressed(m_window))
     {
-        m_state = game::State::RUNNING;
+        m_state = RUNNING;
     }
 }
 
 void GameOfLife::update()
 {
-    if (m_clock.getElapsedTime().asSeconds() > game::REFRESH_TIME_SECONDS and
-        m_state != game::PAUSED)
+    if (m_clock.getElapsedTime().asSeconds() > REFRESH_TIME_SECONDS and m_state != PAUSED)
     {
         m_map.update();
         m_clock.restart();
     }
 
-    if (m_state == game::RESHUFFLED)
+    if (m_state ==RESHUFFLED)
     {
         m_map.reshuffle();
-        m_state = game::RUNNING;
+        m_state = RUNNING;
     }
 }
 

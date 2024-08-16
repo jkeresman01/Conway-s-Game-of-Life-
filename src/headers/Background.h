@@ -17,6 +17,9 @@ class Background
 
   private:
     sf::Sprite m_background;
+
+    const float SCALE_X = 0.3f;
+    const float SCALE_Y = 0.3f;
 };
 
 } // namespace gol

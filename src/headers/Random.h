@@ -8,15 +8,9 @@ namespace gol
 class Random
 {
   public:
-    static void Init()
-    {
-        s_randomEngine.seed(std::random_device()());
-    }
+    static void Init() { s_randomEngine.seed(std::random_device()()); }
 
-    static uint32_t generate(uint32_t max)
-    {
-        return s_distribution(s_randomEngine) % (max + 1);
-    }
+    static uint32_t generate(uint32_t max) { return s_distribution(s_randomEngine) % (max + 1); }
 
   private:
     inline static std::mt19937 s_randomEngine;

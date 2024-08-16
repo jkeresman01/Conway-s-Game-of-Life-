@@ -18,6 +18,11 @@ class Label
 
   private:
     sf::Text m_text;
+
+    const uint32_t POSITION_X = 50;
+    const uint32_t POSITION_Y = 10;
+
+    const uint32_t FONT_SIZE = 66;
 };
 
 } // namespace gol
