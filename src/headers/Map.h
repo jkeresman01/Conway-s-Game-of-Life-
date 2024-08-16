@@ -32,8 +32,6 @@ class Map
     void updateCellState(uint32_t positionX, uint32_t positionY);
     uint32_t countAliveNeighbours(uint32_t positionX, uint32_t positionY);
 
-    State getRandomCellState(uint32_t criteriaForAlive) const;
-
   private:
     static const uint32_t ROWS    = 60;
     static const uint32_t COLUMNS = 120;

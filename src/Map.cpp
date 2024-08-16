@@ -101,16 +101,9 @@ void Map::reshuffle()
     {
         for (size_t j = 1; j < COLUMNS - 1; ++j)
         {
-            State cellState = getRandomCellState(TWENTY_PERCENT_ALIVE);
-            m_currentGeneration[i][j].setState(cellState);
+            m_currentGeneration[i][j].setState(Random::cellState());
         }
     }
-}
-
-State Map::getRandomCellState(uint32_t criteriaForAlive) const
-{
-    uint32_t possiblityForAlive = Random::generate(100);
-    return possiblityForAlive <= criteriaForAlive ? State::ALIVE : State::DEAD;
 }
 
 } // namespace gol
