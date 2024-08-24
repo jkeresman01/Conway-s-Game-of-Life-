@@ -24,14 +24,13 @@ void ResourceManager::loadTexture(const std::filesystem::path &filepath)
 
     bool isTextureLoadedSuccessfully = texture.loadFromFile(filepath);
 
-    if (isTextureLoadedSuccessfully)
-    {
-        m_textures.emplace(filepath.string(), texture);
-    }
-    else
+    if (!isTextureLoadedSuccessfully)
     {
         LOG_ERROR("Failed to load texture from " << filepath.string() << "!");
+        return;
     }
+    
+    m_textures.emplace(filepath.string(), texture);
 }
 
 const sf::Font &ResourceManager::getFont(const std::filesystem::path &filepath)
@@ -53,14 +52,13 @@ void ResourceManager::loadFont(const std::filesystem::path &filepath)
 
     bool isFontLoadedSuccesfully = font.loadFromFile(filepath);
 
-    if (isFontLoadedSuccesfully)
-    {
-        m_fonts.emplace(filepath.string(), font);
-    }
-    else
+    if (!isFontLoadedSuccesfully)
     {
         LOG_ERROR("Failed to load font from " << filepath.string() << "!");
+        return;
     }
+
+    m_fonts.emplace(filepath.string(), font);
 }
 
 ResourceManager &ResourceManager::Instance()
