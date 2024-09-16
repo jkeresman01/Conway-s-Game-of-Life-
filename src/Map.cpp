@@ -25,11 +25,11 @@ Map::Map()
 
 void Map::render(sf::RenderWindow &window) const
 {
-    for (size_t i = 0; i < ROWS; ++i)
+    for (const auto &rows : m_currentGeneration)
     {
-        for (size_t j = 0; j < COLUMNS; ++j)
+        for (const auto &cell : rows)
         {
-            m_currentGeneration[i][j].render(window);
+            cell.render(window);
         }
     }
 }
@@ -97,11 +97,11 @@ void Map::changeGenerations()
 
 void Map::reshuffle()
 {
-    for (size_t i = 1; i < ROWS - 1; ++i)
+    for (auto &rows : m_currentGeneration)
     {
-        for (size_t j = 1; j < COLUMNS - 1; ++j)
+        for (auto &cell : rows)
         {
-            m_currentGeneration[i][j].setState(Random::cellState());
+            cell.setState(Random::cellState());
         }
     }
 }
