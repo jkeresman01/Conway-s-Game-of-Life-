@@ -30,7 +30,7 @@ class Map
   private:
     void changeGenerations();
     void updateCellState(uint32_t positionX, uint32_t positionY);
-    uint32_t countAliveNeighbours(uint32_t positionX, uint32_t positionY);
+    uint32_t countAliveNeighbours(uint32_t positionX, uint32_t positionY) const;
 
   private:
     static const uint32_t ROWS    = 60;

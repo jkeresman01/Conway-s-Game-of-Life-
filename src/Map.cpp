@@ -67,7 +67,7 @@ void Map::updateCellState(uint32_t positionX, uint32_t positionY)
     }
 }
 
-uint32_t Map::countAliveNeighbours(uint32_t positionX, uint32_t positionY)
+uint32_t Map::countAliveNeighbours(uint32_t positionX, uint32_t positionY) const
 {
     Cell neighbours[]{
         m_currentGeneration[positionX - 1][positionY],
