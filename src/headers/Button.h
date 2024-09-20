@@ -31,7 +31,7 @@ class Button
     const uint32_t POSITION_Y = 40;
 
     const float INCREASE_FACTOR = 1.1f;
-    const float SCALE           = 1.2f;
+    const float SCALE = 1.2f;
 };
 
 } // namespace gol

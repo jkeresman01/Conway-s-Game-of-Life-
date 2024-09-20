@@ -32,11 +32,11 @@ void Button::setScale(float scale)
 
 bool Button::isPressed(sf::RenderWindow &window)
 {
-    auto mousePosition      = sf::Mouse::getPosition(window);
+    auto mousePosition = sf::Mouse::getPosition(window);
     auto translatedPosition = window.mapPixelToCoords(mousePosition);
 
     bool isMouseOnButton = m_button.getGlobalBounds().contains(translatedPosition);
-    bool isMousePressed  = sf::Mouse::isButtonPressed(sf::Mouse::Left);
+    bool isMousePressed = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 
     isMouseOnButton ? m_button.setScale(m_scale * INCREASE_FACTOR, m_scale * INCREASE_FACTOR)
                     : m_button.setScale(m_scale, m_scale);

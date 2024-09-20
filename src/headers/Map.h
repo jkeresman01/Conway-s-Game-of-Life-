@@ -33,7 +33,7 @@ class Map
     uint32_t countAliveNeighbours(uint32_t positionX, uint32_t positionY) const;
 
   private:
-    static const uint32_t ROWS    = 60;
+    static const uint32_t ROWS = 60;
     static const uint32_t COLUMNS = 120;
 
     Cell m_currentGeneration[ROWS][COLUMNS];
@@ -45,8 +45,8 @@ class Map
     const float START_POSITION_Y = 100.0f;
 
     const int32_t UNDERPOPULATION = 2;
-    const int32_t REPRODUCTION    = 3;
-    const int32_t OVERPOPULATION  = 4;
+    const int32_t REPRODUCTION = 3;
+    const int32_t OVERPOPULATION = 4;
 
     const uint32_t TWENTY_PERCENT_ALIVE = 20;
 };

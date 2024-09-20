@@ -14,7 +14,7 @@ typedef std::unordered_map<std::string, sf::Texture> TexturesUnorderedMapT;
 class ResourceManager
 {
   public:
-    ResourceManager()                        = default;
+    ResourceManager() = default;
     ResourceManager(const ResourceManager &) = delete;
 
     ResourceManager operator=(const ResourceManager &) = delete;

@@ -25,13 +25,8 @@ Map::Map()
 
 void Map::render(sf::RenderWindow &window) const
 {
-    for (const auto &rows : m_currentGeneration)
-    {
-        for (const auto &cell : rows)
-        {
-            cell.render(window);
-        }
-    }
+    std::for_each(&(m_currentGeneration[0][0]), &(m_currentGeneration[0][0]) + (ROWS * COLUMNS),
+                  [&window](const auto cell) { cell.render(window); });
 }
 
 void Map::update()
@@ -97,13 +92,8 @@ void Map::changeGenerations()
 
 void Map::reshuffle()
 {
-    for (auto &rows : m_currentGeneration)
-    {
-        for (auto &cell : rows)
-        {
-            cell.setState(Random::cellState());
-        }
-    }
+    std::for_each(&(m_currentGeneration[0][0]), &(m_currentGeneration[0][0]) + (ROWS * COLUMNS),
+                  [](auto cell) { cell.setState(Random::cellState()); });
 }
 
 } // namespace gol

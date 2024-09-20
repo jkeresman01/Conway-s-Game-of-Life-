@@ -8,7 +8,7 @@ namespace gol
 
 enum class State
 {
-    DEAD  = 0,
+    DEAD = 0,
     ALIVE = 1,
 };
 
@@ -34,7 +34,7 @@ class Cell
     State m_state;
     sf::Vector2f m_position;
     float m_height = 10.0f;
-    float m_width  = 10.0f;
+    float m_width = 10.0f;
 
     const float ORIGIN_X = 5.0f;
     const float ORIGIN_Y = 5.0f;

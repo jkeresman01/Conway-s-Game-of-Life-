@@ -13,8 +13,8 @@ namespace gol
 
 enum GameState
 {
-    PAUSED     = 0,
-    RUNNING    = 1,
+    PAUSED = 0,
+    RUNNING = 1,
     RESHUFFLED = 2,
 };
 
