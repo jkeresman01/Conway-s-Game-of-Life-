@@ -1,4 +1,5 @@
 #include "headers/GameOfLife.h"
+#include "headers/Textures.h"
 
 #include <SFML/Window/Event.hpp>
 
@@ -6,11 +7,10 @@ namespace gol
 {
 
 GameOfLife::GameOfLife()
-    : m_window(sf::VideoMode(SCREEN_WIDTH, SCREE_HEIGHT), "", sf::Style::None), m_resourceManager(),
-      m_background("resources/images/background.jpg"),
-      m_title("Conway's Game of Life", "resources/fonts/FloppyDisk.ttf"),
-      m_closeButton("resources/icons/close.png"), m_playButton("resources/icons/play.png"),
-      m_pauseButton("resources/icons/pause.png"), m_reshuffleButton("resources/icons/restart.png"),
+    : m_window(sf::VideoMode(SCREEN_WIDTH, SCREE_HEIGHT), "", sf::Style::None),
+      m_background(textures::Background), m_title("Conway's Game of Life"),
+      m_closeButton(textures::CloseButton), m_playButton(textures::PlayButton),
+      m_pauseButton(textures::PauseButton), m_reshuffleButton(textures::ReshuffleButton),
       m_state(RESHUFFLED)
 {
 
