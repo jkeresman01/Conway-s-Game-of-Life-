@@ -2,6 +2,7 @@
 
 namespace gol
 {
+
 namespace textures
 {
 inline const char *Background = "resources/images/background.jpg";
