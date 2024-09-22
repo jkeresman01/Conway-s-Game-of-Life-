@@ -12,7 +12,7 @@ namespace gol
 class Label
 {
   public:
-    Label(const std::string &text);
+    explicit Label(const std::string &text);
 
     void render(sf::RenderWindow &window) const;
 
