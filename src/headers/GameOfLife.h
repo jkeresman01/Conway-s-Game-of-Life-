@@ -40,7 +40,6 @@ class GameOfLife
     Button m_playButton;
     Label m_title;
     Map m_map;
-    ResourceManager m_resourceManager;
     GameState m_state;
 
     static const uint32_t SCREEN_WIDTH = 1280;
