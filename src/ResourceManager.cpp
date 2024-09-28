@@ -63,8 +63,8 @@ void ResourceManager::loadFont(const std::filesystem::path &filepath)
 
 ResourceManager &ResourceManager::Instance()
 {
-    static ResourceManager instace;
-    return instace;
+    static ResourceManager instance;
+    return instance;
 }
 
 } // namespace gol
